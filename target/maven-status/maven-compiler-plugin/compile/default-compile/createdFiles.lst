@@ -1,7 +1,3 @@
-com\anyikang\Application$Production.class
-com\anyikang\netty\TCPServer.class
 com\anyikang\Application.class
-com\anyikang\Application$Local.class
 com\anyikang\netty\handler\SomethingServerHandler.class
-com\anyikang\netty\handler\SomethingChannelInitializer.class
 com\anyikang\netty\ChannelRepository.class

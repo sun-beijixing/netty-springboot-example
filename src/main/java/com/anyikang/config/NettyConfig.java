@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 import com.anyikang.netty.ChannelRepository;
-import com.anyikang.netty.handler.SomethingChannelInitializer;
+import com.anyikang.netty.init.SomethingChannelInitializer;
 
 /**
  * @author wangwei
@@ -34,12 +34,15 @@ public class NettyConfig {
 
     @Value("${tcp.port}")
     private int tcpPort;
+    
+    @Value("${tcp.host}")
+    private String tcpHost;
 
     @Value("${boss.thread.count}")
     private int bossCount;
 
     @Value("${worker.thread.count}")
-    private int workerCount;
+    private int workerCount;//内核为此套接口排队的最大连接个数，对于给定的监听套接口，内核要维护两个队列，未链接队列和已连接队列大小总和最大值
 
     @Value("${so.keepalive}")
     private boolean keepAlive;
@@ -50,17 +53,21 @@ public class NettyConfig {
     @SuppressWarnings("unchecked")
     @Bean(name = "serverBootstrap")
     public ServerBootstrap bootstrap() {
-        ServerBootstrap b = new ServerBootstrap();
-        b.group(bossGroup(), workerGroup())
+        ServerBootstrap serverBootstrap = new ServerBootstrap();
+        serverBootstrap.group(bossGroup(), workerGroup())
                 .channel(NioServerSocketChannel.class)
+                .childOption(ChannelOption.SO_KEEPALIVE, true)
+                .childOption(ChannelOption.TCP_NODELAY, true)
                 .handler(new LoggingHandler(LogLevel.DEBUG))
+                
                 .childHandler(somethingChannelInitializer);
+        
         Map<ChannelOption<?>, Object> tcpChannelOptions = tcpChannelOptions();
         Set<ChannelOption<?>> keySet = tcpChannelOptions.keySet();
         for (@SuppressWarnings("rawtypes") ChannelOption option : keySet) {
-            b.option(option, tcpChannelOptions.get(option));
+        	serverBootstrap.option(option, tcpChannelOptions.get(option));
         }
-        return b;
+        return serverBootstrap;
     }
 
     @Autowired
@@ -87,7 +94,8 @@ public class NettyConfig {
 
     @Bean(name = "tcpSocketAddress")
     public InetSocketAddress tcpPort() {
-        return new InetSocketAddress(tcpPort);
+    	return new InetSocketAddress(tcpHost,tcpPort);
+//        return new InetSocketAddress(tcpPort);
     }
 
     @Bean(name = "channelRepository")

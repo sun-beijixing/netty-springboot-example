@@ -27,6 +27,9 @@ public class SomethingServerHandler extends ChannelInboundHandlerAdapter {
 
     private static Logger logger = Logger.getLogger(SomethingServerHandler.class.getName());
 
+    /**
+     * 控制台输出信息检测
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         Assert.notNull(this.channelRepository, "[Assertion failed] - ChannelRepository is required; it must not be null");
