@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import com.anyikang.netty.ChannelRepository;
 import com.anyikang.netty.handler.SomethingChannelInitializer;
@@ -29,6 +30,7 @@ import com.anyikang.netty.handler.SomethingChannelInitializer;
  * @date 2017年3月1日
  */
 @Configuration
+@PropertySource(value= "classpath:/properties/nettyserver.properties")
 public class NettyConfig {
 	
 
