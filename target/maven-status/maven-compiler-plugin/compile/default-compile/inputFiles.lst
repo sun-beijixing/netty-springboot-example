@@ -1,5 +1,5 @@
-E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\zbum\example\socket\server\netty\TCPServer.java
-E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\zbum\example\socket\server\Application.java
-E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\zbum\example\socket\server\netty\handler\SomethingChannelInitializer.java
-E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\zbum\example\socket\server\netty\handler\SomethingServerHandler.java
-E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\zbum\example\socket\server\netty\ChannelRepository.java
+E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\anyikang\netty\TCPServer.java
+E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\anyikang\netty\handler\SomethingServerHandler.java
+E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\anyikang\Application.java
+E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\anyikang\netty\ChannelRepository.java
+E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\anyikang\netty\handler\SomethingChannelInitializer.java

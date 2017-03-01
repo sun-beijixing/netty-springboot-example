@@ -1,9 +1,9 @@
 
-package com.zbum.example.socket.server;
+package com.anyikang;
 
-import com.zbum.example.socket.server.netty.ChannelRepository;
-import com.zbum.example.socket.server.netty.TCPServer;
-import com.zbum.example.socket.server.netty.handler.SomethingChannelInitializer;
+import com.anyikang.netty.ChannelRepository;
+import com.anyikang.netty.TCPServer;
+import com.anyikang.netty.handler.SomethingChannelInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;

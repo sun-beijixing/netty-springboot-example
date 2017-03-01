@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.zbum.example.socket.server.netty.handler;
+package com.anyikang.netty.handler;
 
-import com.zbum.example.socket.server.netty.ChannelRepository;
+import com.anyikang.netty.ChannelRepository;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

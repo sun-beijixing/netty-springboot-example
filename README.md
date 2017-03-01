@@ -8,7 +8,7 @@ This TCP Communication Service is the simple backend application for developer w
 * Telnet Client can send message to other telnet client.
 
 ## How to use
-* Run com.zbum.example.socket.server.netty.Application with IDE or Maven
+* Run com.anyikang.netty.Application with IDE or Maven
 ```
     $ mvn spring-boot:run
 ```
