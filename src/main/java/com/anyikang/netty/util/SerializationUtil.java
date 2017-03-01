@@ -1,4 +1,4 @@
-package com.anyikang.utils;
+package com.anyikang.netty.util;
 
 import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtostuffIOUtil;

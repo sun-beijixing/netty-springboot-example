@@ -19,10 +19,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.anyikang.netty.RpcDecoder;
-import com.anyikang.netty.RpcEncoder;
 import com.anyikang.netty.RpcRequest;
 import com.anyikang.netty.RpcResponse;
+import com.anyikang.netty.codec.RpcDecoder;
+import com.anyikang.netty.codec.RpcEncoder;
 
 
 /**

@@ -1,6 +1,6 @@
-package com.anyikang.netty;
+package com.anyikang.netty.codec;
 
-import com.anyikang.utils.SerializationUtil;
+import com.anyikang.netty.util.SerializationUtil;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

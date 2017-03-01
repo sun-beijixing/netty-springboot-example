@@ -1,4 +1,4 @@
-package com.anyikang.netty;
+package com.anyikang.netty.codec;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -6,7 +6,7 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 
 import java.util.List;
 
-import com.anyikang.utils.SerializationUtil;
+import com.anyikang.netty.util.SerializationUtil;
 
 /**
  * Created by patterncat on 2016/4/6.
