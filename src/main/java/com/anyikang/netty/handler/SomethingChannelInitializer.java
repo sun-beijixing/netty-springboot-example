@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * Channel Initializer
+ * Channel 初始化
  * @author wangwei
  * @date 2017年3月1日
  */

@@ -13,7 +13,7 @@ import org.springframework.util.Assert;
 
 
 /**
- * event handler to process receiving messages
+ * 事件处理程序处理接收消息
  * @author wangwei
  * @date 2017年3月1日
  */
