@@ -1,0 +1,7 @@
+com\zbum\example\socket\server\netty\handler\SomethingServerHandler.class
+com\zbum\example\socket\server\Application$Local.class
+com\zbum\example\socket\server\netty\ChannelRepository.class
+com\zbum\example\socket\server\Application.class
+com\zbum\example\socket\server\netty\TCPServer.class
+com\zbum\example\socket\server\netty\handler\SomethingChannelInitializer.class
+com\zbum\example\socket\server\Application$Production.class
