@@ -1,9 +1,8 @@
 
 package com.anyikang.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import com.anyikang.netty.ChannelRepository;
@@ -13,26 +12,14 @@ import com.anyikang.netty.ChannelRepository;
  * @date 2017年3月1日
  */
 @Component
-@PropertySource(value= "classpath:/properties/nettyserver.properties")
+@ConfigurationProperties(prefix = "spring.netty")
 public class NettyConfig {
-	
 
-    @Value("${tcp.port}")
     private int tcpPort;
-    
-    @Value("${tcp.host}")
     private String tcpHost;
-
-    @Value("${boss.thread.count}")
     private int bossCount;
-
-    @Value("${worker.thread.count}")
     private int workerCount;//内核为此套接口排队的最大连接个数，对于给定的监听套接口，内核要维护两个队列，未链接队列和已连接队列大小总和最大值
-
-    @Value("${so.keepalive}")
-    private boolean keepAlive;
-
-    @Value("${so.backlog}")
+    private boolean keepalive;
     private int backlog;
 
 
@@ -98,17 +85,17 @@ public class NettyConfig {
 	}
 
 	/**
-	 * @return the keepAlive
+	 * @return the keepalive
 	 */
-	public boolean isKeepAlive() {
-		return keepAlive;
+	public boolean isKeepalive() {
+		return keepalive;
 	}
 
 	/**
-	 * @param keepAlive the keepAlive to set
+	 * @param keepalive the keepalive to set
 	 */
-	public void setKeepAlive(boolean keepAlive) {
-		this.keepAlive = keepAlive;
+	public void setKeepalive(boolean keepalive) {
+		this.keepalive = keepalive;
 	}
 
 	/**

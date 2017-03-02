@@ -80,7 +80,7 @@ public class NettyServer {
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .handler(new LoggingHandler(LogLevel.DEBUG))
-                .option(ChannelOption.SO_KEEPALIVE, nettyConfig.isKeepAlive())
+                .option(ChannelOption.SO_KEEPALIVE, nettyConfig.isKeepalive())
                 .option(ChannelOption.SO_BACKLOG, nettyConfig.getBacklog())
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
