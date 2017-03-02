@@ -51,10 +51,6 @@ public class NettyServer {
 	@Autowired
 	private NettyConfig nettyConfig;
 	
-	@Autowired
-    @Qualifier("somethingServerHandler")
-    private ChannelInboundHandlerAdapter somethingServerHandler;
-	
 	private static final StringDecoder DECODER = new StringDecoder();
 	private static final StringEncoder ENCODER = new StringEncoder();
 
@@ -92,16 +88,9 @@ public class NettyServer {
                         		.addLast(new DelimiterBasedFrameDecoder(1024*1024, Delimiters.lineDelimiter()))
                                 .addLast(DECODER)
                                 .addLast(ENCODER);
-//                                .addLast(somethingServerHandler)//注册的业务逻辑
-//                        .addLast(new TcpServerHandler());
                         
                         socketChannel.pipeline().addLast(new TcpServerHandler1());
                         socketChannel.pipeline().addLast(new TcpServerHandler2());
-                        
-                        
-//                        .addLast(new TcpServerHandler2());
-                        
-                        //注册的业务逻辑
                         
                         /*socketChannel.pipeline()
                         .addLast("decoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4))
