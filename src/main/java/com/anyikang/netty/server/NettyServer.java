@@ -34,6 +34,8 @@ import org.springframework.stereotype.Component;
 
 import com.anyikang.config.NettyConfig;
 import com.anyikang.netty.ServiceExporter;
+import com.anyikang.netty.handler.TcpServerHandler1;
+import com.anyikang.netty.handler.TcpServerHandler2;
 
 
 /**
@@ -43,6 +45,8 @@ import com.anyikang.netty.ServiceExporter;
  */
 @Component
 public class NettyServer {
+	
+	private static final Logger logger = LoggerFactory.getLogger(NettyServer.class);  
 
 	@Autowired
 	private NettyConfig nettyConfig;
@@ -60,7 +64,6 @@ public class NettyServer {
     private Channel channel;
 
     private Map<String, Object> exportServiceMap = new HashMap<String, Object>();
-    private static final Logger logger = LoggerFactory.getLogger(NettyServer.class);  
 
     /**
      * 启动服务
@@ -88,8 +91,17 @@ public class NettyServer {
                         socketChannel.pipeline()
                         		.addLast(new DelimiterBasedFrameDecoder(1024*1024, Delimiters.lineDelimiter()))
                                 .addLast(DECODER)
-                                .addLast(ENCODER)
-                                .addLast(somethingServerHandler);//注册的业务逻辑
+                                .addLast(ENCODER);
+//                                .addLast(somethingServerHandler)//注册的业务逻辑
+//                        .addLast(new TcpServerHandler());
+                        
+                        socketChannel.pipeline().addLast(new TcpServerHandler1());
+                        socketChannel.pipeline().addLast(new TcpServerHandler2());
+                        
+                        
+//                        .addLast(new TcpServerHandler2());
+                        
+                        //注册的业务逻辑
                         
                         /*socketChannel.pipeline()
                         .addLast("decoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4))
