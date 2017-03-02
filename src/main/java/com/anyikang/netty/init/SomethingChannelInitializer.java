@@ -51,7 +51,7 @@ public class SomethingChannelInitializer extends ChannelInitializer<SocketChanne
         //第一种方式
         pipeline.addLast(DECODER);
         pipeline.addLast(ENCODER);
-        pipeline.addLast(somethingServerHandler);
+        pipeline.addLast(somethingServerHandler);//注册的业务逻辑
         
         //第二种方式
 //        pipeline.addLast("decoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));

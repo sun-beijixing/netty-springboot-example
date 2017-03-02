@@ -1,33 +1,18 @@
 
 package com.anyikang.config;
 
-import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
-
-import java.net.InetSocketAddress;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 import com.anyikang.netty.ChannelRepository;
-import com.anyikang.netty.init.SomethingChannelInitializer;
 
 /**
  * @author wangwei
  * @date 2017年3月1日
  */
-@Configuration
+@Component
 @PropertySource(value= "classpath:/properties/nettyserver.properties")
 public class NettyConfig {
 	
@@ -50,57 +35,98 @@ public class NettyConfig {
     @Value("${so.backlog}")
     private int backlog;
 
-    @SuppressWarnings("unchecked")
-    @Bean(name = "serverBootstrap")
-    public ServerBootstrap bootstrap() {
-        ServerBootstrap serverBootstrap = new ServerBootstrap();
-        serverBootstrap.group(bossGroup(), workerGroup())
-                .channel(NioServerSocketChannel.class)
-                .childOption(ChannelOption.SO_KEEPALIVE, true)
-                .childOption(ChannelOption.TCP_NODELAY, true)
-                .handler(new LoggingHandler(LogLevel.DEBUG))
-                
-                .childHandler(somethingChannelInitializer);
-        
-        Map<ChannelOption<?>, Object> tcpChannelOptions = tcpChannelOptions();
-        Set<ChannelOption<?>> keySet = tcpChannelOptions.keySet();
-        for (@SuppressWarnings("rawtypes") ChannelOption option : keySet) {
-        	serverBootstrap.option(option, tcpChannelOptions.get(option));
-        }
-        return serverBootstrap;
-    }
-
-    @Autowired
-    @Qualifier("somethingChannelInitializer")
-    private SomethingChannelInitializer somethingChannelInitializer;
-
-    @Bean(name = "tcpChannelOptions")
-    public Map<ChannelOption<?>, Object> tcpChannelOptions() {
-        Map<ChannelOption<?>, Object> options = new HashMap<ChannelOption<?>, Object>();
-        options.put(ChannelOption.SO_KEEPALIVE, keepAlive);
-        options.put(ChannelOption.SO_BACKLOG, backlog);
-        return options;
-    }
-
-    @Bean(name = "bossGroup", destroyMethod = "shutdownGracefully")
-    public NioEventLoopGroup bossGroup() {
-        return new NioEventLoopGroup(bossCount);
-    }
-
-    @Bean(name = "workerGroup", destroyMethod = "shutdownGracefully")
-    public NioEventLoopGroup workerGroup() {
-        return new NioEventLoopGroup(workerCount);
-    }
-
-    @Bean(name = "tcpSocketAddress")
-    public InetSocketAddress tcpPort() {
-    	return new InetSocketAddress(tcpHost,tcpPort);
-//        return new InetSocketAddress(tcpPort);
-    }
 
     @Bean(name = "channelRepository")
     public ChannelRepository channelRepository() {
         return new ChannelRepository();
     }
+
+	/**
+	 * @return the tcpPort
+	 */
+	public int getTcpPort() {
+		return tcpPort;
+	}
+
+	/**
+	 * @param tcpPort the tcpPort to set
+	 */
+	public void setTcpPort(int tcpPort) {
+		this.tcpPort = tcpPort;
+	}
+
+	/**
+	 * @return the tcpHost
+	 */
+	public String getTcpHost() {
+		return tcpHost;
+	}
+
+	/**
+	 * @param tcpHost the tcpHost to set
+	 */
+	public void setTcpHost(String tcpHost) {
+		this.tcpHost = tcpHost;
+	}
+
+	/**
+	 * @return the bossCount
+	 */
+	public int getBossCount() {
+		return bossCount;
+	}
+
+	/**
+	 * @param bossCount the bossCount to set
+	 */
+	public void setBossCount(int bossCount) {
+		this.bossCount = bossCount;
+	}
+
+	/**
+	 * @return the workerCount
+	 */
+	public int getWorkerCount() {
+		return workerCount;
+	}
+
+	/**
+	 * @param workerCount the workerCount to set
+	 */
+	public void setWorkerCount(int workerCount) {
+		this.workerCount = workerCount;
+	}
+
+	/**
+	 * @return the keepAlive
+	 */
+	public boolean isKeepAlive() {
+		return keepAlive;
+	}
+
+	/**
+	 * @param keepAlive the keepAlive to set
+	 */
+	public void setKeepAlive(boolean keepAlive) {
+		this.keepAlive = keepAlive;
+	}
+
+	/**
+	 * @return the backlog
+	 */
+	public int getBacklog() {
+		return backlog;
+	}
+
+	/**
+	 * @param backlog the backlog to set
+	 */
+	public void setBacklog(int backlog) {
+		this.backlog = backlog;
+	}
+
+	
+    
+    
 
 }

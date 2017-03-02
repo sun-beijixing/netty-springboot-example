@@ -1,9 +1,14 @@
 
-package com.anyikang.netty;
+package com.anyikang.netty.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 
 import java.net.InetSocketAddress;
 import java.util.HashMap;
@@ -20,6 +25,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
+import com.anyikang.config.NettyConfig;
+import com.anyikang.netty.ServiceExporter;
+import com.anyikang.netty.init.SomethingChannelInitializer;
+
 
 /**
  * Main Server
@@ -29,23 +38,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class NettyServer {
 
-    @Autowired
-    @Qualifier("serverBootstrap")
-    private ServerBootstrap serverBootstrap;
-
-    @Autowired
-    @Qualifier("tcpSocketAddress")
+	@Autowired
+	private NettyConfig nettyConfig;
+	
+	@Autowired
+	@Qualifier("somethingChannelInitializer")
+	private SomethingChannelInitializer somethingChannelInitializer;
+	
     private InetSocketAddress tcpSocketAddress;
-    
-    @Autowired
-    @Qualifier("bossGroup")
     private EventLoopGroup bossGroup;
-    
-    @Autowired
-    @Qualifier("workerGroup")
     private EventLoopGroup workerGroup;
-
     private Channel channel;
+
     private Map<String, Object> exportServiceMap = new HashMap<String, Object>();
     private static final Logger logger = LoggerFactory.getLogger(NettyServer.class);  
 
@@ -56,6 +60,21 @@ public class NettyServer {
     @PostConstruct
     public void start() throws Exception {
         logger.info("begin to start rpc server");
+        
+        ServerBootstrap serverBootstrap = new ServerBootstrap();
+        bossGroup=new NioEventLoopGroup(nettyConfig.getBossCount());
+        workerGroup=new NioEventLoopGroup(nettyConfig.getWorkerCount());
+        tcpSocketAddress=new InetSocketAddress(nettyConfig.getTcpHost(),nettyConfig.getTcpPort());
+        
+        serverBootstrap.group(bossGroup, workerGroup)
+                .channel(NioServerSocketChannel.class)
+                .childOption(ChannelOption.SO_KEEPALIVE, true)
+                .childOption(ChannelOption.TCP_NODELAY, true)
+                .handler(new LoggingHandler(LogLevel.DEBUG))
+                .childHandler(somethingChannelInitializer)
+	        	.option(ChannelOption.SO_KEEPALIVE, nettyConfig.isKeepAlive())
+	        	.option(ChannelOption.SO_BACKLOG, nettyConfig.getBacklog());
+        
         channel =  serverBootstrap.bind(tcpSocketAddress).sync().channel().closeFuture().sync().channel();
     
 //        channel = serverBootstrap.bind(tcpSocketAddress).sync().channel();
