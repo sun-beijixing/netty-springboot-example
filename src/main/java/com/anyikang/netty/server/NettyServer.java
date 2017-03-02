@@ -90,25 +90,17 @@ public class NettyServer {
                                 .addLast(DECODER)
                                 .addLast(ENCODER)
                                 .addLast(somethingServerHandler);//注册的业务逻辑
+                        
+                        /*socketChannel.pipeline()
+                        .addLast("decoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4))
+                        .addLast("encoder", new LengthFieldPrepender(4, false))
+                        .addLast(new RpcDecoder(RpcRequest.class))
+                        .addLast(new RpcEncoder(RpcResponse.class))
+                        .addLast(new ServerRpcHandler(exportServiceMap));*/
                     }
                 });
-                /*.childHandler(new ChannelInitializer<SocketChannel>() {
-                    @Override
-                    protected void initChannel(SocketChannel socketChannel) throws Exception {
-                        socketChannel.pipeline()
-                                .addLast("decoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4))
-                                .addLast("encoder", new LengthFieldPrepender(4, false))
-                                .addLast(new RpcDecoder(RpcRequest.class))
-                                .addLast(new RpcEncoder(RpcResponse.class))
-                                .addLast(new ServerRpcHandler(exportServiceMap));
-                    }
-                });*/
                 
-                
-        
-        channel =  serverBootstrap.bind(tcpSocketAddress).sync().channel().closeFuture().sync().channel();
-    
-//        channel = serverBootstrap.bind(tcpSocketAddress).sync().channel();
+        channel = serverBootstrap.bind(tcpSocketAddress).sync().channel();
         logger.info("NettyRPC server listening on port " + tcpSocketAddress.getPort() + " and ready for connections...");
     }
     
