@@ -51,9 +51,9 @@ public class NettyServer {
     @Qualifier("somethingServerHandler")
     private ChannelInboundHandlerAdapter somethingServerHandler;
 	
-	 private static final StringDecoder DECODER = new StringDecoder();
-	 private static final StringEncoder ENCODER = new StringEncoder();
-	
+	private static final StringDecoder DECODER = new StringDecoder();
+	private static final StringEncoder ENCODER = new StringEncoder();
+
     private InetSocketAddress tcpSocketAddress;
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
@@ -97,6 +97,13 @@ public class NettyServer {
                         .addLast(new RpcDecoder(RpcRequest.class))
                         .addLast(new RpcEncoder(RpcResponse.class))
                         .addLast(new ServerRpcHandler(exportServiceMap));*/
+                        
+                        /*ChannelPipeline pipeline = ch.pipeline();  
+                        pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));  
+                        pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));  
+                        pipeline.addLast("decoder", new StringDecoder(CharsetUtil.UTF_8));  
+                        pipeline.addLast("encoder", new StringEncoder(CharsetUtil.UTF_8));  
+                        pipeline.addLast(new TcpServerHandler());  */
                     }
                 });
                 

@@ -17,8 +17,8 @@ public class NettyConfig {
 
     private int tcpPort;
     private String tcpHost;
-    private int bossCount;
-    private int workerCount;//内核为此套接口排队的最大连接个数，对于给定的监听套接口，内核要维护两个队列，未链接队列和已连接队列大小总和最大值
+    private int bossCount;//用于分配处理业务线程的线程组个数
+    private int workerCount;//业务出现线程大小,内核为此套接口排队的最大连接个数，对于给定的监听套接口，内核要维护两个队列，未链接队列和已连接队列大小总和最大值
     private boolean keepalive;
     private int backlog;
 
