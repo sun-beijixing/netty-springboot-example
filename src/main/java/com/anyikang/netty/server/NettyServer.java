@@ -3,10 +3,17 @@ package com.anyikang.netty.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.DelimiterBasedFrameDecoder;
+import io.netty.handler.codec.Delimiters;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
@@ -27,7 +34,6 @@ import org.springframework.stereotype.Component;
 
 import com.anyikang.config.NettyConfig;
 import com.anyikang.netty.ServiceExporter;
-import com.anyikang.netty.init.SomethingChannelInitializer;
 
 
 /**
@@ -42,8 +48,11 @@ public class NettyServer {
 	private NettyConfig nettyConfig;
 	
 	@Autowired
-	@Qualifier("somethingChannelInitializer")
-	private SomethingChannelInitializer somethingChannelInitializer;
+    @Qualifier("somethingServerHandler")
+    private ChannelInboundHandlerAdapter somethingServerHandler;
+	
+	 private static final StringDecoder DECODER = new StringDecoder();
+	 private static final StringEncoder ENCODER = new StringEncoder();
 	
     private InetSocketAddress tcpSocketAddress;
     private EventLoopGroup bossGroup;
@@ -71,9 +80,31 @@ public class NettyServer {
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .handler(new LoggingHandler(LogLevel.DEBUG))
-                .childHandler(somethingChannelInitializer)
-	        	.option(ChannelOption.SO_KEEPALIVE, nettyConfig.isKeepAlive())
-	        	.option(ChannelOption.SO_BACKLOG, nettyConfig.getBacklog());
+                .option(ChannelOption.SO_KEEPALIVE, nettyConfig.isKeepAlive())
+                .option(ChannelOption.SO_BACKLOG, nettyConfig.getBacklog())
+                .childHandler(new ChannelInitializer<SocketChannel>() {
+                    @Override
+                    protected void initChannel(SocketChannel socketChannel) throws Exception {
+                        socketChannel.pipeline()
+                        		.addLast(new DelimiterBasedFrameDecoder(1024*1024, Delimiters.lineDelimiter()))
+                                .addLast(DECODER)
+                                .addLast(ENCODER)
+                                .addLast(somethingServerHandler);//注册的业务逻辑
+                    }
+                });
+                /*.childHandler(new ChannelInitializer<SocketChannel>() {
+                    @Override
+                    protected void initChannel(SocketChannel socketChannel) throws Exception {
+                        socketChannel.pipeline()
+                                .addLast("decoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4))
+                                .addLast("encoder", new LengthFieldPrepender(4, false))
+                                .addLast(new RpcDecoder(RpcRequest.class))
+                                .addLast(new RpcEncoder(RpcResponse.class))
+                                .addLast(new ServerRpcHandler(exportServiceMap));
+                    }
+                });*/
+                
+                
         
         channel =  serverBootstrap.bind(tcpSocketAddress).sync().channel().closeFuture().sync().channel();
     
