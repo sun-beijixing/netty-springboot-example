@@ -2,10 +2,7 @@
 package com.anyikang.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-
-import com.anyikang.netty.ChannelRepository;
 
 /**
  * @author wangwei
@@ -22,11 +19,6 @@ public class NettyConfig {
     private boolean keepalive;
     private int backlog;
 
-
-    @Bean(name = "channelRepository")
-    public ChannelRepository channelRepository() {
-        return new ChannelRepository();
-    }
 
 	/**
 	 * @return the tcpPort
