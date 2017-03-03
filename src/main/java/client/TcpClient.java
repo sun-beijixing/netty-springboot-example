@@ -29,6 +29,8 @@ public class TcpClient {
       
     public static Bootstrap bootstrap = getBootstrap();  
     public static Channel channel = getChannel(HOST,PORT);  
+    
+	
     /** 
      * 初始化Bootstrap 
      * @return 
@@ -72,7 +74,7 @@ public class TcpClient {
     }  
     
   
-    /*public static void main(String[] args) throws Exception {  
+    public static void main(String[] args) throws Exception {  
         try {  
             long t0 = System.nanoTime();  
             for (int i = 0; i < 10; i++) {  
@@ -83,5 +85,5 @@ public class TcpClient {
         } catch (Exception e) {  
             e.printStackTrace();  
         }  
-    }  */
+    }  
 }  
