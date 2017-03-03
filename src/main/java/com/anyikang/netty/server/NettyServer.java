@@ -87,13 +87,6 @@ public class NettyServer {
 //                        pipeline.addLast(new TcpServerHandler1());
                         pipeline.addLast(new TcpServerHandler2());
                         
-                        /*pipeline
-                        .addLast(new RpcDecoder(RpcRequest.class))
-                        .addLast(new RpcEncoder(RpcResponse.class))
-                        .addLast(new ServerRpcHandler(exportServiceMap));*/
-                        
-                        /*ChannelPipeline pipeline = ch.pipeline();  
-                        pipeline.addLast(new TcpServerHandler());  */
                     }
                 });
                 
@@ -118,27 +111,6 @@ public class NettyServer {
         workerGroup = null;
         channel = null;
     }
-
     
     
-    
-    
-    
-    
-    
-    /*public ServerBootstrap getServerBootstrap() {
-        return serverBootstrap;
-    }
-
-    public void setServerBootstrap(ServerBootstrap serverBootstrap) {
-        this.serverBootstrap = serverBootstrap;
-    }
-
-    public InetSocketAddress getTcpPort() {
-        return tcpPort;
-    }
-
-    public void setTcpPort(InetSocketAddress tcpPort) {
-        this.tcpPort = tcpPort;
-    }*/
 }
