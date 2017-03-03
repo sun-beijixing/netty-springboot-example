@@ -1,4 +1,4 @@
-package com.anyikang.netty;
+/*package com.anyikang.netty;
 
 import org.springframework.stereotype.Component;
 
@@ -7,10 +7,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
+*//**
  * 服务提供方发布服务的注解
  * Created by patterncat on 2016/4/8.
- */
+ *//*
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Component //加上spring的注解
@@ -20,3 +20,4 @@ public @interface ServiceExporter {
     Class<?> targetInterface(); //防止实现类实现了多个接口
     String debugAddress() default "";
 }
+*/

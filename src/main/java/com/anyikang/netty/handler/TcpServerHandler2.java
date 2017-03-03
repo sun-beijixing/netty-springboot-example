@@ -10,14 +10,16 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.anyikang.netty.server.NettyServer;
+
 /**
  * @author wangwei
  * @date 2017年3月2日
  */
 public class TcpServerHandler2 extends ChannelInboundHandlerAdapter {
 	
-	private static final Logger logger = LoggerFactory.getLogger(TcpServerHandler1.class);
-
+	private static final Logger logger = LoggerFactory.getLogger(TcpServerHandler2.class);  
+	
 	/* (non-Javadoc)
 	 * @see io.netty.channel.ChannelInboundHandlerAdapter#channelRead(io.netty.channel.ChannelHandlerContext, java.lang.Object)
 	 */
@@ -29,7 +31,7 @@ public class TcpServerHandler2 extends ChannelInboundHandlerAdapter {
 		// 通知执行下一个InboundHandler  
 //		ctx.fireChannelRead(msg);
 		
-		ctx.channel().write("server handler2 receive msg:"+msg);
+		ctx.channel().write("server send msg:"+msg);
 	}
 
 	/* (non-Javadoc)

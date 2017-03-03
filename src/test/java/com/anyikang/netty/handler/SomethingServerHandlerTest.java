@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ 
 package com.anyikang.netty.handler;
 
 import com.anyikang.netty.ChannelRepository;
@@ -27,11 +27,11 @@ import java.net.SocketAddress;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/**
+*//**
  * Test for  SomethingServerHandler.java
  *
  * @author Jibeom Jung
- */
+ *//*
 public class SomethingServerHandlerTest {
 
     private SomethingServerHandler somethingServerHandler;
@@ -74,4 +74,4 @@ public class SomethingServerHandlerTest {
     public void testExceptionCaught() throws Exception {
 
     }
-}
+}*/

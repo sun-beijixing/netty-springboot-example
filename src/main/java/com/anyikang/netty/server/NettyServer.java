@@ -3,19 +3,18 @@ package com.anyikang.netty.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
-import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
+import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.DelimiterBasedFrameDecoder;
-import io.netty.handler.codec.Delimiters;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import io.netty.util.CharsetUtil;
 
 import java.net.InetSocketAddress;
 import java.util.HashMap;
@@ -26,15 +25,10 @@ import javax.annotation.PreDestroy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.anyikang.config.NettyConfig;
-import com.anyikang.netty.ServiceExporter;
-import com.anyikang.netty.handler.TcpServerHandler1;
 import com.anyikang.netty.handler.TcpServerHandler2;
 
 
@@ -51,8 +45,8 @@ public class NettyServer {
 	@Autowired
 	private NettyConfig nettyConfig;
 	
-	private static final StringDecoder DECODER = new StringDecoder();
-	private static final StringEncoder ENCODER = new StringEncoder();
+	private static final StringDecoder DECODER = new StringDecoder(CharsetUtil.UTF_8);
+	private static final StringEncoder ENCODER = new StringEncoder(CharsetUtil.UTF_8);
 
     private InetSocketAddress tcpSocketAddress;
     private EventLoopGroup bossGroup;
@@ -84,26 +78,21 @@ public class NettyServer {
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
-                        socketChannel.pipeline()
-                        		.addLast(new DelimiterBasedFrameDecoder(1024*1024, Delimiters.lineDelimiter()))
-                                .addLast(DECODER)
-                                .addLast(ENCODER);
+                    	ChannelPipeline pipeline=socketChannel.pipeline();
+                        pipeline.addLast(DECODER);
+                        pipeline.addLast(ENCODER);
+//                        pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));  
+//                        pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));  
                         
-                        socketChannel.pipeline().addLast(new TcpServerHandler1());
-                        socketChannel.pipeline().addLast(new TcpServerHandler2());
+//                        pipeline.addLast(new TcpServerHandler1());
+                        pipeline.addLast(new TcpServerHandler2());
                         
-                        /*socketChannel.pipeline()
-                        .addLast("decoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4))
-                        .addLast("encoder", new LengthFieldPrepender(4, false))
+                        /*pipeline
                         .addLast(new RpcDecoder(RpcRequest.class))
                         .addLast(new RpcEncoder(RpcResponse.class))
                         .addLast(new ServerRpcHandler(exportServiceMap));*/
                         
                         /*ChannelPipeline pipeline = ch.pipeline();  
-                        pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));  
-                        pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));  
-                        pipeline.addLast("decoder", new StringDecoder(CharsetUtil.UTF_8));  
-                        pipeline.addLast("encoder", new StringEncoder(CharsetUtil.UTF_8));  
                         pipeline.addLast(new TcpServerHandler());  */
                     }
                 });
@@ -131,24 +120,7 @@ public class NettyServer {
     }
 
     
-    /**
-     * 利用此方法获取spring ioc接管的所有bean
-     * @param ctx
-     * @throws BeansException
-     */
-    public void setApplicationContext(ApplicationContext ctx) throws BeansException {
-        Map<String, Object> serviceMap = ctx.getBeansWithAnnotation(ServiceExporter.class); // 获取所有带有 ServiceExporter 注解的 Spring Bean
-        logger.info("获取到所有的RPC服务:{}", serviceMap);
-        if (serviceMap != null && serviceMap.size() > 0) {
-            for (Object serviceBean : serviceMap.values()) {
-                String interfaceName = serviceBean.getClass().getAnnotation(ServiceExporter.class)
-                        .targetInterface()
-                        .getName();
-                logger.info("register service mapping:{}",interfaceName);
-                exportServiceMap.put(interfaceName, serviceBean);
-            }
-        }
-    }
+    
     
     
     
