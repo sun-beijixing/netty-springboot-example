@@ -10,7 +10,8 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.anyikang.model.ObjectResp;
+import com.anyikang.model.ObjectRequest;
+import com.anyikang.model.ObjectRespone;
 import com.anyikang.netty.server.NettyServer;
 
 /**
@@ -32,6 +33,8 @@ public class TcpServerHandler2 extends ChannelInboundHandlerAdapter {
 			logger.info("=================String类型数据：");
 		}else {
 			logger.info("=================其他类型数据：");
+			
+			ObjectRequest req = (ObjectRequest)msg;  
 		}
 		
 		logger.info("服务器端接收的数据:"+msg);  
@@ -41,9 +44,9 @@ public class TcpServerHandler2 extends ChannelInboundHandlerAdapter {
 		
 //		ctx.channel().write("server send msg:"+msg);
 //		
-		ObjectResp resp = new ObjectResp();  
-        resp.setnSubReqID(555666);  
-        resp.setRespCode(0);  
+		ObjectRespone resp = new ObjectRespone();  
+        resp.setId(555666);  
+        resp.setCode(0);  
         resp.setDesc("test ---");  
         ctx.writeAndFlush(resp);    // 反馈消息  
 //        ctx.writeAndFlush("server send msg:"+msg);    // 反馈消息  

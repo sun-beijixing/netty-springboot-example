@@ -1,5 +1,4 @@
 com\anyikang\netty\handler\TcpServerHandler2.class
-com\anyikang\netty\handler\SubReqServerHandler.class
 com\anyikang\netty\handler\TcpServerHandler1.class
 com\anyikang\Application.class
 client\TcpClientHandler.class

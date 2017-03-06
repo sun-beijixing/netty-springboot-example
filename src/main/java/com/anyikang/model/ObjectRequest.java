@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author wangwei
  * @date 2017年3月2日
  */
-public class ObjectReq implements Serializable {
+public class ObjectRequest implements Serializable {
 
 	/**
 	 * 
@@ -66,7 +66,7 @@ public class ObjectReq implements Serializable {
 
 	@Override
 	public String toString() {
-		return "----SubscribeReq[id=" + id + ",name=" + name + ",age=" + age
+		return "ObjectReq[id=" + id + ",name=" + name + ",age=" + age
 				+ "]";
 	}
 

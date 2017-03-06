@@ -18,7 +18,7 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.anyikang.model.ObjectReq;
+import com.anyikang.model.ObjectRequest;
   
 /**
  * @author wangwei
@@ -88,22 +88,22 @@ public class TcpClient {
     }  
     
   
-    public static void main(String[] args) throws Exception {  
-        try {  
-            long t0 = System.nanoTime();  
-            for (int i = 0; i < 10; i++) {  
-//            	TcpClient.sendMsg(i+"你好1========================");  
-            	
-            	ObjectReq req=new ObjectReq();
-            	req.setId(i);
-            	req.setName("张三"+i);
-            	req.setAge(15+i);
-            	TcpClient.sendObject(req);
-            }  
-            long t1 = System.nanoTime();  
-            System.out.println((t1-t0)/1000000.0);  
-        } catch (Exception e) {  
-            e.printStackTrace();  
-        }  
-    }  
+//    public static void main(String[] args) throws Exception {  
+//        try {  
+//            long t0 = System.nanoTime();  
+//            for (int i = 0; i < 10; i++) {  
+////            	TcpClient.sendMsg(i+"你好1========================");  
+//            	
+//            	ObjectReq req=new ObjectReq();
+//            	req.setId(i);
+//            	req.setName("张三"+i);
+//            	req.setAge(15+i);
+//            	TcpClient.sendObject(req);
+//            }  
+//            long t1 = System.nanoTime();  
+//            System.out.println((t1-t0)/1000000.0);  
+//        } catch (Exception e) {  
+//            e.printStackTrace();  
+//        }  
+//    }  
 }  
