@@ -10,6 +10,9 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.serialization.ClassResolvers;
+import io.netty.handler.codec.serialization.ObjectDecoder;
+import io.netty.handler.codec.serialization.ObjectEncoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.logging.LogLevel;
@@ -53,7 +56,6 @@ public class NettyServer {
     private EventLoopGroup workerGroup;
     private Channel channel;
 
-    private Map<String, Object> exportServiceMap = new HashMap<String, Object>();
 
     /**
      * 启动服务
@@ -61,13 +63,15 @@ public class NettyServer {
      */
     @PostConstruct
     public void start() throws Exception {
-        logger.info("begin to start rpc server");
-        
-        ServerBootstrap serverBootstrap = new ServerBootstrap();
+        logger.info("================开始启动服务=================");
+        //配置NIO线程组
         bossGroup=new NioEventLoopGroup(nettyConfig.getBossCount());
         workerGroup=new NioEventLoopGroup(nettyConfig.getWorkerCount());
+        
         tcpSocketAddress=new InetSocketAddress(nettyConfig.getTcpHost(),nettyConfig.getTcpPort());
         
+        //服务器辅助启动类配置
+        ServerBootstrap serverBootstrap = new ServerBootstrap();
         serverBootstrap.group(bossGroup, workerGroup)
                 .channel(NioServerSocketChannel.class)
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
@@ -79,10 +83,15 @@ public class NettyServer {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
                     	ChannelPipeline pipeline=socketChannel.pipeline();
-                        pipeline.addLast(DECODER);
-                        pipeline.addLast(ENCODER);
-//                        pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));  
-//                        pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));  
+                    	//添加字符串编码解码器
+//                        pipeline.addLast(DECODER);
+//                        pipeline.addLast(ENCODER);
+                    	
+                        //添加对象解码器 负责对序列化POJO对象进行解码 设置对象序列化最大长度为1M 防止内存溢出
+                        //设置线程安全的WeakReferenceMap对类加载器进行缓存 支持多线程并发访问  防止内存溢出 
+                        pipeline.addLast(new ObjectDecoder(1024*1024,ClassResolvers.weakCachingConcurrentResolver(this.getClass().getClassLoader())));
+                        //添加对象编码器 在服务器对外发送消息的时候自动将实现序列化的POJO对象编码
+                        pipeline.addLast(new ObjectEncoder());
                         
 //                        pipeline.addLast(new TcpServerHandler1());
                         pipeline.addLast(new TcpServerHandler2());
@@ -91,7 +100,7 @@ public class NettyServer {
                 });
                 
         channel = serverBootstrap.bind(tcpSocketAddress).sync().channel();
-        logger.info("NettyRPC server listening on port " + tcpSocketAddress.getPort() + " and ready for connections...");
+        logger.info("Netty服务器监听连接成功的端口号是： " + tcpSocketAddress.getPort());
     }
     
     /**

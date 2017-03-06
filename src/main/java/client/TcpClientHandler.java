@@ -9,6 +9,9 @@ import io.netty.channel.SimpleChannelInboundHandler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.anyikang.model.ObjectReq;
+import com.anyikang.model.ObjectResp;
   
 /**
  * @author wangwei
@@ -36,7 +39,14 @@ public class TcpClientHandler extends ChannelInboundHandlerAdapter {
 		// TODO Auto-generated method stub
 		super.channelRead(ctx, msg);
 		
-		System.out.println("=============msg:"+msg);
+		if(msg instanceof String){
+			logger.info("=================String类型数据：");
+		}else {
+			logger.info("=================其他类型数据：");
+		}
+		
+		ObjectResp req = (ObjectResp)msg;   // 订购内容  
+		logger.info("客户端接收到的数据: [  " + req.toString() + "   ]");  
 	}
 
 	/* (non-Javadoc)

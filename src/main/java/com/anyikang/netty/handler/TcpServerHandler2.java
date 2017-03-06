@@ -10,6 +10,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.anyikang.model.ObjectResp;
 import com.anyikang.netty.server.NettyServer;
 
 /**
@@ -26,12 +27,26 @@ public class TcpServerHandler2 extends ChannelInboundHandlerAdapter {
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
-		logger.info("==================server handler2 receive msg:"+msg);  
+		
+		if(msg instanceof String){
+			logger.info("=================String类型数据：");
+		}else {
+			logger.info("=================其他类型数据：");
+		}
+		
+		logger.info("服务器端接收的数据:"+msg);  
 		
 		// 通知执行下一个InboundHandler  
 //		ctx.fireChannelRead(msg);
 		
-		ctx.channel().write("server send msg:"+msg);
+//		ctx.channel().write("server send msg:"+msg);
+//		
+		ObjectResp resp = new ObjectResp();  
+        resp.setnSubReqID(555666);  
+        resp.setRespCode(0);  
+        resp.setDesc("test ---");  
+        ctx.writeAndFlush(resp);    // 反馈消息  
+//        ctx.writeAndFlush("server send msg:"+msg);    // 反馈消息  
 	}
 
 	/* (non-Javadoc)

@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author wangwei
  * @date 2017年3月2日
  */
-public class SubscribeReq implements Serializable {
+public class ObjectReq implements Serializable {
 
 	/**
 	 * 

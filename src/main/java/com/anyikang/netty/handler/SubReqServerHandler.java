@@ -3,8 +3,8 @@
  */
 package com.anyikang.netty.handler;
 
-import com.anyikang.model.SubscribeReq;
-import com.anyikang.model.SubscribeResp;
+import com.anyikang.model.ObjectReq;
+import com.anyikang.model.ObjectResp;
 
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
@@ -38,7 +38,7 @@ public class SubReqServerHandler extends ChannelInboundHandlerAdapter{
           
           System.out.println("=============msg:"+msg);
 //        
-            SubscribeResp resp = new SubscribeResp();  
+            ObjectResp resp = new ObjectResp();  
             resp.setnSubReqID(555666);  
             resp.setRespCode(0);  
             resp.setDesc("-------Netty book order succeed, 3days later, sent to the designated address");  
@@ -46,7 +46,7 @@ public class SubReqServerHandler extends ChannelInboundHandlerAdapter{
             //ctx.write(resp);  
             //ctx.flush();  
           
-            SubscribeReq req = (SubscribeReq)msg;   // 订购内容  
+            ObjectReq req = (ObjectReq)msg;   // 订购内容  
 //            if("XXYY".equalsIgnoreCase(req.getName())){  
                 System.out.println("接收到的数据: [  " + req.toString() + "   ]");  
 //            }  
