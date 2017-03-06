@@ -34,6 +34,18 @@ public class TcpServerHandler1 extends ChannelInboundHandlerAdapter {
 //		logger.info("InboundHandler1.channelReadComplete");  
 		ctx.flush();  
 		 
+	}
+
+	/* (non-Javadoc)
+	 * @see io.netty.channel.ChannelInboundHandlerAdapter#exceptionCaught(io.netty.channel.ChannelHandlerContext, java.lang.Throwable)
+	 */
+	@Override
+	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
+			throws Exception {
+		// TODO Auto-generated method stub
+		super.exceptionCaught(ctx, cause);
+		
+		ctx.close();
 	}  
 
 	

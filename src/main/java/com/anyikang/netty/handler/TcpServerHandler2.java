@@ -3,6 +3,9 @@
  */
 package com.anyikang.netty.handler;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -22,6 +25,19 @@ public class TcpServerHandler2 extends ChannelInboundHandlerAdapter {
 	
 	private static final Logger logger = LoggerFactory.getLogger(TcpServerHandler2.class);  
 	
+	
+	
+	/* (non-Javadoc)
+	 * @see io.netty.channel.ChannelInboundHandlerAdapter#channelActive(io.netty.channel.ChannelHandlerContext)
+	 */
+	@Override
+	public void channelActive(ChannelHandlerContext ctx) throws Exception {
+		
+		// 定时任务
+//        ScheduledExecutorService deviceUpgrade = Executors.newScheduledThreadPool(3);
+//        deviceUpgrade.scheduleWithFixedDelay(new AutoCheckUpgradTimer(dataManager), 20, 60, TimeUnit.SECONDS);
+	}
+
 	/* (non-Javadoc)
 	 * @see io.netty.channel.ChannelInboundHandlerAdapter#channelRead(io.netty.channel.ChannelHandlerContext, java.lang.Object)
 	 */
@@ -57,9 +73,18 @@ public class TcpServerHandler2 extends ChannelInboundHandlerAdapter {
 	 */
 	@Override
 	public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-//		logger.info("InboundHandler1.channelReadComplete");  
-		ctx.flush();  
-		 
+		logger.info("TcpServerHandler2.channelReadComplete");  
+		
+//		ctx.flush(); 
+	}
+
+	/* (non-Javadoc)
+	 * @see io.netty.channel.ChannelInboundHandlerAdapter#exceptionCaught(io.netty.channel.ChannelHandlerContext, java.lang.Throwable)
+	 */
+	@Override
+	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
+			throws Exception {
+		 ctx.close();
 	}  
 
 	
