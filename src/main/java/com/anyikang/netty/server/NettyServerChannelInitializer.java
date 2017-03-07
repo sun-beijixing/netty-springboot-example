@@ -1,0 +1,53 @@
+/**
+ * 
+ */
+package com.anyikang.netty.server;
+
+import com.anyikang.netty.HeartBeatHandler;
+import com.anyikang.netty.handler.TcpServerHandler2;
+
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelPipeline;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
+import io.netty.handler.timeout.IdleStateHandler;
+import io.netty.util.CharsetUtil;
+
+/**
+ * @author wangwei
+ * @date 2017年3月7日
+ */
+public class NettyServerChannelInitializer extends ChannelInitializer<SocketChannel>{
+	
+	private static final StringDecoder DECODER = new StringDecoder(CharsetUtil.UTF_8);
+	private static final StringEncoder ENCODER = new StringEncoder(CharsetUtil.UTF_8);
+
+	/* (non-Javadoc)
+	 * @see io.netty.channel.ChannelInitializer#initChannel(io.netty.channel.Channel)
+	 */
+	@Override
+	protected void initChannel(SocketChannel ch) throws Exception {
+		ChannelPipeline pipeline=ch.pipeline();
+		//添加字符串编码解码器
+                pipeline.addLast(DECODER);
+                pipeline.addLast(ENCODER);
+                
+                // 3 minutes for read idle
+                pipeline.addLast(new IdleStateHandler(3*60,0,0));
+                pipeline.addLast(new HeartBeatHandler());
+		
+		//添加对象解码器 负责对序列化POJO对象进行解码 设置对象序列化最大长度为1M 防止内存溢出
+		//设置线程安全的WeakReferenceMap对类加载器进行缓存 支持多线程并发访问  防止内存溢出 
+//		pipeline.addLast(new ObjectDecoder(1024*1024,ClassResolvers.weakCachingConcurrentResolver(this.getClass().getClassLoader())));
+		//添加对象编码器 在服务器对外发送消息的时候自动将实现序列化的POJO对象编码
+//		pipeline.addLast(new ObjectEncoder());
+		
+//                pipeline.addLast(new TcpServerHandler1());
+		pipeline.addLast(new TcpServerHandler2());
+		
+	}
+
+	
+}

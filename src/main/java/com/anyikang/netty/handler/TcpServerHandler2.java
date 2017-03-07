@@ -47,10 +47,18 @@ public class TcpServerHandler2 extends ChannelInboundHandlerAdapter {
 		
 		if(msg instanceof String){
 			logger.info("=================String类型数据：");
+			
+			 ctx.writeAndFlush("server send msg:"+msg);    // 反馈消息  
 		}else {
 			logger.info("=================其他类型数据：");
 			
 			ObjectRequest req = (ObjectRequest)msg;  
+			
+			ObjectRespone resp = new ObjectRespone();  
+			resp.setId(555666);  
+			resp.setCode(0);  
+			resp.setDesc("test ---");  
+			ctx.writeAndFlush(resp);    // 反馈消息  
 		}
 		
 		logger.info("服务器端接收的数据:"+msg);  
@@ -59,13 +67,6 @@ public class TcpServerHandler2 extends ChannelInboundHandlerAdapter {
 //		ctx.fireChannelRead(msg);
 		
 //		ctx.channel().write("server send msg:"+msg);
-//		
-		ObjectRespone resp = new ObjectRespone();  
-        resp.setId(555666);  
-        resp.setCode(0);  
-        resp.setDesc("test ---");  
-        ctx.writeAndFlush(resp);    // 反馈消息  
-//        ctx.writeAndFlush("server send msg:"+msg);    // 反馈消息  
 	}
 
 	/* (non-Javadoc)
@@ -84,7 +85,7 @@ public class TcpServerHandler2 extends ChannelInboundHandlerAdapter {
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
 			throws Exception {
-		 ctx.close();
+//		 ctx.close();
 	}  
 
 	

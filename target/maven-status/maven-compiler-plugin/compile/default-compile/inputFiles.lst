@@ -3,7 +3,9 @@ E:\sts3.6-workspace\netty-springboot-example\src\main\java\client\TcpClient.java
 E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\anyikang\model\ObjectRespone.java
 E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\anyikang\config\NettyConfig.java
 E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\anyikang\netty\server\NettyServer.java
+E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\anyikang\netty\server\NettyServerChannelInitializer.java
 E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\anyikang\Application.java
 E:\sts3.6-workspace\netty-springboot-example\src\main\java\client\TcpClientHandler.java
 E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\anyikang\netty\handler\TcpServerHandler2.java
 E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\anyikang\model\ObjectRequest.java
+E:\sts3.6-workspace\netty-springboot-example\src\main\java\com\anyikang\netty\HeartBeatHandler.java

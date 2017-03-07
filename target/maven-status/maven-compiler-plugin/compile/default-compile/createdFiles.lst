@@ -2,7 +2,6 @@ com\anyikang\netty\handler\TcpServerHandler2.class
 com\anyikang\netty\handler\TcpServerHandler1.class
 com\anyikang\Application.class
 client\TcpClientHandler.class
-com\anyikang\netty\server\NettyServer$1.class
 client\TcpClient.class
 client\TcpClient$1.class
 com\anyikang\config\NettyConfig.class
