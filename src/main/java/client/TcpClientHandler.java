@@ -41,12 +41,13 @@ public class TcpClientHandler extends ChannelInboundHandlerAdapter {
 		
 		if(msg instanceof String){
 			logger.info("=================String类型数据：");
+			logger.info((String)msg);
 		}else {
 			logger.info("=================其他类型数据：");
+			ObjectRespone req = (ObjectRespone)msg;   // 订购内容  
+			logger.info("客户端接收到的数据: [  " + req.toString() + "   ]");  
 		}
 		
-		ObjectRespone req = (ObjectRespone)msg;   // 订购内容  
-		logger.info("客户端接收到的数据: [  " + req.toString() + "   ]");  
 	}
 
 	/* (non-Javadoc)
