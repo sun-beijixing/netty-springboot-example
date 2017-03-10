@@ -15,6 +15,19 @@ import io.netty.handler.timeout.IdleStateEvent;
  * @date 2017年3月7日
  */
 public class HeartBeatHandler extends ChannelInboundHandlerAdapter {
+	
+	
+	
+
+	/* (non-Javadoc)
+	 * @see io.netty.channel.ChannelInboundHandlerAdapter#channelRead(io.netty.channel.ChannelHandlerContext, java.lang.Object)
+	 */
+	@Override
+	public void channelRead(ChannelHandlerContext ctx, Object msg)
+			throws Exception {
+		// TODO Auto-generated method stub
+		super.channelRead(ctx, msg);
+	}
 
 	@Override
 	public void userEventTriggered(ChannelHandlerContext ctx, Object evt)
@@ -22,18 +35,19 @@ public class HeartBeatHandler extends ChannelInboundHandlerAdapter {
 		if (evt instanceof IdleStateEvent) {
 			IdleStateEvent event = (IdleStateEvent) evt;
 			switch (event.state()) {
-			case READER_IDLE:
-				// System.out.println("READER_IDLE: read timeout from "+ctx.channel().remoteAddress());
-				// ctx.disconnect(); //Channel disconnect
-				// 超时关闭channel
-				ctx.close();
+			case READER_IDLE://未读
 				System.out.println("READER_IDLE");
+				ctx.close();
 				break;
-			case WRITER_IDLE:
+			case WRITER_IDLE://未写
 				System.out.println("WRITER_IDLE");
+				ctx.writeAndFlush("ping");
 				break;
-			case ALL_IDLE:
+			case ALL_IDLE://既未读也未写
 				System.out.println("ALL_IDLE");
+				
+                // 发送心跳消息  
+//				ctx.writeAndFlush("ping");
 				break;
 			default:
 				break;

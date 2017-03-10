@@ -3,13 +3,18 @@
  */
 package com.anyikang.netty.server;
 
-import com.anyikang.netty.HeartBeatHandler;
+import java.util.concurrent.TimeUnit;
+
+import com.anyikang.netty.handler.HeartBeatHandler;
 import com.anyikang.netty.handler.TcpServerHandler2;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.codec.serialization.ClassResolvers;
+import io.netty.handler.codec.serialization.ObjectDecoder;
+import io.netty.handler.codec.serialization.ObjectEncoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
@@ -33,9 +38,9 @@ public class NettyServerChannelInitializer extends ChannelInitializer<SocketChan
 		//添加字符串编码解码器
                 pipeline.addLast(DECODER);
                 pipeline.addLast(ENCODER);
-                
                 // 3 minutes for read idle
-                pipeline.addLast(new IdleStateHandler(3*60,0,0));
+                //第一个参数是指定读操作空闲秒数，第二个参数是指定写操作的空闲秒数，第三个参数是指定读写空闲秒数，当有操作操作超出指定空闲秒数时，便会触发UserEventTriggered事件
+                pipeline.addLast(new IdleStateHandler(8*60,5*60,0,TimeUnit.SECONDS));
                 pipeline.addLast(new HeartBeatHandler());
 		
 		//添加对象解码器 负责对序列化POJO对象进行解码 设置对象序列化最大长度为1M 防止内存溢出
