@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.anyikang.components.rabbit.Receiver;
 import com.anyikang.components.rabbit.Sender;
@@ -23,6 +24,7 @@ import com.anyikang.components.rabbit.Sender;
 @SpringBootApplication
 @ComponentScan
 @MapperScan("com.anyikang.dao.mapper")
+@EnableScheduling//启用任务调度.
 public class Application {
 	
 	public static final Logger logger = LoggerFactory.getLogger(Application.class);  

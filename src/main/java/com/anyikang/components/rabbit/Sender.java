@@ -13,6 +13,7 @@ public class Sender {
 
 	@Scheduled(fixedDelay = 1000L)
 	public void send() {
+		System.out.println("---------------------send");
 		this.rabbitTemplate.convertAndSend("foo", "hello");
 	}
 
