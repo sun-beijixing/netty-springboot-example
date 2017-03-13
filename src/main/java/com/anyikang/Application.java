@@ -14,6 +14,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.anyikang.components.rabbit.Receiver;
 import com.anyikang.components.rabbit.Sender;
+import com.anyikang.components.redis.RedisTest;
 
 /**
  * 
@@ -43,9 +44,11 @@ public class Application {
 	public Queue fooQueue() {
 		return new Queue("foo");
 	}
-
-	
        
+	@Bean
+	public RedisTest myRedisTest(){
+		return new RedisTest();
+	}
 	
     public static void main(String[] args) throws Exception{
         SpringApplication.run(Application.class, args);
@@ -57,6 +60,7 @@ public class Application {
 		logger.info("|======================================================|");
 		
     }
+    
 
 
 }

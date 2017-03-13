@@ -11,7 +11,7 @@ public class Sender {
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
 
-	@Scheduled(fixedDelay = 1000L)
+	@Scheduled(fixedDelay = 5000L)
 	public void send() {
 		System.out.println("---------------------send");
 		this.rabbitTemplate.convertAndSend("foo", "hello");
