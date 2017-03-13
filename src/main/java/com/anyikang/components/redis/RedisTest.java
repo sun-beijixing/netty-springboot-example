@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.anyikang.model.TestUser;
+import com.anyikang.model.User;
 import com.anyikang.util.RedisUtils;
 
 /**
@@ -30,12 +30,12 @@ public class RedisTest {
     }  
 	
 
-	public TestUser getStudent() {  
-    	TestUser user = new TestUser();  
+	public User getStudent() {  
+    	User user = new User();  
         user.setId(001);  
         user.setAge(17);  
         user.setName("张三");  
         redisUtil.set("001", user);  
-        return (TestUser) redisUtil.get("001");  
+        return (User) redisUtil.get("001");  
     }  
 }

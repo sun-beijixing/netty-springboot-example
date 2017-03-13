@@ -4,6 +4,7 @@ package com.anyikang.model;
  * Created by zl on 2015/8/27.
  */
 public class User {
+	private long id;
     private String name;
     private Integer age;
     private String password;
@@ -31,4 +32,20 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+    
+    
 }
