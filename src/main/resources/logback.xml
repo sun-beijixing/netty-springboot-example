@@ -8,6 +8,10 @@
     </appender>
     <logger name="com.skplanet.impay" level="DEBUG"></logger>
     <logger name="org.springframework.context" level="DEBUG"></logger>
+    <!-- 防止spring定时任务打印log错误信息 -->
+    <logger name="org.springframework.scheduling">
+    	<level value="info" />
+	</logger>
     <root level="debug">
         <appender-ref ref="STDOUT" />
     </root>

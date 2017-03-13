@@ -12,10 +12,13 @@ import io.netty.channel.SimpleChannelInboundHandler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.anyikang.model.ObjectRequest;
 import com.anyikang.model.ObjectRespone;
+import com.anyikang.model.User;
 import com.anyikang.netty.server.NettyServer;
+import com.anyikang.service.UserService;
 
 /**
  * @author wangwei
@@ -26,6 +29,8 @@ public class TcpServerHandler2 extends ChannelInboundHandlerAdapter {
 	private static final Logger logger = LoggerFactory.getLogger(TcpServerHandler2.class);  
 	
 	
+	@Autowired
+    private UserService userService;
 	
 	/* (non-Javadoc)
 	 * @see io.netty.channel.ChannelInboundHandlerAdapter#channelActive(io.netty.channel.ChannelHandlerContext)
@@ -63,6 +68,12 @@ public class TcpServerHandler2 extends ChannelInboundHandlerAdapter {
 		
 		logger.info("服务器端接收的数据:"+msg);  
 		
+//		User user = userService.getUserInfo();
+//        if(user!=null){
+//            System.out.println("user.getName():"+user.getName());
+//            logger.info("user.getAge():"+user.getAge());
+//        }
+		
 		// 通知执行下一个InboundHandler  
 //		ctx.fireChannelRead(msg);
 		
@@ -85,7 +96,7 @@ public class TcpServerHandler2 extends ChannelInboundHandlerAdapter {
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
 			throws Exception {
-//		 ctx.close();
+		 ctx.close();
 	}  
 
 	

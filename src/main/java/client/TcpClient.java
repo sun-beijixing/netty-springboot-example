@@ -11,15 +11,12 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.serialization.ClassResolvers;
-import io.netty.handler.codec.serialization.ObjectDecoder;
-import io.netty.handler.codec.serialization.ObjectEncoder;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
+import io.netty.util.CharsetUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.anyikang.model.ObjectRequest;
-
   
 /**
  * @author wangwei
@@ -47,12 +44,12 @@ public class TcpClient {
             protected void initChannel(Channel ch) throws Exception {  
                 ChannelPipeline pipeline = ch.pipeline();  
                 //添加字符串编码解码器
-//                pipeline.addLast("decoder", new StringDecoder(CharsetUtil.UTF_8));  
-//                pipeline.addLast("encoder", new StringEncoder(CharsetUtil.UTF_8)); 
+                pipeline.addLast("decoder", new StringDecoder(CharsetUtil.UTF_8));  
+                pipeline.addLast("encoder", new StringEncoder(CharsetUtil.UTF_8)); 
                 //添加POJO对象解码器 禁止缓存类加载器
-                pipeline.addLast(new ObjectDecoder(1024,ClassResolvers.cacheDisabled(this.getClass().getClassLoader())));
+//                pipeline.addLast(new ObjectDecoder(1024,ClassResolvers.cacheDisabled(this.getClass().getClassLoader())));
                 //设置发送消息编码器
-                pipeline.addLast(new ObjectEncoder());
+//                pipeline.addLast(new ObjectEncoder());
                 //设置网络IO处理器
                 pipeline.addLast("handler", new TcpClientHandler());  
             }  
@@ -89,22 +86,22 @@ public class TcpClient {
     }  
     
   
-//    public static void main(String[] args) throws Exception {  
-//        try {  
-//            long t0 = System.nanoTime();  
-//            for (int i = 0; i < 10; i++) {  
-//            	TcpClient.sendMsg(i+"你好1");  
-//            	
-////            	ObjectRequest req=new ObjectRequest();
-////            	req.setId(i);
-////            	req.setName("张三"+i);
-////            	req.setAge(15+i);
-////            	TcpClient.sendObject(req);
-//            }  
-//            long t1 = System.nanoTime();  
-//            System.out.println((t1-t0)/1000000.0);  
-//        } catch (Exception e) {  
-//            e.printStackTrace();  
-//        }  
-//    }  
+    public static void main(String[] args) throws Exception {  
+        try {  
+            long t0 = System.nanoTime();  
+            for (int i = 0; i < 10; i++) {  
+            	TcpClient.sendMsg(i+"你好1");  
+            	
+//            	ObjectRequest req=new ObjectRequest();
+//            	req.setId(i);
+//            	req.setName("张三"+i);
+//            	req.setAge(15+i);
+//            	TcpClient.sendObject(req);
+            }  
+            long t1 = System.nanoTime();  
+            System.out.println((t1-t0)/1000000.0);  
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        }  
+    }  
 }  

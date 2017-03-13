@@ -42,6 +42,11 @@ public class TcpClientHandler extends ChannelInboundHandlerAdapter {
 		if(msg instanceof String){
 			logger.info("=================String类型数据：");
 			logger.info((String)msg);
+			
+			if(msg.equals("ping")){//测试心跳
+				logger.info("----------------ok");
+				ctx.writeAndFlush("ok");
+			}
 		}else {
 			logger.info("=================其他类型数据：");
 			ObjectRespone req = (ObjectRespone)msg;   // 订购内容  
