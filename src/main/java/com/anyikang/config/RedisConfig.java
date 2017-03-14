@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConfigurationProperties(prefix = "spring.redis")
-public class RedisConn {
+public class RedisConfig {
 
 	private String host;
 

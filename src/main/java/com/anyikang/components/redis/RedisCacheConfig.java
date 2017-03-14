@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.anyikang.config;
+package com.anyikang.components.redis;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +20,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
+import com.anyikang.config.RedisConfig;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,7 +35,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class RedisCacheConfig extends CachingConfigurerSupport {  
   
     @Autowired  
-    private RedisConn redisConn;  
+    private RedisConfig redisConfig;  
       
     /** 
      * 生产key的策略 
@@ -88,9 +89,9 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
     @Bean  
     public JedisConnectionFactory redisConnectionFactory() {  
         JedisConnectionFactory factory = new JedisConnectionFactory();  
-        factory.setHostName(redisConn.getHost());  
-        factory.setPort(redisConn.getPort());  
-        factory.setTimeout(redisConn.getTimeout()); // 设置连接超时时间  
+        factory.setHostName(redisConfig.getHost());  
+        factory.setPort(redisConfig.getPort());  
+        factory.setTimeout(redisConfig.getTimeout()); // 设置连接超时时间  
         return factory;  
     }  
   

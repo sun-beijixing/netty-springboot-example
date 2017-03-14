@@ -39,11 +39,6 @@ public class Application {
 	public Receiver myReceiver(){
 		return new Receiver();
 	}
-	
-	@Bean
-	public Queue fooQueue() {
-		return new Queue("foo");
-	}
        
 	@Bean
 	public RedisTest myRedisTest(){
