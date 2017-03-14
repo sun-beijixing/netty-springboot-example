@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.anyikang.netty.handler;
+package com.anyikang.components.netty.handler;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -14,10 +14,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.anyikang.components.netty.server.NettyServer;
 import com.anyikang.model.ObjectRequest;
 import com.anyikang.model.ObjectRespone;
 import com.anyikang.model.User;
-import com.anyikang.netty.server.NettyServer;
 import com.anyikang.service.UserService;
 
 /**

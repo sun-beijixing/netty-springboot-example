@@ -1,12 +1,12 @@
 /**
  * 
  */
-package com.anyikang.netty.server;
+package com.anyikang.components.netty.server;
 
 import java.util.concurrent.TimeUnit;
 
-import com.anyikang.netty.handler.HeartBeatHandler;
-import com.anyikang.netty.handler.TcpServerHandler2;
+import com.anyikang.components.netty.handler.HeartBeatHandler;
+import com.anyikang.components.netty.handler.TcpServerHandler2;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;

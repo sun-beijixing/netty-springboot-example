@@ -1,5 +1,5 @@
 
-package com.anyikang.netty.server;
+package com.anyikang.components.netty.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.anyikang.netty.handler;
+package com.anyikang.components.netty.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
