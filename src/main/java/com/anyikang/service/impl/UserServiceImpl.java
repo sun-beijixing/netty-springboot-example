@@ -1,4 +1,4 @@
-package com.anyikang.service.imp;
+package com.anyikang.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
