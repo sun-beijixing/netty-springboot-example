@@ -8,7 +8,7 @@ import com.anyikang.model.User;
 import com.anyikang.service.UserService;
 
 @Service
-public class UserServiceImp implements UserService {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserMapper userMapper;
