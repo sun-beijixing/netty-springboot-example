@@ -20,7 +20,11 @@ import org.apache.zookeeper.ZooKeeper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+/**
+ * 服务消费者
+ * @author wangwei
+ * @date 2017年3月22日
+ */
 public class ServiceConsumer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceConsumer.class);
 

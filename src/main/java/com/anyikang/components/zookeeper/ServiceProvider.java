@@ -18,6 +18,11 @@ import org.apache.zookeeper.ZooKeeper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 服务提供者
+ * @author wangwei
+ * @date 2017年3月22日
+ */
 public class ServiceProvider {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceProvider.class);
 

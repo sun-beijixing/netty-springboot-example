@@ -4,7 +4,6 @@ import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 
 import com.anyikang.remote.server.impl.HelloServiceImpl;
-import com.anyikang.remote.server.service.HelloService;
 
 public class RmiServer {
 	public static void main(String[] args) throws Exception {
@@ -13,10 +12,8 @@ public class RmiServer {
         // JNDI 中创建注册表
         LocateRegistry.createRegistry(port);
         
-        HelloService service02 = new HelloServiceImpl(); 
-        
         // unbind() 与 bind() 
-        Naming.rebind(url, service02);
+        Naming.rebind(url, new HelloServiceImpl());
         System.out.println("服务器向命名表注册了个远程服务对象");
     }
 }
