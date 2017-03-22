@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import com.anyikang.components.rabbit.Receiver;
-import com.anyikang.components.rabbit.Sender;
+import com.anyikang.components.rabbitmq.Receiver;
+import com.anyikang.components.rabbitmq.Sender;
 import com.anyikang.components.redis.RedisTest;
 
 /**

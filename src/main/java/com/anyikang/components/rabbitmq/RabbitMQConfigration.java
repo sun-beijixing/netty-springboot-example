@@ -1,3 +1,4 @@
+package com.anyikang.components.rabbitmq;
 //package com.anyikang.components.rabbit;
 //
 //import org.springframework.amqp.core.AcknowledgeMode;

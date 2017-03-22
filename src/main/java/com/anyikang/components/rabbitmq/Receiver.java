@@ -1,4 +1,4 @@
-package com.anyikang.components.rabbit;
+package com.anyikang.components.rabbitmq;
 
 import java.util.Date;
 
