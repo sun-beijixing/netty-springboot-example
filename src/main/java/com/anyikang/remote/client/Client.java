@@ -12,7 +12,7 @@ public class Client {
 			HelloService helloService = consumer.lookup();
 			String result = helloService.sayHello("Jack");
 			System.out.println(result);
-			Thread.sleep(3000);
+//			Thread.sleep(3000);
 		}
 	}
 }

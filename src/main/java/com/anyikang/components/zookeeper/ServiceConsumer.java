@@ -94,12 +94,9 @@ public class ServiceConsumer {
 					}
 				}
 			});
-			List<String> dataList = new ArrayList<String>(); // 用于存放 /registry
-														// 所有子节点中的数据
+			List<String> dataList = new ArrayList<String>(); // 用于存放 /registry所有子节点中的数据
 			for (String node : nodeList) {
-				byte[] data = zk.getData(Constant.ZK_REGISTRY_PATH + "/" + node, false, null); // 获取
-																								// /registry
-																								// 的子节点中的数据
+				byte[] data = zk.getData(Constant.ZK_REGISTRY_PATH + "/" + node, false, null); // 获取registry的子节点中的数据
 				dataList.add(new String(data));
 			}
 			LOGGER.debug("node data: {}", dataList);

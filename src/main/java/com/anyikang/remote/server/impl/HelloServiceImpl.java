@@ -7,6 +7,10 @@ import com.anyikang.remote.server.service.HelloService;
 
 public class HelloServiceImpl extends UnicastRemoteObject implements HelloService {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9143476214591382964L;
 
     /**
 	 * @throws RemoteException
@@ -16,10 +20,6 @@ public class HelloServiceImpl extends UnicastRemoteObject implements HelloServic
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 9143476214591382964L;
 
 	@Override
     public String sayHello(String name) throws RemoteException {

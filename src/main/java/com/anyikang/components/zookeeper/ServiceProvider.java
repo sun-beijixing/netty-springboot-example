@@ -83,7 +83,8 @@ public class ServiceProvider {
 	private void createNode(ZooKeeper zk, String url) {
 		byte[] data = url.getBytes();
 		try {
-			zk.create(Constant.ZK_REGISTRY_PATH, data, Ids.OPEN_ACL_UNSAFE,CreateMode.EPHEMERAL_SEQUENTIAL);
+			//需要先创建注册节点，命令是（create /registry null）
+//			zk.create(Constant.ZK_REGISTRY_PATH, data, Ids.OPEN_ACL_UNSAFE,CreateMode.EPHEMERAL_SEQUENTIAL);
 			String path = zk.create(Constant.ZK_PROVIDER_PATH, data, Ids.OPEN_ACL_UNSAFE,CreateMode.EPHEMERAL_SEQUENTIAL);
 			LOGGER.debug("create zookeeper node ({} => {})", path, url);
 		} catch (KeeperException e) {
