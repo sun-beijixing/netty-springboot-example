@@ -20,10 +20,8 @@ com\anyikang\components\netty\handler\HeartBeatHandler.class
 com\anyikang\Application.class
 com\anyikang\components\zookeeper\ServiceProvider$1.class
 com\anyikang\remote\client\Client.class
-com\anyikang\remote\server\RmiServer.class
 com\anyikang\config\RedisConfig.class
 client\TcpClientHandler.class
-com\anyikang\components\rabbit\Receiver.class
 com\anyikang\model\ObjectRespone.class
 com\anyikang\remote\server\service\HelloService.class
 com\anyikang\components\redis\RedisCacheConfig.class
@@ -31,12 +29,10 @@ com\anyikang\components\redis\RedisTest.class
 com\anyikang\util\ByteToJsonBody.class
 com\anyikang\components\netty\handler\TcpServerHandler2.class
 client\TcpClient.class
-com\anyikang\components\rabbit\Sender.class
 com\anyikang\service\UserService.class
 com\anyikang\util\BytesToJsonDecode.class
 com\anyikang\util\JsonBodyToByte.class
 com\anyikang\components\netty\server\NettyServerChannelInitializer.class
-com\anyikang\remote\client\RmiClient.class
 com\anyikang\config\NettyConfig.class
 com\anyikang\util\JsonToBytesEncode.class
 com\anyikang\components\redis\RedisCacheConfig$1.class
