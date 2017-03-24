@@ -9,8 +9,10 @@ com\anyikang\util\CommonUtils.class
 com\anyikang\service\impl\UserServiceImpl.class
 com\anyikang\config\MyBatisConfig.class
 com\anyikang\components\netty\handler\HeartBeatHandler$1.class
+com\anyikang\components\rabbitmq\Sender.class
 client\TcpClient$1.class
 com\anyikang\components\zookeeper\ServiceConsumer$1.class
+com\anyikang\components\rabbitmq\Receiver.class
 com\anyikang\dao\mapper\UserMapper.class
 com\anyikang\components\netty\server\NettyServer.class
 com\anyikang\components\netty\handler\TcpServerHandler1.class

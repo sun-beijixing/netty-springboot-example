@@ -134,6 +134,8 @@
     </dependencies>
 
     <build>
+    	<!-- 终端信息服务系统（terminal info service system） -->
+    	<finalName>TISS</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
