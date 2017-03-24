@@ -43,7 +43,7 @@ public class NettyConfig {
 	*/
 	
     private int tcpPort;
-    private String tcpHost;
+    private String tcpHost;//可以不设定
     private int bossCount;//用于分配处理业务线程的线程组个数
     private int workerCount;//业务出现线程大小,内核为此套接口排队的最大连接个数，对于给定的监听套接口，内核要维护两个队列，未链接队列和已连接队列大小总和最大值
     private boolean keepalive;//用于设置TCP连接,连接会测试链接的状态,如果在两小时内没有数据的通信时，TCP会自动发送一个活动探测数据报文

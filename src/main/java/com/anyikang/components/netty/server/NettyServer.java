@@ -52,7 +52,8 @@ public class NettyServer {
 		this.nettyConfig = nettyConfig;
 		bossGroup=new NioEventLoopGroup(nettyConfig.getBossCount());
 		workerGroup=new NioEventLoopGroup(nettyConfig.getWorkerCount());
-		tcpSocketAddress=new InetSocketAddress(nettyConfig.getTcpHost(),nettyConfig.getTcpPort());
+//		tcpSocketAddress=new InetSocketAddress(nettyConfig.getTcpHost(),nettyConfig.getTcpPort());
+		tcpSocketAddress=new InetSocketAddress(nettyConfig.getTcpPort());
 	}
 
 	/**
