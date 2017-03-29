@@ -20,12 +20,19 @@ public class JsonToBytesEncode extends MessageToByteEncoder<JsonBodyToByte>{
 	protected void encode(ChannelHandlerContext ctx, JsonBodyToByte msg,
 			ByteBuf out) throws Exception {
 		JsonBodyToByte jsonBodyToByte =(JsonBodyToByte)msg;
-		byte[] base64String = CommonUtils.encodeToBASE64(jsonBodyToByte.getJsonBody()).getBytes();
+//		byte[] base64String = CommonUtils.encodeToBASE64(jsonBodyToByte.getJsonBody()).getBytes();
 		
-		out.writeByte(jsonBodyToByte.getFrameType());
-		out.writeByte(jsonBodyToByte.getFrameSeq());
-		out.writeShort(base64String.length);
-		out.writeBytes(base64String);
+//		out.writeShort(base64String.length);
+//		out.writeBytes(base64String);
+//		byte xxx=16;
+//		out.writeBytes(base64String);
+//		ctx.writeAndFlush(xxx);  
+		
+		// 将对象转化为字节数组  
+        byte[] bs = NettyCodeUtils.object2Bytes(null);  
+        // 将字节数组写入缓冲区  
+        out.writeBytes("1222".getBytes());  
+        ctx.flush();  
 		
 	}
 

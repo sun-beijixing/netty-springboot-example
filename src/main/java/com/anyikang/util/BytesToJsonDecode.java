@@ -3,7 +3,10 @@
  */
 package com.anyikang.util;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -15,43 +18,35 @@ import io.netty.handler.codec.ByteToMessageDecoder;
  */
 public class BytesToJsonDecode extends ByteToMessageDecoder {
 
-	/* (non-Javadoc)
-	 * @see io.netty.handler.codec.ByteToMessageDecoder#decode(io.netty.channel.ChannelHandlerContext, io.netty.buffer.ByteBuf, java.util.List)
-	 */
 	@Override
 	protected void decode(ChannelHandlerContext ctx, ByteBuf in,
 			List<Object> out) throws Exception {
-		if(in.readableBytes()<10)
+		int rbl=in.readableBytes();//读取的数据包长度
+		if(rbl<20||rbl%20!=0){//如果接受过来的十六进制串不是完整的串，则继续接受
 			return ;
-		in.markReaderIndex();
-		byte frameType = in.readByte();
-		if (frameType==1||frameType==3||frameType==5||frameType==7||frameType==9)
-		{
-			byte frameSeq = in.readByte();
-			short jsonLen = in.readShort();
-			if(in.readableBytes()<jsonLen)
-				in.resetReaderIndex();
-			byte[] jsonBodyByte = new byte[jsonLen];
-			in.readBytes(jsonBodyByte);
-			String jsonBodyOri = new String(jsonBodyByte, "UTF-8");
-			String jsonBody = CommonUtils.decodeFromBASE64(jsonBodyOri);
-			
-			JsonValidator jsonValidator = new JsonValidator();
-			if (!jsonValidator.validate(jsonBody)) {
-				messageError(ctx,"{\"errNo\":3}");
-			}
+		}
+		byte beginCode = in.readByte();//起始位
+		//有可能是多条数据包，需要循环处理
+		if (beginCode==104){//表示十六进制的68
+			String imeiCode=BCDUtils.byteToHexString(new byte[8],in);
+			byte dataLength=in.readByte();//数据长度
+			byte functionCode=in.readByte();//功能码
+			String time=BCDUtils.byteToHexString(new byte[7],in);
+			byte[] dataBody=null;
+			byte crc=in.readByte();//CRC8
+			byte endCode=in.readByte();//结束符
 			
 			ByteToJsonBody messageBody = new ByteToJsonBody();
-			messageBody.setFrameType(frameType);
-			messageBody.setFrameSeq(frameSeq);
-			messageBody.setJsonBody(jsonBody);
+			messageBody.setImeiCode(imeiCode);
+			messageBody.setDataLength(dataLength);
+			messageBody.setFunctionCode(functionCode);
+			messageBody.setDataBody(dataBody);
+			messageBody.setTime(time);
+			messageBody.setCrc(crc);
 			out.add(messageBody);
+		}else{
+			messageError(ctx,"格式错误");
 		}
-		else
-		{
-			messageError(ctx,"{\"errNo\":2}");
-		}
-		
 	}
 	
 	
@@ -75,5 +70,20 @@ public class BytesToJsonDecode extends ByteToMessageDecoder {
 		ctx.channel().close();
 		return;
 	}
+	
+	
+	/*public static void main(String[] args) {
+		byte[] byteArray = new byte[] {87, 79, 87, 46, 46, 46};//[87, 79, 87, 46, 46, 46]
+
+		try {
+			String ddd="WOW...";
+			byte[] dd=ddd.getBytes();
+			String value = new String(byteArray, "UTF-8");
+			System.out.println(value);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}*/
 
 }

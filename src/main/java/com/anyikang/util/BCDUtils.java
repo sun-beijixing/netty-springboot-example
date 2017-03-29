@@ -1,5 +1,7 @@
 package com.anyikang.util;
 
+import io.netty.buffer.ByteBuf;
+
 public class BCDUtils {
 
 	public static byte[] DecimalToBCD(long num) {
@@ -91,16 +93,16 @@ public class BCDUtils {
 	public static void main(String[] args) {
 		long start = System.currentTimeMillis();
 
-		byte[] b = str2Bcd("860965031886149");
+		byte[] b = str2Bcd("6808609650318861490800");
 		String rrr=bcd2Str(b);
-		
 		System.out.println(rrr);
+		
 		String ddd=byteToHexString(b);
 		System.out.println(ddd);
 
 		long end = System.currentTimeMillis();
 		long rs = start - end;
-		System.out.println("==========rs:" + rs);
+//		System.out.println("==========rs:" + rs);
 	}
 	
 	/**
@@ -118,6 +120,17 @@ public class BCDUtils {
             sb.append(" ");// 每位数据用空格分隔
         }
         return sb.toString().toUpperCase().trim();// 变换大写，并去除首尾空格
+    }
+    
+    /**
+     * 转码
+     * @param bs
+     * @param in
+     * @return
+     */
+    public static String byteToHexString(byte[] bs,ByteBuf in) {
+    	in.readBytes(bs);
+    	return BCDUtils.byteToHexString(bs);
     }
 
 }
