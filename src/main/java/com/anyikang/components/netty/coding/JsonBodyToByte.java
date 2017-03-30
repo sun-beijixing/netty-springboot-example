@@ -1,4 +1,4 @@
-package com.anyikang.util;
+package com.anyikang.components.netty.coding;
 
 public class JsonBodyToByte {
 	private byte beginCode;//起始位

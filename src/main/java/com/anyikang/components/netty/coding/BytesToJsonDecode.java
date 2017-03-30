@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.anyikang.components.netty.handler;
+package com.anyikang.components.netty.coding;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.anyikang.util.BCDUtils;
-import com.anyikang.util.ByteToJsonBody;
 import com.anyikang.util.CommonUtils;
 
 /**
@@ -26,18 +25,25 @@ public class BytesToJsonDecode extends ByteToMessageDecoder {
 	private final Logger logger = LoggerFactory.getLogger(BytesToJsonDecode.class);
 
 	@Override
-	protected void decode(ChannelHandlerContext ctx, ByteBuf in,
-			List<Object> out) throws Exception {
-		int rbl=in.readableBytes();//读取的数据包长度
-		logger.debug("=====================数据长度："+rbl+"=======================");
-		if(rbl<20||rbl%20!=0){//如果接受过来的十六进制串不是完整的串，则继续接受
-			return ;
+	protected void decode(ChannelHandlerContext ctx, ByteBuf in,List<Object> out) throws Exception {
+		if(in.readableBytes()<20){//如果接受过来的十六进制串不是完整的串，则继续接受
+			return;
 		}
+		
+		in.markReaderIndex();
+		
 		byte beginCode = in.readByte();//起始位
 		//有可能是多条数据包，需要循环处理
 		if (beginCode==0x68){//表示十六进制的68
 			String imeiCode=BCDUtils.byteToHexString(new byte[8],in);
+//			byte dataLength=in.readByte();//数据长度
 			byte dataLength=in.readByte();//数据长度
+			
+//			if(in.readableBytes()<dataLength){
+//				in.resetReaderIndex();
+//				return;
+//			}
+			
 			byte functionCode=in.readByte();//功能码
 			String time=BCDUtils.byteToHexString(new byte[7],in);
 			byte[] dataBody=null;

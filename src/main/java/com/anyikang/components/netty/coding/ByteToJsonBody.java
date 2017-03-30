@@ -1,4 +1,4 @@
-package com.anyikang.util;
+package com.anyikang.components.netty.coding;
 
 public class ByteToJsonBody {
 	private String imeiCode;//IMEI号 

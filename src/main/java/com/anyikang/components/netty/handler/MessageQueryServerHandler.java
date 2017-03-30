@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.anyikang.components.netty.coding.ByteToJsonBody;
+import com.anyikang.components.netty.coding.JsonBodyToByte;
 import com.anyikang.service.MessageQueryService;
-import com.anyikang.util.ByteToJsonBody;
-import com.anyikang.util.JsonBodyToByte;
 
 /**
  * @author wangwei

@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.anyikang.components.netty.coding.ByteToJsonBody;
 import com.anyikang.service.ConfigurationService;
-import com.anyikang.util.ByteToJsonBody;
 
 /**
  * 配置

@@ -13,10 +13,10 @@ import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.anyikang.components.netty.handler.BytesToJsonDecode;
+import com.anyikang.components.netty.coding.BytesToJsonDecode;
+import com.anyikang.components.netty.coding.JsonToBytesEncode;
 import com.anyikang.components.netty.handler.ConfigurationServerHandler;
 import com.anyikang.components.netty.handler.HeartBeatHandler;
-import com.anyikang.components.netty.handler.JsonToBytesEncode;
 import com.anyikang.components.netty.handler.MessageQueryServerHandler;
 import com.anyikang.components.netty.handler.ReportServerHandler;
 
