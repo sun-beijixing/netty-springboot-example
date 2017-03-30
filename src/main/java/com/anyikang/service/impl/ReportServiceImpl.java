@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.anyikang.components.netty.handler.TcpServerHandler2;
+import com.anyikang.components.netty.handler.ReportServerHandler;
 import com.anyikang.service.ReportService;
 import com.anyikang.util.ByteToJsonBody;
 
