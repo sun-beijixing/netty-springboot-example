@@ -8,6 +8,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 
+
+import org.springframework.stereotype.Component;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
@@ -16,6 +19,7 @@ import io.netty.handler.codec.ByteToMessageDecoder;
  * @author wangwei
  * @date 2017年3月7日
  */
+@Component
 public class BytesToJsonDecode extends ByteToMessageDecoder {
 
 	@Override
@@ -72,18 +76,18 @@ public class BytesToJsonDecode extends ByteToMessageDecoder {
 	}
 	
 	
-	/*public static void main(String[] args) {
-		byte[] byteArray = new byte[] {87, 79, 87, 46, 46, 46};//[87, 79, 87, 46, 46, 46]
-
-		try {
-			String ddd="WOW...";
-			byte[] dd=ddd.getBytes();
-			String value = new String(byteArray, "UTF-8");
-			System.out.println(value);
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
+//	public static void main(String[] args) {
+//		byte[] byteArray = new byte[] {87, 79, 87, 46, 46, 46};//[87, 79, 87, 46, 46, 46]
+//
+//		try {
+//			String ddd="WOW...";
+//			byte[] dd=ddd.getBytes();
+//			String value = new String(byteArray, "UTF-8");
+//			System.out.println(value);
+//		} catch (UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 }

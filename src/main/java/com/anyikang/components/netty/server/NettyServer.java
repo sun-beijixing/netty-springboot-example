@@ -35,6 +35,8 @@ public class NettyServer {
 
 	@Autowired
 	private NettyConfig nettyConfig;
+	@Autowired
+	private NettyServerChannelInitializer nettyServerChannelInitializer;
 	
     private InetSocketAddress tcpSocketAddress;
     private EventLoopGroup bossGroup;
@@ -68,7 +70,7 @@ public class NettyServer {
     	serverBootstrap.group(bossGroup, workerGroup)
     	.channel(NioServerSocketChannel.class)
     	.handler(new LoggingHandler(LogLevel.DEBUG))
-    	.childHandler(new NettyServerChannelInitializer())
+    	.childHandler(nettyServerChannelInitializer)
     	.option(ChannelOption.SO_BACKLOG, nettyConfig.getBacklog())
     	.childOption(ChannelOption.SO_KEEPALIVE, nettyConfig.isKeepalive())
     	.childOption(ChannelOption.TCP_NODELAY, true);
