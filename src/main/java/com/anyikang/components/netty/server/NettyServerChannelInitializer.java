@@ -28,10 +28,6 @@ import com.anyikang.util.JsonToBytesEncode;
 public class NettyServerChannelInitializer extends ChannelInitializer<SocketChannel>{
 	
 	@Autowired
-	private BytesToJsonDecode bytesToJsonDecode;
-	@Autowired
-	private JsonToBytesEncode jsonToBytesEncode;
-	@Autowired
 	private ReportServerHandler reportServerHandler;
 	@Autowired
 	private ConfigurationServerHandler configurationServerHandler;
@@ -41,8 +37,8 @@ public class NettyServerChannelInitializer extends ChannelInitializer<SocketChan
 	@Override
 	protected void initChannel(SocketChannel ch) throws Exception {
 		ChannelPipeline pipeline=ch.pipeline();
-        pipeline.addLast(bytesToJsonDecode);
-        pipeline.addLast(jsonToBytesEncode);
+        pipeline.addLast(new BytesToJsonDecode());
+        pipeline.addLast(new JsonToBytesEncode());
         // 3 minutes for read idle
         //第一个参数是指定读操作空闲秒数，第二个参数是指定写操作的空闲秒数，第三个参数是指定读写空闲秒数，当有操作操作超出指定空闲秒数时，便会触发UserEventTriggered事件
         pipeline.addLast(new IdleStateHandler(8*60,5*60,0,TimeUnit.SECONDS));

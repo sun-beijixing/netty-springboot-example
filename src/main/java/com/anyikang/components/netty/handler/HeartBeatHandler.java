@@ -3,11 +3,8 @@
  */
 package com.anyikang.components.netty.handler;
 
-import org.springframework.stereotype.Component;
-
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 
 /**
@@ -16,7 +13,6 @@ import io.netty.handler.timeout.IdleStateEvent;
  * @author wangwei
  * @date 2017年3月7日
  */
-@Component
 public class HeartBeatHandler extends ChannelInboundHandlerAdapter {
 
 	/*

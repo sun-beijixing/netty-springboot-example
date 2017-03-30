@@ -9,23 +9,25 @@ import java.util.List;
 
 
 
+
 import org.springframework.stereotype.Component;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.handler.codec.ByteToMessageDecoder;
 
 /**
  * @author wangwei
  * @date 2017年3月7日
  */
-@Component
 public class BytesToJsonDecode extends ByteToMessageDecoder {
 
 	@Override
 	protected void decode(ChannelHandlerContext ctx, ByteBuf in,
 			List<Object> out) throws Exception {
 		int rbl=in.readableBytes();//读取的数据包长度
+		System.err.println("----------------------------rbl:"+rbl);
 		if(rbl<20||rbl%20!=0){//如果接受过来的十六进制串不是完整的串，则继续接受
 			return ;
 		}

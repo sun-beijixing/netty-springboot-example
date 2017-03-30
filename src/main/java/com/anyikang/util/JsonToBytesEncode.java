@@ -13,7 +13,6 @@ import io.netty.handler.codec.MessageToByteEncoder;
  * @author wangwei
  * @date 2017年3月7日
  */
-@Component
 public class JsonToBytesEncode extends MessageToByteEncoder<JsonBodyToByte>{
 
 	/* (non-Javadoc)
