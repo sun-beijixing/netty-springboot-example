@@ -3,6 +3,9 @@
  */
 package com.anyikang.components.netty.handler;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
@@ -15,6 +18,8 @@ import com.anyikang.util.JsonBodyToByte;
  * @date 2017年3月7日
  */
 public class JsonToBytesEncode extends MessageToByteEncoder<JsonBodyToByte>{
+	
+	private final Logger logger = LoggerFactory.getLogger(JsonToBytesEncode.class);
 
 	@Override
 	protected void encode(ChannelHandlerContext ctx, JsonBodyToByte msg,ByteBuf out) throws Exception {
