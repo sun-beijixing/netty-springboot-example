@@ -5,6 +5,7 @@ package com.anyikang.components.netty.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.ChannelHandler.Sharable;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,7 @@ import com.anyikang.util.JsonBodyToByte;
  * @date 2017年3月2日
  */
 @Component
+@Sharable
 public class ReportServerHandler extends ChannelInboundHandlerAdapter {
 
 	private final Logger logger = LoggerFactory.getLogger(ReportServerHandler.class);
@@ -51,7 +53,7 @@ public class ReportServerHandler extends ChannelInboundHandlerAdapter {
 		switch (messageBody.getFunctionCode()) {
 			case 0x00:// 心跳上报
 				functionService.heartbeat(messageBody);
-				isReturn = false;
+//				isReturn = false;
 				break;
 			case 0x01:// 定位上报
 				returnMessage = functionService.positioning(messageBody);

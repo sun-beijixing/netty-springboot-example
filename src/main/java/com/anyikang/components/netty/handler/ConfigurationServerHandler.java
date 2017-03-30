@@ -5,6 +5,7 @@ package com.anyikang.components.netty.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.ChannelHandler.Sharable;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,7 @@ import com.anyikang.util.JsonBodyToByte;
  * @date 2017年3月2日
  */
 @Component
+@Sharable
 public class ConfigurationServerHandler extends ChannelInboundHandlerAdapter {
 	
 	private final Logger logger = LoggerFactory.getLogger(ConfigurationServerHandler.class);
