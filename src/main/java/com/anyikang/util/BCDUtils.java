@@ -132,5 +132,14 @@ public class BCDUtils {
     	in.readBytes(bs);
     	return BCDUtils.byteToHexString(bs);
     }
+    
+    /**
+     * byte转换成int数据
+     * @param b
+     * @return
+     */
+    public static int byteToInt(byte b){
+    	return Integer.parseInt(Integer.toHexString(b & 0xFF));
+    }
 
 }

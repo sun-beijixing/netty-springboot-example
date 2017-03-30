@@ -2,7 +2,7 @@ package com.anyikang.components.netty.coding;
 
 public class ByteToJsonBody {
 	private String imeiCode;//IMEI号 
-	private byte dataLength;//数据长度 
+	private int dataLength;//数据长度 
 	private byte functionCode;//功能码 
 	private byte[] dataBody;//业务数据
 	private String time;//时间 
@@ -20,16 +20,17 @@ public class ByteToJsonBody {
 	public void setImeiCode(String imeiCode) {
 		this.imeiCode = imeiCode;
 	}
+
 	/**
 	 * @return the dataLength
 	 */
-	public byte getDataLength() {
+	public int getDataLength() {
 		return dataLength;
 	}
 	/**
 	 * @param dataLength the dataLength to set
 	 */
-	public void setDataLength(byte dataLength) {
+	public void setDataLength(int dataLength) {
 		this.dataLength = dataLength;
 	}
 	/**

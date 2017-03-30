@@ -34,15 +34,17 @@ public class BytesToJsonDecode extends ByteToMessageDecoder {
 		
 		byte beginCode = in.readByte();//起始位
 		//有可能是多条数据包，需要循环处理
-		if (beginCode==0x68){//表示十六进制的68
+		if (beginCode==0x68){
 			String imeiCode=BCDUtils.byteToHexString(new byte[8],in);
 //			byte dataLength=in.readByte();//数据长度
-			byte dataLength=in.readByte();//数据长度
+//			byte dataLength=in.readByte();//数据长度
+			int dataLength=BCDUtils.byteToInt(in.readByte());//数据长度
 			
-//			if(in.readableBytes()<dataLength){
-//				in.resetReaderIndex();
-//				return;
-//			}
+			if(in.readableBytes()<dataLength){
+				logger.debug("=============接收的数据长度小于规定的数据长度================");
+				in.resetReaderIndex();
+				return;
+			}
 			
 			byte functionCode=in.readByte();//功能码
 			String time=BCDUtils.byteToHexString(new byte[7],in);
