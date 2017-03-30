@@ -37,28 +37,17 @@ public class NettyServerChannelInitializer extends ChannelInitializer<SocketChan
 	@Autowired
 	private JsonToBytesEncode jsonToBytesEncode;
 	@Autowired
-	private HeartBeatHandler heartBeatHandler;
-	@Autowired
 	private TcpServerHandler2 tcpServerHandler2;
 	
-//	private static final StringDecoder DECODER = new StringDecoder(CharsetUtil.UTF_8);
-//	private static final StringEncoder ENCODER = new StringEncoder(CharsetUtil.UTF_8);
-
-	/* (non-Javadoc)
-	 * @see io.netty.channel.ChannelInitializer#initChannel(io.netty.channel.Channel)
-	 */
 	@Override
 	protected void initChannel(SocketChannel ch) throws Exception {
 		ChannelPipeline pipeline=ch.pipeline();
-		//添加字符串编码解码器
-//                pipeline.addLast(DECODER);
-//                pipeline.addLast(ENCODER);
                 pipeline.addLast(bytesToJsonDecode);
                 pipeline.addLast(jsonToBytesEncode);
                 // 3 minutes for read idle
                 //第一个参数是指定读操作空闲秒数，第二个参数是指定写操作的空闲秒数，第三个参数是指定读写空闲秒数，当有操作操作超出指定空闲秒数时，便会触发UserEventTriggered事件
                 pipeline.addLast(new IdleStateHandler(8*60,5*60,0,TimeUnit.SECONDS));
-                pipeline.addLast(heartBeatHandler);
+                pipeline.addLast(new HeartBeatHandler());
 		
 		//添加对象解码器 负责对序列化POJO对象进行解码 设置对象序列化最大长度为1M 防止内存溢出
 		//设置线程安全的WeakReferenceMap对类加载器进行缓存 支持多线程并发访问  防止内存溢出 
