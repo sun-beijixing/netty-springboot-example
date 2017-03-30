@@ -3,23 +3,19 @@
  */
 package com.anyikang.components.netty.handler;
 
-import org.springframework.stereotype.Component;
-
-import com.anyikang.util.JsonBodyToByte;
-
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 
+import com.anyikang.util.JsonBodyToByte;
+
 /**
+ * 编码器
  * @author wangwei
  * @date 2017年3月7日
  */
 public class JsonToBytesEncode extends MessageToByteEncoder<JsonBodyToByte>{
 
-	/* (non-Javadoc)
-	 * @see io.netty.handler.codec.MessageToByteEncoder#encode(io.netty.channel.ChannelHandlerContext, java.lang.Object, io.netty.buffer.ByteBuf)
-	 */
 	@Override
 	protected void encode(ChannelHandlerContext ctx, JsonBodyToByte msg,ByteBuf out) throws Exception {
 		JsonBodyToByte jsonBodyToByte =(JsonBodyToByte)msg;

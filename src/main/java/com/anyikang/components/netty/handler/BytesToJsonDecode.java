@@ -3,26 +3,18 @@
  */
 package com.anyikang.components.netty.handler;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.handler.codec.ByteToMessageDecoder;
+
 import java.util.List;
-
-
-
-
-
-import org.springframework.stereotype.Component;
 
 import com.anyikang.util.BCDUtils;
 import com.anyikang.util.ByteToJsonBody;
 import com.anyikang.util.CommonUtils;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelHandler.Sharable;
-import io.netty.handler.codec.ByteToMessageDecoder;
-
 /**
+ * 解码器
  * @author wangwei
  * @date 2017年3月7日
  */
