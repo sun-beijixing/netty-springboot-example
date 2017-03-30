@@ -31,7 +31,7 @@ import com.anyikang.config.NettyConfig;
 @Component
 public class NettyServer {
 	
-	private static final Logger logger = LoggerFactory.getLogger(NettyServer.class);  
+	private final Logger logger = LoggerFactory.getLogger(NettyServer.class);  
 
 	@Autowired
 	private NettyConfig nettyConfig;

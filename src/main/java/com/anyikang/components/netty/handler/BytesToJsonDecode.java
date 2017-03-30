@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.anyikang.util;
+package com.anyikang.components.netty.handler;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
@@ -10,7 +10,12 @@ import java.util.List;
 
 
 
+
 import org.springframework.stereotype.Component;
+
+import com.anyikang.util.BCDUtils;
+import com.anyikang.util.ByteToJsonBody;
+import com.anyikang.util.CommonUtils;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

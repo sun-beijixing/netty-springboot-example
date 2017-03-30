@@ -1,9 +1,11 @@
 /**
  * 
  */
-package com.anyikang.util;
+package com.anyikang.components.netty.handler;
 
 import org.springframework.stereotype.Component;
+
+import com.anyikang.util.JsonBodyToByte;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
