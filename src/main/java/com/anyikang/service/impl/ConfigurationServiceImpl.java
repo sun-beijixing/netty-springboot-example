@@ -7,7 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.anyikang.base.BaseService;
 import com.anyikang.components.netty.coding.ByteToJsonBody;
+import com.anyikang.components.netty.coding.JsonBodyToByte;
 import com.anyikang.service.ConfigurationService;
 
 /**
@@ -17,7 +19,7 @@ import com.anyikang.service.ConfigurationService;
  * @date 2017年3月30日
  */
 @Service
-public class ConfigurationServiceImpl implements ConfigurationService {
+public class ConfigurationServiceImpl extends BaseService implements ConfigurationService {
 	
 	private final Logger logger = LoggerFactory.getLogger(ConfigurationServiceImpl.class);
 
@@ -28,9 +30,21 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public String time(ByteToJsonBody messageBody) {
+	public JsonBodyToByte time(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/*
@@ -41,9 +55,21 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	 * .ByteToJsonBody)
 	 */
 	@Override
-	public String positioning(ByteToJsonBody messageBody) {
+	public JsonBodyToByte positioning(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/*
@@ -54,9 +80,21 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	 * .util.ByteToJsonBody)
 	 */
 	@Override
-	public String electronicFence(ByteToJsonBody messageBody) {
+	public JsonBodyToByte electronicFence(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/*
@@ -66,9 +104,21 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public String family(ByteToJsonBody messageBody) {
+	public JsonBodyToByte family(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/*
@@ -79,9 +129,21 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public String exercise(ByteToJsonBody messageBody) {
+	public JsonBodyToByte exercise(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/*
@@ -92,9 +154,21 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public String nameList(ByteToJsonBody messageBody) {
+	public JsonBodyToByte nameList(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/*
@@ -105,9 +179,21 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	 * .ByteToJsonBody)
 	 */
 	@Override
-	public String heartRate(ByteToJsonBody messageBody) {
+	public JsonBodyToByte heartRate(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/*
@@ -118,9 +204,21 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	 * )
 	 */
 	@Override
-	public String ip(ByteToJsonBody messageBody) {
+	public JsonBodyToByte ip(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/*
@@ -131,9 +229,21 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	 * .ByteToJsonBody)
 	 */
 	@Override
-	public String heartbeat(ByteToJsonBody messageBody) {
+	public JsonBodyToByte heartbeat(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/*
@@ -143,9 +253,21 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public String clock(ByteToJsonBody messageBody) {
+	public JsonBodyToByte clock(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/*
@@ -155,9 +277,21 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public String wifi(ByteToJsonBody messageBody) {
+	public JsonBodyToByte wifi(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/*
@@ -167,9 +301,21 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public String warn(ByteToJsonBody messageBody) {
+	public JsonBodyToByte warn(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/*
@@ -180,9 +326,21 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	 * .util.ByteToJsonBody)
 	 */
 	@Override
-	public String informationPush(ByteToJsonBody messageBody) {
+	public JsonBodyToByte informationPush(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/*
@@ -193,9 +351,21 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	 * .ByteToJsonBody)
 	 */
 	@Override
-	public String factoryReset(ByteToJsonBody messageBody) {
+	public JsonBodyToByte factoryReset(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/*
@@ -205,9 +375,21 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public String sos(ByteToJsonBody messageBody) {
+	public JsonBodyToByte sos(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/*
@@ -217,9 +399,21 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public String tumble(ByteToJsonBody messageBody) {
+	public JsonBodyToByte tumble(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 }

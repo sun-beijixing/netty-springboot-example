@@ -34,42 +34,43 @@ public class MessageQueryServerHandler extends ChannelInboundHandlerAdapter {
 	public void channelRead(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
 
-		boolean isReturn = true;
-
-		String returnMessage = "";
+		boolean isExist=true;
 
 		ByteToJsonBody messageBody = (ByteToJsonBody) msg;
+		
+		JsonBodyToByte jb =null;
 
 		switch (messageBody.getFunctionCode()) {
 			case 0x30:// 版本查询
-				returnMessage = messageQueryService.versions(messageBody);
+				jb = messageQueryService.versions(messageBody);
 				break;
 			case 0x31:// 定位信息查询
-				returnMessage = messageQueryService.positioning(messageBody);
+				jb = messageQueryService.positioning(messageBody);
 				break;
 			case 0x32:// 运动信息查询
-				returnMessage = messageQueryService.exercise(messageBody);
+				jb = messageQueryService.exercise(messageBody);
 				break;
 			case 0x33:// 心率信息查询
-				returnMessage = messageQueryService.heartRate(messageBody);
+				jb = messageQueryService.heartRate(messageBody);
 				break;
 			case 0x34:// 血氧信息查询
-				returnMessage = messageQueryService.bloodOxygen(messageBody);
+				jb = messageQueryService.bloodOxygen(messageBody);
 				break;
 			case 0x35:// 血压信息查询
-				returnMessage = messageQueryService.bloodPressure(messageBody);
+				jb = messageQueryService.bloodPressure(messageBody);
 				break;
 			case 0x36:// 睡眠信息查询
-				returnMessage = messageQueryService.sleep(messageBody);
+				jb = messageQueryService.sleep(messageBody);
 				break;
 			case 0x37:// 丢失报文查询
-				returnMessage = messageQueryService.lost(messageBody);
+				jb = messageQueryService.lost(messageBody);
 				break;
 			default:
+				isExist=false;
 				messageError(ctx);
 		}
 
-		if (isReturn) {
+		if (isExist) {
 			JsonBodyToByte jsonBodyToByte = new JsonBodyToByte();
 			jsonBodyToByte.setBeginCode((byte) 64);
 			jsonBodyToByte.setImeiCode(messageBody.getImeiCode());

@@ -3,9 +3,6 @@
  */
 package com.anyikang.service.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -13,9 +10,7 @@ import org.springframework.stereotype.Service;
 import com.anyikang.base.BaseService;
 import com.anyikang.components.netty.coding.ByteToJsonBody;
 import com.anyikang.components.netty.coding.JsonBodyToByte;
-import com.anyikang.components.netty.handler.ReportServerHandler;
 import com.anyikang.service.ReportService;
-import com.anyikang.util.BCDUtils;
 
 /**
  * @author wangwei
@@ -38,6 +33,7 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		
 		//调用rabbitmq服务
 		
+		return;
 	}
 
 	/* (non-Javadoc)
@@ -45,8 +41,20 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 	 */
 	@Override
 	public JsonBodyToByte positioning(ByteToJsonBody messageBody) {
+		logger.debug("============定位上报服务");
 		// TODO Auto-generated method stub
-		return null;
+		
+		//调用rmi服务
+		
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/* (non-Javadoc)
@@ -54,8 +62,16 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 	 */
 	@Override
 	public JsonBodyToByte exercise(ByteToJsonBody messageBody) {
-		// TODO Auto-generated method stub
-		return null;
+		logger.debug("============运动上报服务");
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/* (non-Javadoc)
@@ -63,9 +79,16 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 	 */
 	@Override
 	public JsonBodyToByte heartRate(ByteToJsonBody messageBody) {
+		logger.debug("============心率上报服务");
 		String imeiCode=messageBody.getImeiCode();
 		byte[] dataBody=messageBody.getDataBody();
-		return null;
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/* (non-Javadoc)
@@ -90,8 +113,16 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 	 */
 	@Override
 	public JsonBodyToByte bloodPressure(ByteToJsonBody messageBody) {
-		// TODO Auto-generated method stub
-		return null;
+		logger.debug("============血压上报服务");
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/* (non-Javadoc)
@@ -99,8 +130,16 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 	 */
 	@Override
 	public JsonBodyToByte sleep(ByteToJsonBody messageBody) {
-		// TODO Auto-generated method stub
-		return null;
+		logger.debug("============睡眠上报服务");
+		String imeiCode=messageBody.getImeiCode();
+		byte[] dataBody=messageBody.getDataBody();
+		
+		String dataLength=Integer.toHexString(26);
+		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 	
 	

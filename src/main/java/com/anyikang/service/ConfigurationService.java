@@ -4,6 +4,7 @@
 package com.anyikang.service;
 
 import com.anyikang.components.netty.coding.ByteToJsonBody;
+import com.anyikang.components.netty.coding.JsonBodyToByte;
 
 /**
  * @author wangwei
@@ -16,7 +17,7 @@ public interface ConfigurationService {
 	 * 
 	 * @param messageBody
 	 */
-	public String time(ByteToJsonBody messageBody);
+	public JsonBodyToByte time(ByteToJsonBody messageBody);
 
 	/**
 	 * 定位配置
@@ -24,7 +25,7 @@ public interface ConfigurationService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String positioning(ByteToJsonBody messageBody);
+	public JsonBodyToByte positioning(ByteToJsonBody messageBody);
 
 	/**
 	 * 电子围栏配置
@@ -32,7 +33,7 @@ public interface ConfigurationService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String electronicFence(ByteToJsonBody messageBody);
+	public JsonBodyToByte electronicFence(ByteToJsonBody messageBody);
 
 	/**
 	 * 亲情号配置
@@ -40,7 +41,7 @@ public interface ConfigurationService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String family(ByteToJsonBody messageBody);
+	public JsonBodyToByte family(ByteToJsonBody messageBody);
 
 	/**
 	 * 运动配置
@@ -48,7 +49,7 @@ public interface ConfigurationService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String exercise(ByteToJsonBody messageBody);
+	public JsonBodyToByte exercise(ByteToJsonBody messageBody);
 
 	/**
 	 * 白名单配置
@@ -56,7 +57,7 @@ public interface ConfigurationService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String nameList(ByteToJsonBody messageBody);
+	public JsonBodyToByte nameList(ByteToJsonBody messageBody);
 
 	/**
 	 * 心率配置
@@ -64,7 +65,7 @@ public interface ConfigurationService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String heartRate(ByteToJsonBody messageBody);
+	public JsonBodyToByte heartRate(ByteToJsonBody messageBody);
 
 	/**
 	 * IP配置
@@ -72,7 +73,7 @@ public interface ConfigurationService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String ip(ByteToJsonBody messageBody);
+	public JsonBodyToByte ip(ByteToJsonBody messageBody);
 
 	/**
 	 * 心跳配置
@@ -80,7 +81,7 @@ public interface ConfigurationService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String heartbeat(ByteToJsonBody messageBody);
+	public JsonBodyToByte heartbeat(ByteToJsonBody messageBody);
 
 	/**
 	 * 闹钟配置
@@ -88,7 +89,7 @@ public interface ConfigurationService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String clock(ByteToJsonBody messageBody);
+	public JsonBodyToByte clock(ByteToJsonBody messageBody);
 
 	/**
 	 * wifi配置
@@ -96,7 +97,7 @@ public interface ConfigurationService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String wifi(ByteToJsonBody messageBody);
+	public JsonBodyToByte wifi(ByteToJsonBody messageBody);
 
 	/**
 	 * wifi配置
@@ -104,7 +105,7 @@ public interface ConfigurationService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String warn(ByteToJsonBody messageBody);
+	public JsonBodyToByte warn(ByteToJsonBody messageBody);
 
 	/**
 	 * 信息推送配置
@@ -112,7 +113,7 @@ public interface ConfigurationService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String informationPush(ByteToJsonBody messageBody);
+	public JsonBodyToByte informationPush(ByteToJsonBody messageBody);
 
 	/**
 	 * 恢复出厂配置
@@ -120,7 +121,7 @@ public interface ConfigurationService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String factoryReset(ByteToJsonBody messageBody);
+	public JsonBodyToByte factoryReset(ByteToJsonBody messageBody);
 
 	/**
 	 * sos配置
@@ -128,7 +129,7 @@ public interface ConfigurationService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String sos(ByteToJsonBody messageBody);
+	public JsonBodyToByte sos(ByteToJsonBody messageBody);
 
 	/**
 	 * 跌倒配置
@@ -136,6 +137,6 @@ public interface ConfigurationService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String tumble(ByteToJsonBody messageBody);
+	public JsonBodyToByte tumble(ByteToJsonBody messageBody);
 
 }

@@ -11,6 +11,14 @@ import com.anyikang.components.netty.coding.JsonBodyToByte;
  */
 public class BaseService {
 	
+	/**
+	 * 响应结果
+	 * @param dataLength
+	 * @param liushuihao
+	 * @param errCode
+	 * @param errMsg
+	 * @return
+	 */
 	protected JsonBodyToByte returnObject(int dataLength,String liushuihao,int errCode,int errMsg){
 		JsonBodyToByte jb=new JsonBodyToByte();
 		jb.setDataLength((byte)dataLength);

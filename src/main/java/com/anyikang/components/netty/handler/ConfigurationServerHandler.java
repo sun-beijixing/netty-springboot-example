@@ -33,106 +33,77 @@ public class ConfigurationServerHandler extends ChannelInboundHandlerAdapter {
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
-		boolean isReturn = true;
 		boolean isExist=true;
 
-		String returnMessage = "";
-
 		ByteToJsonBody messageBody = (ByteToJsonBody) msg;
+		
+		JsonBodyToByte jb =null;
 
 		switch (messageBody.getFunctionCode()) {
 			case 0x10:// 时间配置
-				returnMessage = configurationService.time(messageBody);
+				jb = configurationService.time(messageBody);
 				break;
 			case 0x11:// 定位配置
-				returnMessage = configurationService.positioning(messageBody);
+				jb = configurationService.positioning(messageBody);
 				break;
 			case 0x12:// 电子围栏配置
-				returnMessage = configurationService.electronicFence(messageBody);
+				jb = configurationService.electronicFence(messageBody);
 				break;
 			case 0x13:// 亲情号配置
-				returnMessage = configurationService.family(messageBody);
+				jb = configurationService.family(messageBody);
 				break;
 			case 0x14:// 白名单配置
-				returnMessage = configurationService.nameList(messageBody);
+				jb = configurationService.nameList(messageBody);
 				break;
 			case 0x15:// 运动配置
-				returnMessage = configurationService.exercise(messageBody);
+				jb = configurationService.exercise(messageBody);
 				break;
 			case 0x16:// 心率配置
-				returnMessage = configurationService.heartRate(messageBody);
+				jb = configurationService.heartRate(messageBody);
 				break;
 			case 0x17:// IP配置
-				returnMessage = configurationService.ip(messageBody);
+				jb = configurationService.ip(messageBody);
 				break;
 			case 0x18:// 心跳配置
-				returnMessage = configurationService.heartbeat(messageBody);
+				jb = configurationService.heartbeat(messageBody);
 				break;
 			case 0x19:// 闹钟配置
-				returnMessage = configurationService.clock(messageBody);
+				jb = configurationService.clock(messageBody);
 				break;
 			case 0x1A:// wifi配置
-				returnMessage = configurationService.wifi(messageBody);
+				jb = configurationService.wifi(messageBody);
 				break;
 			case 0x1B:// 提醒
-				returnMessage = configurationService.warn(messageBody);
+				jb = configurationService.warn(messageBody);
 				break;
 			case 0x1C:// 信息推送
-				returnMessage = configurationService.informationPush(messageBody);
+				jb = configurationService.informationPush(messageBody);
 				break;
 			case 0x1D:// 恢复出厂设置
-				returnMessage = configurationService.factoryReset(messageBody);
+				jb = configurationService.factoryReset(messageBody);
 				break;
 			case 0x1E:// SOS配置
-				returnMessage = configurationService.sos(messageBody);
+				jb = configurationService.sos(messageBody);
 				break;
 			case 0x1F:// 跌倒配置
-				returnMessage = configurationService.tumble(messageBody);
+				jb = configurationService.tumble(messageBody);
 				break;
 			default:
 				ctx.fireChannelRead(msg);// 通知执行下一个InboundHandler
 				isExist=false;
-//				messageError(ctx);
 		}
 
-		if (isReturn&&isExist) {
-			JsonBodyToByte jsonBodyToByte = new JsonBodyToByte();
-			jsonBodyToByte.setBeginCode((byte) 64);
-			jsonBodyToByte.setImeiCode(messageBody.getImeiCode());
-			jsonBodyToByte.setDataLength((byte) 20);
-			jsonBodyToByte.setFunctionCode((byte) 1);
-			jsonBodyToByte.setDataNumber((byte) 10);
-			jsonBodyToByte.setErrCode((byte) 0);
-			jsonBodyToByte.setErrMsg((byte) 0);
-			jsonBodyToByte.setCrc((byte) 2);
-			jsonBodyToByte.setEndCode((byte) 16);
+		if (isExist) {
+			jb.setBeginCode(0x68);
+			jb.setImeiCode(messageBody.getImeiCode());
+			jb.setCrc((byte) 0x56);
+			jb.setEndCode(0x16);
 
-			ctx.writeAndFlush(jsonBodyToByte);
+			ctx.writeAndFlush(jb);
 		}
 
 	}
 	
-	private void messageError(final ChannelHandlerContext ctx) {
-		// String message = "{\"errNo\":2}";
-		// message = CommonUtils.encodeToBASE64(message);
-		// byte[] header = new byte[4];
-		// header[0]=(byte)1;
-		// header[1]=(byte)1;
-		// byte[] body = message.getBytes();
-		// byte[] aaa = CommonUtils.shortToByteArray((short)body.length);
-		// header[2] = aaa[0] ;
-		// header[3] = aaa[1] ;
-		// byte[] all = new byte[4+body.length];
-		// System.arraycopy(header, 0, all, 0, 4);
-		// System.arraycopy(body, 0, all, 4, body.length);
-		//
-		// ByteBuf encoded = ctx.alloc().buffer(all.length);
-		// encoded.writeBytes(all);
-		// ctx.writeAndFlush(encoded);
-		// log.error("异常信息:头信息格式错误");
-		ctx.channel().close();
-	}
-
 	@Override
 	public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
 		logger.info("ConfigurationServerHandler.channelReadComplete");  

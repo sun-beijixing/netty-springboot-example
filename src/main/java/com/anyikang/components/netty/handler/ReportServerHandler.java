@@ -78,7 +78,6 @@ public class ReportServerHandler extends ChannelInboundHandlerAdapter {
 			default:
 				ctx.fireChannelRead(msg);// 通知执行下一个InboundHandler
 				isExist=false;
-//				messageError(ctx);
 		}
 
 		if (isReturn&&isExist) {
@@ -95,27 +94,6 @@ public class ReportServerHandler extends ChannelInboundHandlerAdapter {
 			ctx.writeAndFlush(jb);
 		}
 
-	}
-
-	private void messageError(final ChannelHandlerContext ctx) {
-		// String message = "{\"errNo\":2}";
-		// message = CommonUtils.encodeToBASE64(message);
-		// byte[] header = new byte[4];
-		// header[0]=(byte)1;
-		// header[1]=(byte)1;
-		// byte[] body = message.getBytes();
-		// byte[] aaa = CommonUtils.shortToByteArray((short)body.length);
-		// header[2] = aaa[0] ;
-		// header[3] = aaa[1] ;
-		// byte[] all = new byte[4+body.length];
-		// System.arraycopy(header, 0, all, 0, 4);
-		// System.arraycopy(body, 0, all, 4, body.length);
-		//
-		// ByteBuf encoded = ctx.alloc().buffer(all.length);
-		// encoded.writeBytes(all);
-		// ctx.writeAndFlush(encoded);
-		// log.error("异常信息:头信息格式错误");
-		ctx.channel().close();
 	}
 
 	public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
