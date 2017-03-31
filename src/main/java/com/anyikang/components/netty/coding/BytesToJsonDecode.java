@@ -30,6 +30,9 @@ public class BytesToJsonDecode extends ByteToMessageDecoder {
 			return;
 		}
 		
+		logger.debug("----------接收编码长度："+in.readableBytes());
+		
+		
 		in.markReaderIndex();
 		
 		byte beginCode = in.readByte();
@@ -37,12 +40,11 @@ public class BytesToJsonDecode extends ByteToMessageDecoder {
 		if (beginCode==0x68){
 			String imeiCode=BCDUtils.byteToHexString(new byte[8],in);
 			int dataLength=BCDUtils.byteToInt(in.readByte());
-			
-			if(in.readableBytes()<dataLength){
-				logger.debug("=============接收的数据长度小于规定的数据长度================");
-				in.resetReaderIndex();
-				return;
-			}
+//			if(in.readableBytes()<dataLength){
+//				logger.debug("=============接收的数据长度小于规定的数据长度================");
+//				in.resetReaderIndex();
+//				return;
+//			}
 			
 			byte functionCode=in.readByte();
 			byte[] dataBody=new byte[dataLength-11-9];

@@ -3,7 +3,10 @@
  */
 package com.anyikang.service;
 
+import java.util.Map;
+
 import com.anyikang.components.netty.coding.ByteToJsonBody;
+import com.anyikang.components.netty.coding.JsonBodyToByte;
 
 /**
  * 上报
@@ -26,7 +29,7 @@ public interface ReportService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String positioning(ByteToJsonBody messageBody);
+	public JsonBodyToByte positioning(ByteToJsonBody messageBody);
 
 	/**
 	 * 运动上报
@@ -34,7 +37,7 @@ public interface ReportService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String exercise(ByteToJsonBody messageBody);
+	public JsonBodyToByte exercise(ByteToJsonBody messageBody);
 
 	/**
 	 * 心率上报
@@ -42,7 +45,7 @@ public interface ReportService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String heartRate(ByteToJsonBody messageBody);
+	public JsonBodyToByte heartRate(ByteToJsonBody messageBody);
 
 	/**
 	 * 血氧上报
@@ -50,7 +53,7 @@ public interface ReportService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String bloodOxygen(ByteToJsonBody messageBody);
+	public JsonBodyToByte bloodOxygen(ByteToJsonBody messageBody);
 
 	/**
 	 * 血压上报
@@ -58,7 +61,7 @@ public interface ReportService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String bloodPressure(ByteToJsonBody messageBody);
+	public JsonBodyToByte bloodPressure(ByteToJsonBody messageBody);
 
 	/**
 	 * 睡眠上报
@@ -66,6 +69,6 @@ public interface ReportService {
 	 * @param messageBody
 	 * @return
 	 */
-	public String sleep(ByteToJsonBody messageBody);
+	public JsonBodyToByte sleep(ByteToJsonBody messageBody);
 
 }

@@ -130,7 +130,15 @@ public class BCDUtils {
      */
     public static String byteToHexString(byte[] bs,ByteBuf in) {
     	in.readBytes(bs);
-    	return BCDUtils.byteToHexString(bs);
+    	
+    	String stmp = "";
+        StringBuilder sb = new StringBuilder("");
+        for (byte c : bs) {
+            stmp = Integer.toHexString(c & 0xFF);// 与预算，去掉byte转int带来的补位
+            sb.append((stmp.length() == 1) ? "0" + stmp : stmp);// 是一位的话填充零
+//            sb.append(" ");// 每位数据用空格分隔
+        }
+        return sb.toString().toUpperCase().trim();// 变换大写，并去除首尾空格
     }
     
     /**

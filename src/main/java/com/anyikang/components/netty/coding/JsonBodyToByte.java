@@ -1,25 +1,28 @@
 package com.anyikang.components.netty.coding;
 
 public class JsonBodyToByte {
-	private byte beginCode;//起始位
+	private int beginCode;//起始位
 	private String imeiCode;//IMEI号 
-	private byte dataLength;//数据长度 
-	private byte functionCode;//功能码 
+	private int dataLength;//数据长度 
+	private int functionCode;//功能码 
 	private byte dataNumber;//流水号
 	private byte errCode;//错误标识
-	private String errMsg;//错误信息
+	private byte errMsg;//错误信息
 	private byte crc;//CRC8 
-	private byte endCode;//结束符
+	private int endCode;//结束符
+	
+	
+	
 	/**
 	 * @return the beginCode
 	 */
-	public byte getBeginCode() {
+	public int getBeginCode() {
 		return beginCode;
 	}
 	/**
 	 * @param beginCode the beginCode to set
 	 */
-	public void setBeginCode(byte beginCode) {
+	public void setBeginCode(int beginCode) {
 		this.beginCode = beginCode;
 	}
 	/**
@@ -34,28 +37,26 @@ public class JsonBodyToByte {
 	public void setImeiCode(String imeiCode) {
 		this.imeiCode = imeiCode;
 	}
-	/**
-	 * @return the dataLength
-	 */
-	public byte getDataLength() {
+	
+	
+	
+	
+	public int getDataLength() {
 		return dataLength;
 	}
-	/**
-	 * @param dataLength the dataLength to set
-	 */
-	public void setDataLength(byte dataLength) {
+	public void setDataLength(int dataLength) {
 		this.dataLength = dataLength;
 	}
 	/**
 	 * @return the functionCode
 	 */
-	public byte getFunctionCode() {
+	public int getFunctionCode() {
 		return functionCode;
 	}
 	/**
 	 * @param functionCode the functionCode to set
 	 */
-	public void setFunctionCode(byte functionCode) {
+	public void setFunctionCode(int functionCode) {
 		this.functionCode = functionCode;
 	}
 	/**
@@ -86,13 +87,13 @@ public class JsonBodyToByte {
 	/**
 	 * @return the errMsg
 	 */
-	public String getErrMsg() {
+	public byte getErrMsg() {
 		return errMsg;
 	}
 	/**
 	 * @param errMsg the errMsg to set
 	 */
-	public void setErrMsg(String errMsg) {
+	public void setErrMsg(byte errMsg) {
 		this.errMsg = errMsg;
 	}
 	/**
@@ -110,15 +111,16 @@ public class JsonBodyToByte {
 	/**
 	 * @return the endCode
 	 */
-	public byte getEndCode() {
+	public int getEndCode() {
 		return endCode;
 	}
 	/**
 	 * @param endCode the endCode to set
 	 */
-	public void setEndCode(byte endCode) {
+	public void setEndCode(int endCode) {
 		this.endCode = endCode;
 	}
+	
 
 	
 }

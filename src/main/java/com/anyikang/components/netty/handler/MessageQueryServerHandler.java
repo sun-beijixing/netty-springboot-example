@@ -72,12 +72,12 @@ public class MessageQueryServerHandler extends ChannelInboundHandlerAdapter {
 		if (isReturn) {
 			JsonBodyToByte jsonBodyToByte = new JsonBodyToByte();
 			jsonBodyToByte.setBeginCode((byte) 64);
-			jsonBodyToByte.setImeiCode("11111111");
+			jsonBodyToByte.setImeiCode(messageBody.getImeiCode());
 			jsonBodyToByte.setDataLength((byte) 20);
 			jsonBodyToByte.setFunctionCode((byte) 1);
 			jsonBodyToByte.setDataNumber((byte) 10);
 			jsonBodyToByte.setErrCode((byte) 0);
-			jsonBodyToByte.setErrMsg("test");
+			jsonBodyToByte.setErrMsg((byte) 0);
 			jsonBodyToByte.setCrc((byte) 2);
 			jsonBodyToByte.setEndCode((byte) 16);
 

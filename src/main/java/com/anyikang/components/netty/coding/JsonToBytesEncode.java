@@ -6,6 +6,8 @@ package com.anyikang.components.netty.coding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.anyikang.util.BCDUtils;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
@@ -21,7 +23,7 @@ public class JsonToBytesEncode extends MessageToByteEncoder<JsonBodyToByte>{
 
 	@Override
 	protected void encode(ChannelHandlerContext ctx, JsonBodyToByte msg,ByteBuf out) throws Exception {
-		JsonBodyToByte jsonBodyToByte =(JsonBodyToByte)msg;
+		JsonBodyToByte jb =(JsonBodyToByte)msg;
 //		byte[] base64String = CommonUtils.encodeToBASE64(jsonBodyToByte.getJsonBody()).getBytes();
 		
 //		out.writeShort(base64String.length);
@@ -35,14 +37,25 @@ public class JsonToBytesEncode extends MessageToByteEncoder<JsonBodyToByte>{
 //        // 将字节数组写入缓冲区  
 //        out.writeBytes("1222".getBytes());  
         
-        String ddd="WOW...";
-		byte[] dd=ddd.getBytes();
-		out.writeBytes(dd);  
+//        String ddd="WOW...";
+//		byte[] dd=ddd.getBytes();
+//		out.writeBytes(dd);  
 		
 		
+		out.writeByte(jb.getBeginCode());
+		out.writeBytes(BCDUtils.str2Bcd(jb.getImeiCode()));  
+		out.writeByte(jb.getDataLength());
+		out.writeByte(jb.getFunctionCode());
+		out.writeByte(jb.getDataNumber());
+		out.writeByte(jb.getErrCode());
+		out.writeByte(jb.getErrMsg());
+		out.writeByte(jb.getCrc());
+		out.writeByte(jb.getEndCode());
         ctx.flush();  
 		
 	}
+	
+	
 	
 	
 

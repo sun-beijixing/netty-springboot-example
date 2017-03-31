@@ -3,6 +3,9 @@
  */
 package com.anyikang.components.netty.handler;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelHandler.Sharable;
@@ -46,32 +49,31 @@ public class ReportServerHandler extends ChannelInboundHandlerAdapter {
 		boolean isReturn = true;
 		boolean isExist=true;
 
-		String returnMessage = "";
-
 		ByteToJsonBody messageBody = (ByteToJsonBody) msg;
+		JsonBodyToByte jb =null;
 
 		switch (messageBody.getFunctionCode()) {
 			case 0x00:// 心跳上报
 				functionService.heartbeat(messageBody);
-//				isReturn = false;
+				isReturn = false;
 				break;
 			case 0x01:// 定位上报
-				returnMessage = functionService.positioning(messageBody);
+				jb = functionService.positioning(messageBody);
 				break;
 			case 0x02:// 运动上报
-				returnMessage = functionService.exercise(messageBody);
+				jb = functionService.exercise(messageBody);
 				break;
 			case 0x03:// 心率上报
-				returnMessage = functionService.heartRate(messageBody);
+				jb = functionService.heartRate(messageBody);
 				break;
 			case 0x04:// 血氧上报
-				returnMessage = functionService.bloodOxygen(messageBody);
+				jb = functionService.bloodOxygen(messageBody);
 				break;
 			case 0x05:// 血压上报
-				returnMessage = functionService.bloodPressure(messageBody);
+				jb = functionService.bloodPressure(messageBody);
 				break;
 			case 0x06:// 睡眠上报
-				returnMessage = functionService.sleep(messageBody);
+				jb = functionService.sleep(messageBody);
 				break;
 			default:
 				ctx.fireChannelRead(msg);// 通知执行下一个InboundHandler
@@ -80,18 +82,17 @@ public class ReportServerHandler extends ChannelInboundHandlerAdapter {
 		}
 
 		if (isReturn&&isExist) {
-			JsonBodyToByte jsonBodyToByte = new JsonBodyToByte();
-			jsonBodyToByte.setBeginCode((byte) 64);
-			jsonBodyToByte.setImeiCode("11111111");
-			jsonBodyToByte.setDataLength((byte) 20);
-			jsonBodyToByte.setFunctionCode((byte) 1);
-			jsonBodyToByte.setDataNumber((byte) 10);
-			jsonBodyToByte.setErrCode((byte) 0);
-			jsonBodyToByte.setErrMsg("test");
-			jsonBodyToByte.setCrc((byte) 2);
-			jsonBodyToByte.setEndCode((byte) 16);
+			jb.setBeginCode(0x68);
+			jb.setImeiCode(messageBody.getImeiCode());
+//			jb.setDataLength((byte)16);
+//			jb.setFunctionCode((byte) 1);
+//			jb.setDataNumber((byte) 10);
+//			jb.setErrCode((byte) 0);
+//			jb.setErrMsg("test");
+			jb.setCrc((byte) 0x56);
+			jb.setEndCode(0x16);
 
-			ctx.writeAndFlush(jsonBodyToByte);
+			ctx.writeAndFlush(jb);
 		}
 
 	}
