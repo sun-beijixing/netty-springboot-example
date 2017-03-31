@@ -19,11 +19,11 @@ public class BaseService {
 	 * @param errMsg
 	 * @return
 	 */
-	protected JsonBodyToByte returnObject(int dataLength,String liushuihao,int errCode,int errMsg){
+	protected JsonBodyToByte returnObject(int dataLength,int functionCode,String liushuihao,int errCode,int errMsg){
 		JsonBodyToByte jb=new JsonBodyToByte();
 		jb.setDataLength((byte)dataLength);
 //		jb.setDataLength((byte)0x16);
-		jb.setFunctionCode(0x84);
+		jb.setFunctionCode(functionCode);
 		jb.setDataNumber((byte)Integer.parseInt(liushuihao));
 		jb.setErrCode((byte) errCode);
 		jb.setErrMsg((byte)errMsg);

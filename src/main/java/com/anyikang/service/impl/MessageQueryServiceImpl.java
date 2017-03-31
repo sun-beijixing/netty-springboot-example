@@ -44,7 +44,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0xB0,liushuihao, 0, 4);
 	}
 
 	/*
@@ -69,7 +69,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0xB1,liushuihao, 0, 4);
 	}
 
 	/*
@@ -93,7 +93,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0xB2,liushuihao, 0, 4);
 	}
 
 	/*
@@ -118,7 +118,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0xB3,liushuihao, 0, 4);
 	}
 
 	/*
@@ -143,7 +143,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0xB4,liushuihao, 0, 4);
 	}
 
 	/*
@@ -168,7 +168,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0xB5,liushuihao, 0, 4);
 	}
 
 	/*
@@ -192,7 +192,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0xB6,liushuihao, 0, 4);
 	}
 
 	/*
@@ -216,7 +216,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0xB7,liushuihao, 0, 4);
 	}
 
 }

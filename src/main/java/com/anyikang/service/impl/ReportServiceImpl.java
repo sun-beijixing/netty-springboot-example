@@ -54,7 +54,7 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x81,liushuihao, 0, 4);
 	}
 
 	/* (non-Javadoc)
@@ -71,7 +71,7 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x82,liushuihao, 0, 4);
 	}
 
 	/* (non-Javadoc)
@@ -88,7 +88,7 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x83,liushuihao, 0, 4);
 	}
 
 	/* (non-Javadoc)
@@ -105,7 +105,7 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x84,liushuihao, 0, 4);
 	}
 
 	/* (non-Javadoc)
@@ -122,7 +122,7 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x85,liushuihao, 0, 4);
 	}
 
 	/* (non-Javadoc)
@@ -139,7 +139,7 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x86,liushuihao, 0, 4);
 	}
 	
 	

@@ -44,7 +44,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x90,liushuihao, 0, 4);
 	}
 
 	/*
@@ -69,7 +69,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x91,liushuihao, 0, 4);
 	}
 
 	/*
@@ -94,7 +94,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x92,liushuihao, 0, 4);
 	}
 
 	/*
@@ -118,7 +118,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x93,liushuihao, 0, 4);
 	}
 
 	/*
@@ -143,7 +143,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x94,liushuihao, 0, 4);
 	}
 
 	/*
@@ -168,7 +168,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x95,liushuihao, 0, 4);
 	}
 
 	/*
@@ -193,7 +193,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x96,liushuihao, 0, 4);
 	}
 
 	/*
@@ -218,7 +218,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x97,liushuihao, 0, 4);
 	}
 
 	/*
@@ -243,7 +243,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x98,liushuihao, 0, 4);
 	}
 
 	/*
@@ -267,7 +267,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x99,liushuihao, 0, 4);
 	}
 
 	/*
@@ -291,7 +291,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x9A,liushuihao, 0, 4);
 	}
 
 	/*
@@ -315,7 +315,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x9B,liushuihao, 0, 4);
 	}
 
 	/*
@@ -340,7 +340,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x9C,liushuihao, 0, 4);
 	}
 
 	/*
@@ -365,7 +365,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x9D,liushuihao, 0, 4);
 	}
 
 	/*
@@ -389,7 +389,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x9E,liushuihao, 0, 4);
 	}
 
 	/*
@@ -413,7 +413,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16, liushuihao, 0, 4);
+		return super.returnObject(16,0x9F,liushuihao, 0, 4);
 	}
 
 }
