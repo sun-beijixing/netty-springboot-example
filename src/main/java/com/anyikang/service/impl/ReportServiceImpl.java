@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.anyikang.base.BaseService;
 import com.anyikang.components.netty.coding.ByteToJsonBody;
 import com.anyikang.components.netty.coding.JsonBodyToByte;
 import com.anyikang.components.netty.handler.ReportServerHandler;
@@ -21,7 +22,7 @@ import com.anyikang.util.BCDUtils;
  * @date 2017年3月30日
  */
 @Service
-public class ReportServiceImpl implements ReportService{
+public class ReportServiceImpl extends BaseService implements ReportService {
 	
 	private final Logger logger = LoggerFactory.getLogger(ReportServiceImpl.class);
 
@@ -81,14 +82,7 @@ public class ReportServiceImpl implements ReportService{
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		JsonBodyToByte jb=new JsonBodyToByte();
-		jb.setDataLength((byte)16);
-//		jb.setDataLength((byte)0x16);
-		jb.setFunctionCode(0x84);
-		jb.setDataNumber((byte)Integer.parseInt(liushuihao));
-		jb.setErrCode((byte) 0);
-		jb.setErrMsg((byte)4);
-		return jb;
+		return super.returnObject(16, liushuihao, 0, 4);
 	}
 
 	/* (non-Javadoc)
