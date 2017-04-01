@@ -31,7 +31,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 	 */
 	@Override
 	public JsonBodyToByte versions(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============版本查询服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -56,7 +56,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 	 */
 	@Override
 	public JsonBodyToByte positioning(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============定位信息查询服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -80,7 +80,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 	 */
 	@Override
 	public JsonBodyToByte exercise(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============运动信息查询服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -105,7 +105,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 	 */
 	@Override
 	public JsonBodyToByte heartRate(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============心率信息查询服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -130,7 +130,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 	 */
 	@Override
 	public JsonBodyToByte bloodOxygen(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============血氧信息查询服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -155,7 +155,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 	 */
 	@Override
 	public JsonBodyToByte bloodPressure(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============血压信息查询服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -179,7 +179,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 	 */
 	@Override
 	public JsonBodyToByte sleep(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============睡眠信息查询服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -203,7 +203,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 	 */
 	@Override
 	public JsonBodyToByte lost(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============丢失报文查询服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务

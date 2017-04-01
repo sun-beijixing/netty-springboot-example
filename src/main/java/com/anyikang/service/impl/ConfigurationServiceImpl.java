@@ -54,7 +54,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 */
 	@Override
 	public JsonBodyToByte positioning(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============定位配置服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -79,7 +79,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 */
 	@Override
 	public JsonBodyToByte electronicFence(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============电子围栏配置服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -103,7 +103,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 */
 	@Override
 	public JsonBodyToByte family(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============亲情号配置服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -128,7 +128,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 */
 	@Override
 	public JsonBodyToByte exercise(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============运动配置服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -153,7 +153,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 */
 	@Override
 	public JsonBodyToByte nameList(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============白名单配置服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -178,7 +178,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 */
 	@Override
 	public JsonBodyToByte heartRate(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============心率配置服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -203,7 +203,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 */
 	@Override
 	public JsonBodyToByte ip(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============IP配置服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -228,7 +228,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 */
 	@Override
 	public JsonBodyToByte heartbeat(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============心跳配置服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -252,7 +252,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 */
 	@Override
 	public JsonBodyToByte clock(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============闹钟配置服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -276,7 +276,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 */
 	@Override
 	public JsonBodyToByte wifi(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============wifi配置服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -300,7 +300,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 */
 	@Override
 	public JsonBodyToByte warn(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============提醒配置服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -325,7 +325,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 */
 	@Override
 	public JsonBodyToByte informationPush(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============信息推送配置服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -350,7 +350,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 */
 	@Override
 	public JsonBodyToByte factoryReset(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============回复出厂配置服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -374,7 +374,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 */
 	@Override
 	public JsonBodyToByte sos(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============sos配置服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -398,7 +398,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 */
 	@Override
 	public JsonBodyToByte tumble(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
+		logger.debug("============跌倒配置服务");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
