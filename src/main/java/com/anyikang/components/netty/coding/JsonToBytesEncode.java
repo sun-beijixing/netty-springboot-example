@@ -46,7 +46,11 @@ public class JsonToBytesEncode extends MessageToByteEncoder<JsonBodyToByte>{
 		out.writeBytes(BCDUtils.str2Bcd(jb.getImeiCode()));  
 		out.writeByte(jb.getDataLength());
 		out.writeByte(jb.getFunctionCode());
-		out.writeBytes(jb.getDataNumber());
+		if(jb.getServerType()==1){
+			out.writeBytes(jb.getDataNumber());
+		}else{
+			
+		}
 		out.writeByte(jb.getErrCode());
 		out.writeByte(jb.getErrMsg());
 		out.writeByte(jb.getCrc());

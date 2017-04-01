@@ -90,24 +90,5 @@ public class BytesToJsonDecode extends ByteToMessageDecoder {
 //		ctx.channel().close();
 		return;
 	}
-	
-	
-//	public static void main(String[] args) {
-//		byte[] byteArray = new byte[] {87, 79, 87, 46, 46, 46};//[87, 79, 87, 46, 46, 46]
-//
-//		try {
-//			String ddd="WOW...";
-//			byte[] dd=ddd.getBytes();
-//			String value = new String(byteArray, "UTF-8");
-//			System.out.println(value);
-//		} catch (UnsupportedEncodingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-//		byte dd=0x0C;
-//		int ddd=dd;
-//		System.out.println(ddd);
-//	}
 
 }

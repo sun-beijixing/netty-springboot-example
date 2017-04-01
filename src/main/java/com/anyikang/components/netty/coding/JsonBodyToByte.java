@@ -10,7 +10,8 @@ public class JsonBodyToByte {
 	private byte errMsg;//错误信息
 	private byte crc;//CRC8 
 	private int endCode;//结束符
-	
+	private int serverType;//1报文 2配置 3查询 
+	//标志
 	
 	
 	/**
@@ -114,6 +115,12 @@ public class JsonBodyToByte {
 	 */
 	public void setEndCode(int endCode) {
 		this.endCode = endCode;
+	}
+	public int getServerType() {
+		return serverType;
+	}
+	public void setServerType(int serverType) {
+		this.serverType = serverType;
 	}
 	
 
