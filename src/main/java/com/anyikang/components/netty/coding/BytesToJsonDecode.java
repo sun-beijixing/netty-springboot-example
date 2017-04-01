@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.anyikang.util.BCDUtils;
-import com.anyikang.util.CommonUtils;
 
 /**
  * 解码器
@@ -39,17 +38,19 @@ public class BytesToJsonDecode extends ByteToMessageDecoder {
 		//有可能是多条数据包，需要循环处理
 		if (beginCode==0x68){
 			String imeiCode=BCDUtils.byteToHexString(new byte[8],in);
-			int dataLength=BCDUtils.byteToInt(in.readByte());
+			int dataLength=in.readByte();
+			System.out.println("----------------dataLength:"+dataLength);
+			
 //			if(in.readableBytes()<dataLength){
 //				logger.debug("=============接收的数据长度小于规定的数据长度================");
 //				in.resetReaderIndex();
 //				return;
 //			}
 			
-			byte functionCode=in.readByte();
-			byte[] dataBody=new byte[dataLength-11-9];
+			byte[] dataBody=new byte[dataLength];
 			in.readBytes(dataBody);
-			String time=BCDUtils.byteToHexString(new byte[7],in);
+			byte functionCode=dataBody[0];
+//			String time=BCDUtils.byteToHexString(new byte[7],in);
 			byte crc=in.readByte();
 			byte endCode=in.readByte();
 			
@@ -59,7 +60,7 @@ public class BytesToJsonDecode extends ByteToMessageDecoder {
 				messageBody.setDataLength(dataLength);
 				messageBody.setFunctionCode(functionCode);
 				messageBody.setDataBody(dataBody);
-				messageBody.setTime(time);
+//				messageBody.setTime(time);
 				messageBody.setCrc(crc);
 				out.add(messageBody);
 			}
@@ -103,6 +104,10 @@ public class BytesToJsonDecode extends ByteToMessageDecoder {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		
+//		byte dd=0x0C;
+//		int ddd=dd;
+//		System.out.println(ddd);
 //	}
 
 }

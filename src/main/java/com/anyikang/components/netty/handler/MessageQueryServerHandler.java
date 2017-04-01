@@ -71,18 +71,17 @@ public class MessageQueryServerHandler extends ChannelInboundHandlerAdapter {
 		}
 
 		if (isExist) {
-			JsonBodyToByte jsonBodyToByte = new JsonBodyToByte();
-			jsonBodyToByte.setBeginCode((byte) 64);
-			jsonBodyToByte.setImeiCode(messageBody.getImeiCode());
-			jsonBodyToByte.setDataLength((byte) 20);
-			jsonBodyToByte.setFunctionCode((byte) 1);
-			jsonBodyToByte.setDataNumber((byte) 10);
-			jsonBodyToByte.setErrCode((byte) 0);
-			jsonBodyToByte.setErrMsg((byte) 0);
-			jsonBodyToByte.setCrc((byte) 2);
-			jsonBodyToByte.setEndCode((byte) 16);
+			jb.setBeginCode((byte) 64);
+			jb.setImeiCode(messageBody.getImeiCode());
+//			jb.setDataLength((byte) 20);
+//			jb.setFunctionCode((byte) 1);
+//			jb.setDataNumber((byte) 10);
+//			jb.setErrCode((byte) 0);
+//			jb.setErrMsg((byte) 0);
+			jb.setCrc((byte) 2);
+			jb.setEndCode((byte) 16);
 
-			ctx.writeAndFlush(jsonBodyToByte);
+			ctx.writeAndFlush(jb);
 		}
 
 		// 通知执行下一个InboundHandler

@@ -5,7 +5,7 @@ public class JsonBodyToByte {
 	private String imeiCode;//IMEI号 
 	private int dataLength;//数据长度 
 	private int functionCode;//功能码 
-	private byte dataNumber;//流水号
+	private byte[] dataNumber;//流水号
 	private byte errCode;//错误标识
 	private byte errMsg;//错误信息
 	private byte crc;//CRC8 
@@ -59,16 +59,11 @@ public class JsonBodyToByte {
 	public void setFunctionCode(int functionCode) {
 		this.functionCode = functionCode;
 	}
-	/**
-	 * @return the dataNumber
-	 */
-	public byte getDataNumber() {
+
+	public byte[] getDataNumber() {
 		return dataNumber;
 	}
-	/**
-	 * @param dataNumber the dataNumber to set
-	 */
-	public void setDataNumber(byte dataNumber) {
+	public void setDataNumber(byte[] dataNumber) {
 		this.dataNumber = dataNumber;
 	}
 	/**
