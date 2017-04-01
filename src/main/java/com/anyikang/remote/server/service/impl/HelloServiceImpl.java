@@ -1,10 +1,13 @@
-package com.anyikang.remote.server.impl;
+package com.anyikang.remote.server.service.impl;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import org.springframework.stereotype.Service;
+
 import com.anyikang.remote.server.service.HelloService;
 
+@Service
 public class HelloServiceImpl extends UnicastRemoteObject implements HelloService {
 	
 	/**
