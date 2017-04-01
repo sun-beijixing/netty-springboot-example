@@ -12,6 +12,12 @@
     <logger name="org.springframework.scheduling">
     	<level value="info" />
 	</logger>
+	<logger name="org.apache.zookeeper.ClientCnxn" >
+    	<level value="info" />
+  	</logger>
+<!-- 	<logger name="org.apache.zookeeper.ClientCnxn" level="DEBUG" additivity="false">
+    	<AppenderRef ref="file"/>
+  	</logger> -->
     <root level="debug">
         <appender-ref ref="STDOUT" />
     </root>
