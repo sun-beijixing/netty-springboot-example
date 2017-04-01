@@ -49,7 +49,7 @@ public class JsonToBytesEncode extends MessageToByteEncoder<JsonBodyToByte>{
 		if(jb.getServerType()==1){
 			out.writeBytes(jb.getDataNumber());
 		}else{
-			
+			out.writeByte(jb.getMark());
 		}
 		out.writeByte(jb.getErrCode());
 		out.writeByte(jb.getErrMsg());

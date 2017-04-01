@@ -11,7 +11,7 @@ public class JsonBodyToByte {
 	private byte crc;//CRC8 
 	private int endCode;//结束符
 	private int serverType;//1报文 2配置 3查询 
-	//标志
+	private int mark;//标志
 	
 	
 	/**
@@ -121,6 +121,12 @@ public class JsonBodyToByte {
 	}
 	public void setServerType(int serverType) {
 		this.serverType = serverType;
+	}
+	public int getMark() {
+		return mark;
+	}
+	public void setMark(int mark) {
+		this.mark = mark;
 	}
 	
 
