@@ -40,11 +40,11 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x90,liushuihao, 0, 4);
+		return super.returnObject(16,0x90,dataNumberByte, 0, 4);
 	}
 
 	/*
@@ -65,11 +65,11 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x91,liushuihao, 0, 4);
+		return super.returnObject(16,0x91,dataNumberByte, 0, 4);
 	}
 
 	/*
@@ -90,11 +90,11 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x92,liushuihao, 0, 4);
+		return super.returnObject(16,0x92,dataNumberByte, 0, 4);
 	}
 
 	/*
@@ -114,11 +114,11 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x93,liushuihao, 0, 4);
+		return super.returnObject(16,0x93,dataNumberByte, 0, 4);
 	}
 
 	/*
@@ -139,11 +139,11 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x94,liushuihao, 0, 4);
+		return super.returnObject(16,0x94,dataNumberByte, 0, 4);
 	}
 
 	/*
@@ -164,11 +164,11 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x95,liushuihao, 0, 4);
+		return super.returnObject(16,0x95,dataNumberByte, 0, 4);
 	}
 
 	/*
@@ -189,11 +189,11 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x96,liushuihao, 0, 4);
+		return super.returnObject(16,0x96,dataNumberByte, 0, 4);
 	}
 
 	/*
@@ -214,11 +214,11 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x97,liushuihao, 0, 4);
+		return super.returnObject(16,0x97,dataNumberByte, 0, 4);
 	}
 
 	/*
@@ -239,11 +239,11 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x98,liushuihao, 0, 4);
+		return super.returnObject(16,0x98,dataNumberByte, 0, 4);
 	}
 
 	/*
@@ -263,11 +263,11 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x99,liushuihao, 0, 4);
+		return super.returnObject(16,0x99,dataNumberByte, 0, 4);
 	}
 
 	/*
@@ -287,11 +287,11 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x9A,liushuihao, 0, 4);
+		return super.returnObject(16,0x9A,dataNumberByte, 0, 4);
 	}
 
 	/*
@@ -311,11 +311,11 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x9B,liushuihao, 0, 4);
+		return super.returnObject(16,0x9B,dataNumberByte, 0, 4);
 	}
 
 	/*
@@ -336,11 +336,11 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x9C,liushuihao, 0, 4);
+		return super.returnObject(16,0x9C,dataNumberByte, 0, 4);
 	}
 
 	/*
@@ -361,11 +361,11 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x9D,liushuihao, 0, 4);
+		return super.returnObject(16,0x9D,dataNumberByte, 0, 4);
 	}
 
 	/*
@@ -385,11 +385,11 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x9E,liushuihao, 0, 4);
+		return super.returnObject(16,0x9E,dataNumberByte, 0, 4);
 	}
 
 	/*
@@ -409,11 +409,11 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x9F,liushuihao, 0, 4);
+		return super.returnObject(16,0x9F,dataNumberByte, 0, 4);
 	}
 
 }

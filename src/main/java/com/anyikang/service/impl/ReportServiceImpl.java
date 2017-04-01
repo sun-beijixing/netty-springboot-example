@@ -11,6 +11,7 @@ import com.anyikang.base.BaseService;
 import com.anyikang.components.netty.coding.ByteToJsonBody;
 import com.anyikang.components.netty.coding.JsonBodyToByte;
 import com.anyikang.service.ReportService;
+import com.anyikang.util.BCDUtils;
 
 /**
  * @author wangwei
@@ -50,11 +51,11 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x81,liushuihao, 0, 4);
+		return super.returnObject(16,0x81,dataNumberByte, 0, 4);
 	}
 
 	/* (non-Javadoc)
@@ -67,11 +68,11 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x82,liushuihao, 0, 4);
+		return super.returnObject(16,0x82,dataNumberByte, 0, 4);
 	}
 
 	/* (non-Javadoc)
@@ -84,11 +85,11 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x83,liushuihao, 0, 4);
+		return super.returnObject(16,0x83,dataNumberByte, 0, 4);
 	}
 
 	/* (non-Javadoc)
@@ -100,12 +101,18 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		String imeiCode=messageBody.getImeiCode();
 		byte[] dataBody=messageBody.getDataBody();
 		
-		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
-		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
-		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x84,liushuihao, 0, 4);
+		String dataLength=Integer.toHexString(26);
+		String gongnengma=Integer.toHexString(dataBody[0] & 0xFF);
+		
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
+		String huifukongzhi=Integer.toHexString(dataBody[3] & 0xFF);
+		String xueyang=Integer.toHexString(dataBody[4] & 0xFF);
+		
+		byte [] timeByte={dataBody[5],dataBody[6],dataBody[7],dataBody[8],dataBody[9],dataBody[10],dataBody[11]};
+		String time=BCDUtils.byteToHexString(timeByte);
+		
+		return super.returnObject(16,0x84,dataNumberByte, 0, 4);
 	}
 
 	/* (non-Javadoc)
@@ -118,11 +125,12 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+//		byte [] dataNumberByte={dataBody[1],dataBody[2]};
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x85,liushuihao, 0, 4);
+		return super.returnObject(16,0x85,dataNumberByte, 0, 4);
 	}
 
 	/* (non-Javadoc)
@@ -135,11 +143,11 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		String liushuihao=Integer.toHexString(dataBody[0] & 0xFF);
+		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x86,liushuihao, 0, 4);
+		return super.returnObject(16,0x86,dataNumberByte, 0, 4);
 	}
 	
 	
