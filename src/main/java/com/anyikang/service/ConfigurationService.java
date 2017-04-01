@@ -100,7 +100,7 @@ public interface ConfigurationService {
 	public JsonBodyToByte wifi(ByteToJsonBody messageBody);
 
 	/**
-	 * wifi配置
+	 * 提醒配置
 	 * 
 	 * @param messageBody
 	 * @return
