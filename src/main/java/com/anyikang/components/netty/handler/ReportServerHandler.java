@@ -17,6 +17,8 @@ import org.springframework.stereotype.Component;
 
 import com.anyikang.components.netty.coding.ByteToJsonBody;
 import com.anyikang.components.netty.coding.JsonBodyToByte;
+import com.anyikang.components.netty.session.ChannelsSession;
+import com.anyikang.components.netty.session.ChannelsSessionManager;
 import com.anyikang.service.ReportService;
 
 /**
@@ -30,8 +32,10 @@ public class ReportServerHandler extends ChannelInboundHandlerAdapter {
 	private final Logger logger = LoggerFactory.getLogger(ReportServerHandler.class);
 
 	@Autowired
+	private ChannelsSessionManager channelsSessionManager;
+	@Autowired
 	private ReportService functionService;
-
+	
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
 
@@ -40,6 +44,9 @@ public class ReportServerHandler extends ChannelInboundHandlerAdapter {
 		// Executors.newScheduledThreadPool(3);
 		// deviceUpgrade.scheduleWithFixedDelay(new
 		// AutoCheckUpgradTimer(dataManager), 20, 60, TimeUnit.SECONDS);
+		
+	    channelsSessionManager.buildChannelsSession(ctx.channel());
+	    
 	}
 
 	@Override

@@ -31,8 +31,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 */
 	@Override
 	public JsonBodyToByte time(ByteToJsonBody messageBody) {
-		logger.debug("============定位上报服务");
-		// TODO Auto-generated method stub
+		logger.debug("============时间配置服务");
 		
 		//调用rmi服务
 		
@@ -40,11 +39,10 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		byte[] dataBody=messageBody.getDataBody();
 		
 		String dataLength=Integer.toHexString(26);
-		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x90,dataNumberByte, 0, 4);
+		return super.returnObject(16,0x90,0, 4);
 	}
 
 	/*
