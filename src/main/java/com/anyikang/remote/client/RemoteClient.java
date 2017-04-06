@@ -7,13 +7,13 @@ import com.anyikang.remote.server.service.SendConfigurationRMIService;
 
 public class RemoteClient {
 	public static void main(String[] args) throws Exception {
-//		ServiceConsumer consumer = new ServiceConsumer(RegistryPath.ZK_REPORT);
-		ServiceConsumer consumer = new ServiceConsumer(RegistryPath.ZK_SEND_CONFIGURATION);
-
-//		ReportRMIService rmiService = consumer.lookup();
-		SendConfigurationRMIService rmiService = consumer.lookup();
-		String result = rmiService.sayHello("Jack");
-		System.out.println(result);
+		ServiceConsumer consumer1 = new ServiceConsumer(RegistryPath.ZK_REPORT);
+		ReportRMIService rmiService1 = consumer1.lookup();
+		System.err.println(rmiService1.sayHello("Jack"));
+		
+		ServiceConsumer consumer2 = new ServiceConsumer(RegistryPath.ZK_SEND_CONFIGURATION);
+		SendConfigurationRMIService rmiService2 = consumer2.lookup();
+		System.err.println(rmiService2.sayHello("xxx"));
 
 	}
 }
