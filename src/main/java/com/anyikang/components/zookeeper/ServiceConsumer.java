@@ -27,6 +27,9 @@ import org.slf4j.LoggerFactory;
  */
 public class ServiceConsumer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceConsumer.class);
+	
+	private final String ZK_CONNECTION_STRING = "127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183";
+	private final int ZK_SESSION_TIMEOUT = 5000;
 
 	// 用于等待 SyncConnected 事件触发后继续执行当前线程
 	private CountDownLatch latch = new CountDownLatch(1);
@@ -66,7 +69,7 @@ public class ServiceConsumer {
 	private ZooKeeper connectServer() {
 		ZooKeeper zk = null;
 		try {
-			zk = new ZooKeeper(Constant.ZK_CONNECTION_STRING, Constant.ZK_SESSION_TIMEOUT, new Watcher() {
+			zk = new ZooKeeper(ZK_CONNECTION_STRING, ZK_SESSION_TIMEOUT, new Watcher() {
 				@Override
 				public void process(WatchedEvent event) {
 					if (event.getState() == Event.KeeperState.SyncConnected) {
