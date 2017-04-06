@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 import com.anyikang.components.netty.coding.JsonBodyToByte;
 import com.anyikang.components.netty.session.ChannelsSession;
 import com.anyikang.components.netty.session.ChannelsSessionManager;
-import com.anyikang.remote.server.service.RMIService;
+import com.anyikang.remote.server.service.ReportRMIService;
 
 @Service
-public class RMIServiceImpl extends UnicastRemoteObject implements RMIService {
+public class ReportRMIServiceImpl extends UnicastRemoteObject implements ReportRMIService {
 	
 	@Autowired
 	private ChannelsSessionManager channelsSessionManager;
@@ -28,7 +28,7 @@ public class RMIServiceImpl extends UnicastRemoteObject implements RMIService {
     /**
 	 * @throws RemoteException
 	 */
-	public RMIServiceImpl() throws RemoteException {
+	public ReportRMIServiceImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
