@@ -35,10 +35,10 @@ public class ServiceConsumer {
 	private volatile List<String> urlList = new ArrayList<String>();
 
 	// 构造器
-	public ServiceConsumer() {
+	public ServiceConsumer(RegistryPath registryPath) {
 		ZooKeeper zk = connectServer(); // 连接 ZooKeeper 服务器并获取 ZooKeeper 对象
 		if (zk != null) {
-			watchNode(zk); // 观察 /registry 节点的所有子节点并更新 urlList 成员变量
+			watchNode(zk,registryPath); // 观察 /registry 节点的所有子节点并更新 urlList 成员变量
 		}
 		
 		List<String> list=new ArrayList<String>();
@@ -84,19 +84,19 @@ public class ServiceConsumer {
 	}
 
 	// 观察 /registry 节点下所有子节点是否有变化
-	private void watchNode(final ZooKeeper zk) {
+	private void watchNode(final ZooKeeper zk,final RegistryPath registryPath) {
 		try {
-			List<String> nodeList = zk.getChildren(Constant.ZK_REGISTRY_PATH, new Watcher() {
+			List<String> nodeList = zk.getChildren(registryPath.getRootPath(), new Watcher() {
 				@Override
 				public void process(WatchedEvent event) {
 					if (event.getType() == Event.EventType.NodeChildrenChanged) {
-						watchNode(zk); // 若子节点有变化，则重新调用该方法（为了获取最新子节点中的数据）
+						watchNode(zk,registryPath); // 若子节点有变化，则重新调用该方法（为了获取最新子节点中的数据）
 					}
 				}
 			});
 			List<String> dataList = new ArrayList<String>(); // 用于存放 /registry所有子节点中的数据
 			for (String node : nodeList) {
-				byte[] data = zk.getData(Constant.ZK_REGISTRY_PATH + "/" + node, false, null); // 获取registry的子节点中的数据
+				byte[] data = zk.getData(registryPath.getRootPath() + "/" + node, false, null); // 获取registry的子节点中的数据
 				dataList.add(new String(data));
 			}
 			LOGGER.debug("node data: {}", dataList);

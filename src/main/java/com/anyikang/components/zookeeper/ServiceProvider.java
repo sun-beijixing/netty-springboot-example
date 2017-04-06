@@ -30,12 +30,12 @@ public class ServiceProvider {
 	private CountDownLatch latch = new CountDownLatch(1);
 
 	// 发布 RMI 服务并注册 RMI 地址到 ZooKeeper 中
-	public void publish(Remote remote, String host, int port) {
+	public void publish(Remote remote, String host, int port,RegistryPath registryPath) {
 		String url = publishService(remote, host, port); // 发布 RMI 服务并返回 RMI 地址
 		if (url != null) {
 			ZooKeeper zk = connectServer(); // 连接 ZooKeeper 服务器并获取 ZooKeeper 对象
 			if (zk != null) {
-				createNode(zk, url); // 创建 ZNode 并将 RMI 地址放入 ZNode 上
+				createNode(zk, url,registryPath); // 创建 ZNode 并将 RMI 地址放入 ZNode 上
 			}
 		}
 	}
@@ -80,12 +80,12 @@ public class ServiceProvider {
 	}
 
 	// 创建 ZNode
-	private void createNode(ZooKeeper zk, String url) {
+	private void createNode(ZooKeeper zk, String url,RegistryPath registryPath) {
 		byte[] data = url.getBytes();
 		try {
 			//需要先创建注册节点，命令是（create /registry null）
 //			zk.create(Constant.ZK_REGISTRY_PATH, data, Ids.OPEN_ACL_UNSAFE,CreateMode.EPHEMERAL_SEQUENTIAL);
-			String path = zk.create(Constant.ZK_PROVIDER_PATH, data, Ids.OPEN_ACL_UNSAFE,CreateMode.EPHEMERAL_SEQUENTIAL);
+			String path = zk.create(registryPath.getRootPath()+registryPath.getChildPath(), data, Ids.OPEN_ACL_UNSAFE,CreateMode.EPHEMERAL_SEQUENTIAL);
 			LOGGER.debug("create zookeeper node ({} => {})", path, url);
 		} catch (KeeperException e) {
 			// TODO Auto-generated catch block
