@@ -47,6 +47,15 @@ public class SendConfigurationRMIServiceImpl  extends UnicastRemoteObject implem
 	public String sayHello(String name) throws RemoteException {
 		return String.format("Hello %s", name);
 	}
+
+	/* (non-Javadoc)
+	 * @see com.anyikang.remote.server.service.SendConfigurationRMIService#family(java.lang.String)
+	 */
+	@Override
+	public boolean family(String name) throws RemoteException {
+		System.out.println("===亲情号配置===");
+		return true;
+	}
 	
 	
 
