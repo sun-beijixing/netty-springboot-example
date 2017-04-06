@@ -22,13 +22,13 @@ public class RemoteServer {
 	@Autowired
 	private RMIConfig rmiConfig;
 	@Autowired
+	private ServiceProvider serviceProvider;
+	@Autowired
 	private ReportRMIService reportRMIService;
 	@Autowired
 	private MessageQueryRMIService messageQueryRMIService;
 	@Autowired
 	private SendConfigurationRMIService sendConfigurationRMIService;
-	@Autowired
-	private ServiceProvider serviceProvider;
 	
 	
 	/**
