@@ -12,19 +12,26 @@ import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
-import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.anyikang.config.ZookeeperConfig;
 
 /**
  * 服务提供者
  * @author wangwei
  * @date 2017年3月22日
  */
+@Component
 public class ServiceProvider {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceProvider.class);
+	
+	@Autowired
+	private ZookeeperConfig zookeeperConfig;
 
 	// 用于等待 SyncConnected 事件触发后继续执行当前线程
 	private CountDownLatch latch = new CountDownLatch(1);
@@ -60,7 +67,7 @@ public class ServiceProvider {
 	private ZooKeeper connectServer() {
 		ZooKeeper zk = null;
 		try {
-			zk = new ZooKeeper(Constant.ZK_CONNECTION_STRING, Constant.ZK_SESSION_TIMEOUT, new Watcher() {
+			zk = new ZooKeeper(zookeeperConfig.getConnectString(), zookeeperConfig.getSessionTimeout(), new Watcher() {
 				@Override
 				public void process(WatchedEvent event) {
 					if (event.getState() == Event.KeeperState.SyncConnected) {
