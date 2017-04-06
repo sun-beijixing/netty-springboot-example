@@ -5,13 +5,9 @@ package client;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.channel.SimpleChannelInboundHandler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.anyikang.model.ObjectRequest;
-import com.anyikang.model.ObjectRespone;
   
 /**
  * @author wangwei
@@ -47,10 +43,6 @@ public class TcpClientHandler extends ChannelInboundHandlerAdapter {
 				logger.info("----------------ok");
 				ctx.writeAndFlush("ok");
 			}
-		}else {
-			logger.info("=================其他类型数据：");
-			ObjectRespone req = (ObjectRespone)msg;   // 订购内容  
-			logger.info("客户端接收到的数据: [  " + req.toString() + "   ]");  
 		}
 		
 	}

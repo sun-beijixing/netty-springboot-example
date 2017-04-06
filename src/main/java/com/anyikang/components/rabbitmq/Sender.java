@@ -13,8 +13,9 @@ public class Sender {
 
 	@Scheduled(fixedDelay = 5000L)
 	public void send() {
-		System.out.println("---------------------send");
+		System.out.println("---------------------server send");
 		this.rabbitTemplate.convertAndSend("foo", "hello");
+		this.rabbitTemplate.convertAndSend("device_queue", "zzzz");
 	}
 
 }

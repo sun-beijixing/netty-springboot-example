@@ -18,5 +18,10 @@ public class RabbitMQConfig {
 	public Queue fooQueue() {
 		return new Queue("foo");//默认为持久化，可以根据不同使用场景选择对应的构造函数
 	}
+	
+	@Bean
+	public Queue deviceQueue() {
+		return new Queue("device_queue");
+	}
 
 }
