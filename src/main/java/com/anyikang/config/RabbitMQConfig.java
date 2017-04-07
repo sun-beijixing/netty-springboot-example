@@ -13,12 +13,32 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class RabbitMQConfig {
-	
+
+	/**
+	 * 心跳队列
+	 * 
+	 * @return
+	 */
 	@Bean
-	public Queue fooQueue() {
-		return new Queue("foo");//默认为持久化，可以根据不同使用场景选择对应的构造函数
+	public Queue heartbeatQueue() {
+		return new Queue("heartbeat_queue");// 默认为持久化，可以根据不同使用场景选择对应的构造函数
 	}
-	
+
+	/**
+	 * 定位队列
+	 * 
+	 * @return
+	 */
+	@Bean
+	public Queue positioningQueue() {
+		return new Queue("positioning_queue");
+	}
+
+	/**
+	 * 设备队列
+	 * 
+	 * @return
+	 */
 	@Bean
 	public Queue deviceQueue() {
 		return new Queue("device_queue");

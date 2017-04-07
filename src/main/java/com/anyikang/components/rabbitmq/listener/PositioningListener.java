@@ -9,11 +9,11 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 @Component
-@RabbitListener(queues = "foo")// 启用Rabbit队列监听foo key.
-public class ReceiverListener {
+@RabbitListener(queues = "positioning_queue")// 启用Rabbit队列监听foo key.
+public class PositioningListener {
 
 	@RabbitHandler
-	public void process(@Payload String foo) {
-		System.out.println("=====ReceiverListener=========" + new Date() + ": " + foo);
+	public void process(@Payload String msg) {
+		System.out.println("=====PositioningListener=========" + new Date() + ": " + msg);
 	}
 }
