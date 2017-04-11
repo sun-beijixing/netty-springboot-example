@@ -19,8 +19,11 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+import com.anyikang.components.netty.session.ChannelsSession;
 import com.anyikang.config.RedisConfig;
+import com.anyikang.util.RedisObjectSerializer;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -114,5 +117,20 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
         template.afterPropertiesSet();  
         return template;  
     }  
+    
+    
+//    @Bean
+//    JedisConnectionFactory jedisConnectionFactory() {
+//        return new JedisConnectionFactory();
+//    }
+
+    @Bean
+    public RedisTemplate<String, ChannelsSession> channelsSessionRedisTemplate(RedisConnectionFactory factory) {
+        RedisTemplate<String, ChannelsSession> template = new RedisTemplate<String, ChannelsSession>();
+        template.setConnectionFactory(factory);
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setValueSerializer(new RedisObjectSerializer());
+        return template;
+    }
   
 }
