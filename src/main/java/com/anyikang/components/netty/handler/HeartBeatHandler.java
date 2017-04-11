@@ -7,6 +7,10 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
 
+import com.anyikang.components.netty.coding.ByteToJsonBody;
+import com.anyikang.components.netty.coding.JsonBodyToByte;
+import com.anyikang.service.HeartbeatService;
+
 /**
  * Handler implementation for heart beating.
  * 
@@ -14,6 +18,17 @@ import io.netty.handler.timeout.IdleStateEvent;
  * @date 2017年3月7日
  */
 public class HeartBeatHandler extends ChannelInboundHandlerAdapter {
+	
+	private HeartbeatService heartbeatService;
+	
+	
+	/**
+	 * @param heartbeatService
+	 */
+	public HeartBeatHandler(HeartbeatService heartbeatService) {
+		super();
+		this.heartbeatService = heartbeatService;
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -25,8 +40,32 @@ public class HeartBeatHandler extends ChannelInboundHandlerAdapter {
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
-		// TODO Auto-generated method stub
-		super.channelRead(ctx, msg);
+		boolean isExist=true;
+
+		ByteToJsonBody messageBody = (ByteToJsonBody) msg;
+		
+		JsonBodyToByte jb =null;
+		
+		switch (messageBody.getFunctionCode()) {
+			case 0x00:// 心跳上报
+				heartbeatService.heartbeatReport(messageBody);
+				break;
+			case 0x18:// 心跳配置
+				jb = heartbeatService.heartbeatConfig(messageBody);
+				break;	
+			default:
+				ctx.fireChannelRead(msg);// 通知执行下一个InboundHandler
+				isExist=false;
+		}
+		
+		if (isExist) {
+			jb.setBeginCode(0x68);
+			jb.setImeiCode(messageBody.getImeiCode());
+			jb.setCrc((byte) 0x56);
+			jb.setEndCode(0x16);
+
+			ctx.writeAndFlush(jb);
+		}
 	}
 
 	@Override
@@ -41,7 +80,7 @@ public class HeartBeatHandler extends ChannelInboundHandlerAdapter {
 				break;
 			case WRITER_IDLE:// 未写
 				System.out.println("WRITER_IDLE");
-				ctx.writeAndFlush("ping");
+				ctx.writeAndFlush("ping");//心跳不用回应
 				break;
 			case ALL_IDLE:// 既未读也未写
 				System.out.println("ALL_IDLE");
