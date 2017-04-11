@@ -6,11 +6,13 @@ package com.anyikang.tasks;
 import java.util.List;
 
 import io.netty.channel.Channel;
+import io.netty.channel.group.ChannelGroup;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +32,9 @@ public class TaskHandler {
 	public static final Logger logger = LoggerFactory.getLogger(TaskHandler.class);
 	
 	@Autowired
+	@Qualifier("channelGroup")
+	private ChannelGroup channelGroup;
+	@Autowired
 	private ChannelsSessionManager channelsSessionManager;
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
@@ -48,11 +53,9 @@ public class TaskHandler {
 		
 		List<Device> devices=deviceService.getDevices();
 		for(Device device:devices){
+			ChannelsSession channelsSession=channelsSessionManager.findById(device.getImeiCode());
+			Channel channel=channelGroup.find(channelsSession.getChannelId());
 			
-			String sessionId="001"+device.getId();
-			ChannelsSession channelsSession=channelsSessionManager.findById(sessionId);
-			System.err.println("channelsSession:"+channelsSession);
-			Channel channel=channelsSession.getChannel();
 			JsonBodyToByte jb =new JsonBodyToByte();
 			jb.setBeginCode(0x68);
 			jb.setImeiCode("1111");
