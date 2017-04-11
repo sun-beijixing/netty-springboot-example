@@ -222,31 +222,6 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * com.anyikang.service.ConfigurationService#heartbeat(com.anyikang.util
-	 * .ByteToJsonBody)
-	 */
-	@Override
-	public JsonBodyToByte heartbeat(ByteToJsonBody messageBody) {
-		logger.debug("============心跳配置服务");
-		// TODO Auto-generated method stub
-		
-		//调用rmi服务
-		
-		String imeiCode=messageBody.getImeiCode();
-		byte[] dataBody=messageBody.getDataBody();
-		
-		String dataLength=Integer.toHexString(26);
-		byte [] dataNumberByte={dataBody[1],dataBody[2]};
-		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
-		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
-		
-		return super.returnObject(16,0x98,dataNumberByte, 0, 4);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see com.anyikang.service.ConfigurationService#clock(com.anyikang.util.
 	 * ByteToJsonBody)
 	 */

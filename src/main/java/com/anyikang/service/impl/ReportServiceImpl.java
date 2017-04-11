@@ -23,21 +23,6 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 	private final Logger logger = LoggerFactory.getLogger(ReportServiceImpl.class);
 
 	/* (non-Javadoc)
-	 * @see com.anyikang.service.FunctionService#heartbeat(com.anyikang.util.ByteToJsonBody)
-	 */
-	@Override
-	public void heartbeat(ByteToJsonBody messageBody) {
-		logger.debug("============心跳上报服务");
-		
-		String imeiCode=messageBody.getImeiCode();
-		byte[] dataBody=messageBody.getDataBody();
-		
-		//调用rabbitmq服务
-		
-		return;
-	}
-
-	/* (non-Javadoc)
 	 * @see com.anyikang.service.FunctionService#positioning(com.anyikang.util.ByteToJsonBody)
 	 */
 	@Override

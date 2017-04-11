@@ -33,7 +33,7 @@ public class ReportServerHandler extends ChannelInboundHandlerAdapter {
 	@Autowired
 	private ChannelsSessionManager channelsSessionManager;
 	@Autowired
-	private ReportService functionService;
+	private ReportService reportService;
 	@Autowired  
 	private RedisUtils redisUtils;
 	@Autowired
@@ -64,27 +64,23 @@ public class ReportServerHandler extends ChannelInboundHandlerAdapter {
 		JsonBodyToByte jb =null;
 
 		switch (messageBody.getFunctionCode()) {
-			case 0x00:// 心跳上报
-				functionService.heartbeat(messageBody);
-				isReturn = false;
-				break;
 			case 0x01:// 定位上报
-				jb = functionService.positioning(messageBody);
+				jb = reportService.positioning(messageBody);
 				break;
 			case 0x02:// 运动上报
-				jb = functionService.exercise(messageBody);
+				jb = reportService.exercise(messageBody);
 				break;
 			case 0x03:// 心率上报
-				jb = functionService.heartRate(messageBody);
+				jb = reportService.heartRate(messageBody);
 				break;
 			case 0x04:// 血氧上报
-				jb = functionService.bloodOxygen(messageBody);
+				jb = reportService.bloodOxygen(messageBody);
 				break;
 			case 0x05:// 血压上报
-				jb = functionService.bloodPressure(messageBody);
+				jb = reportService.bloodPressure(messageBody);
 				break;
 			case 0x06:// 睡眠上报
-				jb = functionService.sleep(messageBody);
+				jb = reportService.sleep(messageBody);
 				break;
 			default:
 				ctx.fireChannelRead(msg);// 通知执行下一个InboundHandler

@@ -64,9 +64,6 @@ public class ConfigurationServerHandler extends ChannelInboundHandlerAdapter {
 			case 0x17:// IP配置
 				jb = configurationService.ip(messageBody);
 				break;
-			case 0x18:// 心跳配置
-				jb = configurationService.heartbeat(messageBody);
-				break;
 			case 0x19:// 闹钟配置
 				jb = configurationService.clock(messageBody);
 				break;

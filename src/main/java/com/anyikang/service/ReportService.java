@@ -19,13 +19,6 @@ import com.anyikang.components.netty.coding.JsonBodyToByte;
 public interface ReportService {
 
 	/**
-	 * 心跳上报
-	 * 
-	 * @param messageBody
-	 */
-	public void heartbeat(ByteToJsonBody messageBody);
-
-	/**
 	 * 定位上报
 	 * 
 	 * @param messageBody

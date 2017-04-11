@@ -76,14 +76,6 @@ public interface ConfigurationService {
 	public JsonBodyToByte ip(ByteToJsonBody messageBody);
 
 	/**
-	 * 心跳配置
-	 * 
-	 * @param messageBody
-	 * @return
-	 */
-	public JsonBodyToByte heartbeat(ByteToJsonBody messageBody);
-
-	/**
 	 * 闹钟配置
 	 * 
 	 * @param messageBody
