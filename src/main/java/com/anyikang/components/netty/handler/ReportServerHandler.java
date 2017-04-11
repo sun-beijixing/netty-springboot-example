@@ -3,23 +3,22 @@
  */
 package com.anyikang.components.netty.handler;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.channel.ChannelHandler.Sharable;
+import io.netty.channel.group.ChannelGroup;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.anyikang.components.netty.coding.ByteToJsonBody;
 import com.anyikang.components.netty.coding.JsonBodyToByte;
-import com.anyikang.components.netty.session.ChannelsSession;
 import com.anyikang.components.netty.session.ChannelsSessionManager;
 import com.anyikang.service.ReportService;
+import com.anyikang.util.RedisUtils;
 
 /**
  * @author wangwei
@@ -35,6 +34,12 @@ public class ReportServerHandler extends ChannelInboundHandlerAdapter {
 	private ChannelsSessionManager channelsSessionManager;
 	@Autowired
 	private ReportService functionService;
+	@Autowired  
+	private RedisUtils redisUtils;
+	@Autowired
+    @Qualifier("channelGroup")
+    private ChannelGroup channelGroup;
+	
 	
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -45,8 +50,7 @@ public class ReportServerHandler extends ChannelInboundHandlerAdapter {
 		// deviceUpgrade.scheduleWithFixedDelay(new
 		// AutoCheckUpgradTimer(dataManager), 20, 60, TimeUnit.SECONDS);
 		
-	    channelsSessionManager.buildChannelsSession(ctx.channel());
-	    
+	    channelGroup.add(ctx.channel());
 	}
 
 	@Override
@@ -86,6 +90,7 @@ public class ReportServerHandler extends ChannelInboundHandlerAdapter {
 				ctx.fireChannelRead(msg);// 通知执行下一个InboundHandler
 				isExist=false;
 		}
+		
 
 		if (isReturn&&isExist) {
 			jb.setBeginCode(0x68);
@@ -99,6 +104,12 @@ public class ReportServerHandler extends ChannelInboundHandlerAdapter {
 			jb.setEndCode(0x16);
 
 			ctx.writeAndFlush(jb);
+			
+			//设备编号和通道进行绑定
+//			if(redisUtils.get(messageBody.getImeiCode())==null){
+				channelsSessionManager.buildChannelsSession(messageBody.getImeiCode(),ctx.channel().id());
+				logger.debug("----------imeiCode:"+messageBody.getImeiCode()+"-----channelId:"+ctx.channel().id().toString()+"----------");
+//			}
 		}
 
 	}
@@ -112,6 +123,7 @@ public class ReportServerHandler extends ChannelInboundHandlerAdapter {
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
 			throws Exception {
+		channelGroup.remove(ctx.channel());
 		ctx.close();
 	}
 

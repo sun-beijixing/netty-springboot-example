@@ -3,54 +3,40 @@
  */
 package com.anyikang.components.netty.session;
 
+import io.netty.channel.ChannelId;
 
 import java.io.Serializable;
-import java.net.SocketAddress;
-
-import org.springframework.stereotype.Component;
-
-import io.netty.channel.Channel;
 
 /**
  * @author wangwei
  * @date 2017年4月1日
  */
-public class ChannelsSession implements Serializable{
-    /**
+public class ChannelsSession implements Serializable {
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5379899806534062061L;
-	//Session的唯一标识
-    private String id;
-    //和Session相关的channel,通过它向客户端回送数据
-    private Channel channel = null;
-    //上次通信时间
-    private long lastCommunicateTimeStamp = 0l;
+	// Session的唯一标识
+	private ChannelId channelId;
+	private String imeiCode;
 
-	public String getId() {
-		return id;
+	public ChannelId getChannelId() {
+		return channelId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setChannelId(ChannelId channelId) {
+		this.channelId = channelId;
 	}
 
-	public Channel getChannel() {
-		return channel;
+	public String getImeiCode() {
+		return imeiCode;
 	}
 
-	public void setChannel(Channel channel) {
-		this.channel = channel;
+	public void setImeiCode(String imeiCode) {
+		this.imeiCode = imeiCode;
 	}
 
-	public long getLastCommunicateTimeStamp() {
-		return lastCommunicateTimeStamp;
-	}
+	// 上次通信时间
+	// private long lastCommunicateTimeStamp = 0l;
 
-	public void setLastCommunicateTimeStamp(long lastCommunicateTimeStamp) {
-		this.lastCommunicateTimeStamp = lastCommunicateTimeStamp;
-	}
-
-	
-    
 }

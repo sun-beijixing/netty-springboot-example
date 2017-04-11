@@ -1,7 +1,13 @@
 
 package com.anyikang.config;
 
+import io.netty.channel.group.ChannelGroup;
+import io.netty.channel.group.DefaultChannelGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.util.concurrent.GlobalEventExecutor;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
@@ -135,7 +141,10 @@ public class NettyConfig {
 	}
 
 	
-    
+	@Bean(name = "channelGroup")
+	public ChannelGroup getChannelGroup() {
+		return new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+	}
     
 
 }

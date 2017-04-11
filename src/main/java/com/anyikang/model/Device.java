@@ -11,6 +11,7 @@ public class Device {
 
 	private long id;
 	private String name;
+	private String imeiCode;
 
 	public long getId() {
 		return id;
@@ -26,6 +27,14 @@ public class Device {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getImeiCode() {
+		return imeiCode;
+	}
+
+	public void setImeiCode(String imeiCode) {
+		this.imeiCode = imeiCode;
 	}
 
 }

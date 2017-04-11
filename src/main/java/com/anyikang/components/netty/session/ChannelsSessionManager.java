@@ -4,12 +4,11 @@
 package com.anyikang.components.netty.session;
 
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelId;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-
-import com.anyikang.util.RedisUtils;
-import com.anyikang.util.SerializationUtil;
 
 /**
  * @author wangwei
@@ -18,31 +17,40 @@ import com.anyikang.util.SerializationUtil;
 @Component
 public class ChannelsSessionManager {
 	
-	@Autowired  
-	private RedisUtils redisUtils;  
+	@Autowired
+    private RedisTemplate<String, ChannelsSession> redisTemplate;
 	
 	/**
 	 * 构建ChannelsSession
 	 * @param channel
 	 * @return
 	 */
-    public void buildChannelsSession(Channel channel) {
+    public void buildChannelsSession(String imeiCode,ChannelId channelId) {
     	ChannelsSession channelsSession=new ChannelsSession();
-    	channelsSession.setId(channel.id().asLongText());//此处暂且使用netty生成的类似UUID的字符串,来标识一个session
-    	channelsSession.setChannel(channel);
-    	channelsSession.setLastCommunicateTimeStamp(System.currentTimeMillis());
-    	//可以将channel.id().asLongText()或channel.id().asShortText()作为Session的ID
+    	channelsSession.setChannelId(channelId);//此处暂且使用netty生成的类似UUID的字符串,来标识一个session
+    	channelsSession.setImeiCode(imeiCode);
+//    	channelsSession.setLastCommunicateTimeStamp(System.currentTimeMillis());
     	
-    	redisUtils.set(channel.id().asLongText(), SerializationUtil.serialize(channelsSession));
+    	redisTemplate.opsForValue().set(imeiCode, channelsSession);//序列化有问题 ====================
         return;
+    }
+    
+    /**
+     * 构建ChannelsSession
+     * @param channel
+     * @return
+     */
+    public void unbuildChannelsSession(Channel channel) {
+    	redisTemplate.delete(channel.id().toString());
+    	return;
     }
 
     /**
      * 根据sessionid从redis内存中取出ChannelsSession
-     * @param sessionId
+     * @param imeiCode
      * @return
      */
-    public ChannelsSession findById(String sessionId){
-        return (ChannelsSession) redisUtils.get(sessionId);
+    public ChannelsSession findById(String imeiCode){
+    	return redisTemplate.opsForValue().get(imeiCode);
     }
 }
