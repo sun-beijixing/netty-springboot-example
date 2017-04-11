@@ -116,13 +116,13 @@ public class ReportServerHandler extends ChannelInboundHandlerAdapter {
 
 	public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
 		logger.info("ReportServerHandler.channelReadComplete");
-		channelGroup.remove(ctx.channel());//点开连接则删除通道
 		// ctx.flush();
 	}
 
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
 			throws Exception {
+		channelGroup.remove(ctx.channel());//点开连接则删除通道
 		ctx.close();
 	}
 
