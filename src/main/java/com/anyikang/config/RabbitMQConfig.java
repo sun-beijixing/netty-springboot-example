@@ -15,16 +15,6 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfig {
 
 	/**
-	 * 心跳队列
-	 * 
-	 * @return
-	 */
-	@Bean
-	public Queue heartbeatQueue() {
-		return new Queue("heartbeat_queue");// 默认为持久化，可以根据不同使用场景选择对应的构造函数
-	}
-
-	/**
 	 * 定位队列
 	 * 
 	 * @return

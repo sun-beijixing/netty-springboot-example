@@ -5,6 +5,8 @@ package com.anyikang.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.anyikang.base.BaseService;
@@ -22,6 +24,9 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 	
 	private final Logger logger = LoggerFactory.getLogger(ReportServiceImpl.class);
 
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
+	
 	/* (non-Javadoc)
 	 * @see com.anyikang.service.FunctionService#positioning(com.anyikang.util.ByteToJsonBody)
 	 */
@@ -39,6 +44,8 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		rabbitTemplate.convertAndSend("positioning_queue", "positioning msg");
 		
 		return super.returnObject(16,0x81,dataNumberByte, 0, 4);
 	}

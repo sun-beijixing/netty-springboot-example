@@ -11,11 +11,9 @@ public class Sender {
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
 
-	@Scheduled(fixedDelay = 5000L)
+//	@Scheduled(fixedDelay = 5000L)
 	public void send() {
 		System.out.println("---------------------rabbitmq server send:");
-		this.rabbitTemplate.convertAndSend("heartbeat_queue", "heartbeat");
-		this.rabbitTemplate.convertAndSend("positioning_queue", "positioning msg");
 		this.rabbitTemplate.convertAndSend("device_queue", "device number");
 	}
 

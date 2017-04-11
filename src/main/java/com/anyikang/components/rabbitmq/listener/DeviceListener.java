@@ -19,7 +19,7 @@ import com.anyikang.service.DeviceService;
  * @date 2017年4月6日
  */
 @Component
-@RabbitListener(queues="device_queue")
+//@RabbitListener(queues="device_queue")
 public class DeviceListener {
 	
 	@Autowired
