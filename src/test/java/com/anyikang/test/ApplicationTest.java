@@ -13,6 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.anyikang.Application;
 import com.anyikang.components.netty.session.ChannelsSession;
+import com.anyikang.service.ConfigurationService;
+import com.anyikang.service.impl.ConfigurationServiceImpl;
 
 
 
@@ -26,20 +28,22 @@ public class ApplicationTest {
 	
 	@Autowired
     private RedisTemplate<String, ChannelsSession> redisTemplate;
+	@Autowired
+	private ConfigurationService configurationService;
 
 	@Test
 	public void contextLoads() {
-		ChannelsSession channelsSession=new ChannelsSession();
-    	channelsSession.setId("xxx111");//此处暂且使用netty生成的类似UUID的字符串,来标识一个session
-//    	channelsSession.setChannel(channel);
-    	channelsSession.setLastCommunicateTimeStamp(System.currentTimeMillis());
-    	//可以将channel.id().asLongText()或channel.id().asShortText()作为Session的ID
-    	
-//    	redisUtils.set(channel.id().asLongText(), SerializationUtil.serialize(channelsSession));
-    	redisTemplate.opsForValue().set(channelsSession.getId(), channelsSession);
-    	
-    	
-    	ChannelsSession sss=redisTemplate.opsForValue().get(channelsSession.getId());
-    	System.out.println(sss.getId()+"=====================");
+//		ChannelsSession channelsSession=new ChannelsSession();
+////    	channelsSession.setId("xxx111");//此处暂且使用netty生成的类似UUID的字符串,来标识一个session
+////    	channelsSession.setChannel(channel);
+//    	
+////    	channelsSession.setLastCommunicateTimeStamp(System.currentTimeMillis());
+//    	
+////    	redisUtils.set(channel.id().asLongText(), SerializationUtil.serialize(channelsSession));
+//    	redisTemplate.opsForValue().set(channelsSession.getId(), channelsSession);
+//    	
+//    	
+//    	ChannelsSession sss=redisTemplate.opsForValue().get(channelsSession.getId());
+//    	System.out.println(sss.getId()+"=====================");
 	}
 }
