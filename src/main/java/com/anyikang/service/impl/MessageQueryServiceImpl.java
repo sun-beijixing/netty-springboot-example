@@ -5,6 +5,8 @@ package com.anyikang.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.anyikang.base.BaseService;
@@ -22,6 +24,9 @@ import com.anyikang.service.MessageQueryService;
 public class MessageQueryServiceImpl extends BaseService implements MessageQueryService {
 	
 	private final Logger logger = LoggerFactory.getLogger(MessageQueryServiceImpl.class);
+	
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
 
 	/*
 	 * (non-Javadoc)
@@ -43,6 +48,9 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		
+		rabbitTemplate.convertAndSend("message_query_queue", "message query msg");
 		
 		return super.returnObject(16,0xB0,dataNumberByte, 0, 4);
 	}

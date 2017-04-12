@@ -15,6 +15,16 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfig {
 
 	/**
+	 * 设备队列
+	 * 
+	 * @return
+	 */
+	@Bean
+	public Queue deviceQueue() {
+		return new Queue("device_queue");
+	}
+	
+	/**
 	 * 定位队列
 	 * 
 	 * @return
@@ -23,15 +33,15 @@ public class RabbitMQConfig {
 	public Queue positioningQueue() {
 		return new Queue("positioning_queue");
 	}
-
+	
 	/**
-	 * 设备队列
+	 * 查询队列
 	 * 
 	 * @return
 	 */
 	@Bean
-	public Queue deviceQueue() {
-		return new Queue("device_queue");
+	public Queue messageQueryQueue() {
+		return new Queue("message_query_queue");
 	}
 
 }
