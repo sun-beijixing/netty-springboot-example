@@ -25,23 +25,33 @@ public class RabbitMQConfig {
 	}
 	
 	/**
-	 * 定位队列
+	 * 上报队列
 	 * 
 	 * @return
 	 */
 	@Bean
-	public Queue positioningQueue() {
-		return new Queue("positioning_queue");
+	public Queue reportQueue() {
+		return new Queue("report_queue");
 	}
 	
 	/**
-	 * 查询队列
+	 * 查询响应队列
 	 * 
 	 * @return
 	 */
 	@Bean
-	public Queue messageQueryQueue() {
-		return new Queue("message_query_queue");
+	public Queue returnCofigQueue() {
+		return new Queue("return_config_queue");
+	}
+	
+	/**
+	 * 查询响应队列
+	 * 
+	 * @return
+	 */
+	@Bean
+	public Queue returnMessageQueryQueue() {
+		return new Queue("return_message_query_queue");
 	}
 
 }

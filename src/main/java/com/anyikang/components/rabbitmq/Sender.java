@@ -12,9 +12,12 @@ public class Sender {
 	private RabbitTemplate rabbitTemplate;
 
 //	@Scheduled(fixedDelay = 5000L)
-	public void send() {
-		System.out.println("---------------------rabbitmq server send:");
-		this.rabbitTemplate.convertAndSend("device_queue", "device number");
-	}
+//	public void send() {
+//		System.out.println("---------------------rabbitmq server send:");
+//		this.rabbitTemplate.convertAndSend("device_queue", "device number");
+//		this.rabbitTemplate.convertAndSend("report_queue", "device number");
+//		this.rabbitTemplate.convertAndSend("return_config_queue", "device number");
+//		this.rabbitTemplate.convertAndSend("return_message_query_queue", "device number");
+//	}
 
 }

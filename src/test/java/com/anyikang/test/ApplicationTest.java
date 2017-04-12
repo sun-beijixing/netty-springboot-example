@@ -13,8 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.anyikang.Application;
 import com.anyikang.components.netty.session.ChannelsSession;
-import com.anyikang.service.ConfigurationService;
-import com.anyikang.service.impl.ConfigurationServiceImpl;
+import com.anyikang.service.ReturnConfigService;
+import com.anyikang.service.impl.ReturnConfigServiceImpl;
 
 
 
@@ -29,7 +29,7 @@ public class ApplicationTest {
 	@Autowired
     private RedisTemplate<String, ChannelsSession> redisTemplate;
 	@Autowired
-	private ConfigurationService configurationService;
+	private ReturnConfigService configurationService;
 
 	@Test
 	public void contextLoads() {

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.anyikang.components.netty.coding.ByteToJsonBody;
 import com.anyikang.components.netty.coding.JsonBodyToByte;
-import com.anyikang.service.MessageQueryService;
+import com.anyikang.service.ReturnMessageQueryService;
 
 /**
  * @author wangwei
@@ -22,71 +22,48 @@ import com.anyikang.service.MessageQueryService;
  */
 @Component
 @Sharable
-public class MessageQueryServerHandler extends ChannelInboundHandlerAdapter {
+public class ReturnMessageQueryServerHandler extends ChannelInboundHandlerAdapter {
 	
-	private final Logger logger = LoggerFactory.getLogger(MessageQueryServerHandler.class);
+	private final Logger logger = LoggerFactory.getLogger(ReturnMessageQueryServerHandler.class);
 
 	@Autowired
-	private MessageQueryService messageQueryService;
+	private ReturnMessageQueryService messageQueryService;
 
 	
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
 
-		boolean isExist=true;
-
 		ByteToJsonBody messageBody = (ByteToJsonBody) msg;
-		
-		JsonBodyToByte jb =null;
 
 		switch (messageBody.getFunctionCode()) {
-			case 0x30:// 版本查询
-				jb = messageQueryService.versions(messageBody);
+			case 0x30:// 版本查询响应
+				messageQueryService.versions(messageBody);
 				break;
-			case 0x31:// 定位信息查询
-				jb = messageQueryService.positioning(messageBody);
+			case 0x31:// 定位信息查询响应
+				messageQueryService.positioning(messageBody);
 				break;
 			case 0x32:// 运动信息查询
-				jb = messageQueryService.exercise(messageBody);
+				messageQueryService.exercise(messageBody);
 				break;
 			case 0x33:// 心率信息查询
-				jb = messageQueryService.heartRate(messageBody);
+				messageQueryService.heartRate(messageBody);
 				break;
 			case 0x34:// 血氧信息查询
-				jb = messageQueryService.bloodOxygen(messageBody);
+				messageQueryService.bloodOxygen(messageBody);
 				break;
 			case 0x35:// 血压信息查询
-				jb = messageQueryService.bloodPressure(messageBody);
+				messageQueryService.bloodPressure(messageBody);
 				break;
 			case 0x36:// 睡眠信息查询
-				jb = messageQueryService.sleep(messageBody);
+				messageQueryService.sleep(messageBody);
 				break;
 			case 0x37:// 丢失报文查询
-				jb = messageQueryService.lost(messageBody);
+				messageQueryService.lost(messageBody);
 				break;
 			default:
-				isExist=false;
 				messageError(ctx);
 		}
-
-		if (isExist) {
-			jb.setBeginCode((byte) 64);
-			jb.setImeiCode(messageBody.getImeiCode());
-//			jb.setDataLength((byte) 20);
-//			jb.setFunctionCode((byte) 1);
-//			jb.setDataNumber((byte) 10);
-//			jb.setErrCode((byte) 0);
-//			jb.setErrMsg((byte) 0);
-			jb.setCrc((byte) 2);
-			jb.setEndCode((byte) 16);
-
-			ctx.writeAndFlush(jb);
-		}
-
-		// 通知执行下一个InboundHandler
-//		 ctx.fireChannelRead(msg);
-
 	}
 
 	private void messageError(final ChannelHandlerContext ctx) {
@@ -107,6 +84,7 @@ public class MessageQueryServerHandler extends ChannelInboundHandlerAdapter {
 		// encoded.writeBytes(all);
 		// ctx.writeAndFlush(encoded);
 		// log.error("异常信息:头信息格式错误");
+		logger.info("未找到匹配的功能码！！！");
 		ctx.channel().close();
 	}
 

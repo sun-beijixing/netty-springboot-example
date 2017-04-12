@@ -15,9 +15,9 @@ import org.springframework.stereotype.Component;
 
 import com.anyikang.components.netty.coding.BytesToJsonDecode;
 import com.anyikang.components.netty.coding.JsonToBytesEncode;
-import com.anyikang.components.netty.handler.ConfigurationServerHandler;
+import com.anyikang.components.netty.handler.ReturnConfigServerHandler;
 import com.anyikang.components.netty.handler.HeartBeatHandler;
-import com.anyikang.components.netty.handler.MessageQueryServerHandler;
+import com.anyikang.components.netty.handler.ReturnMessageQueryServerHandler;
 import com.anyikang.components.netty.handler.ReportServerHandler;
 import com.anyikang.service.HeartbeatService;
 import com.anyikang.service.ReportService;
@@ -32,9 +32,9 @@ public class NettyServerChannelInitializer extends ChannelInitializer<SocketChan
 	@Autowired
 	private ReportServerHandler reportServerHandler;
 	@Autowired
-	private ConfigurationServerHandler configurationServerHandler;
+	private ReturnConfigServerHandler configurationServerHandler;
 	@Autowired
-	private MessageQueryServerHandler messageQueryServerHandler;
+	private ReturnMessageQueryServerHandler messageQueryServerHandler;
 	@Autowired
 	private HeartbeatService heartbeatService;
 	
