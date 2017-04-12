@@ -12,7 +12,7 @@ import com.anyikang.components.zookeeper.ServiceProvider;
 import com.anyikang.config.RMIConfig;
 import com.anyikang.remote.server.service.MessageQueryRMIService;
 import com.anyikang.remote.server.service.ReportRMIService;
-import com.anyikang.remote.server.service.SendConfigurationRMIService;
+import com.anyikang.remote.server.service.ConfigRMIService;
 
 @Component
 public class RemoteServer {
@@ -28,7 +28,7 @@ public class RemoteServer {
 	@Autowired
 	private MessageQueryRMIService messageQueryRMIService;
 	@Autowired
-	private SendConfigurationRMIService sendConfigurationRMIService;
+	private ConfigRMIService sendConfigurationRMIService;
 	
 	
 	/**
