@@ -9,10 +9,8 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.anyikang.base.BaseService;
 import com.anyikang.components.netty.coding.ByteToJsonBody;
-import com.anyikang.components.netty.coding.JsonBodyToByte;
-import com.anyikang.service.MessageQueryService;
+import com.anyikang.service.ReturnMessageQueryService;
 
 /**
  * 查询
@@ -21,9 +19,9 @@ import com.anyikang.service.MessageQueryService;
  * @date 2017年3月30日
  */
 @Service
-public class MessageQueryServiceImpl extends BaseService implements MessageQueryService {
+public class ReturnMessageQueryServiceImpl implements ReturnMessageQueryService {
 	
-	private final Logger logger = LoggerFactory.getLogger(MessageQueryServiceImpl.class);
+	private final Logger logger = LoggerFactory.getLogger(ReturnMessageQueryServiceImpl.class);
 	
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
@@ -35,8 +33,8 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte versions(ByteToJsonBody messageBody) {
-		logger.debug("============版本查询服务");
+	public void versions(ByteToJsonBody messageBody) {
+		logger.debug("============版本号查询服务响应");
 		// TODO Auto-generated method stub
 		
 		//调用rmi服务
@@ -50,9 +48,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
 		
-		rabbitTemplate.convertAndSend("message_query_queue", "message query msg");
-		
-		return super.returnObject(16,0xB0,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_message_query_queue", "return_message_query msg");
 	}
 
 	/*
@@ -63,7 +59,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 	 * .ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte positioning(ByteToJsonBody messageBody) {
+	public void positioning(ByteToJsonBody messageBody) {
 		logger.debug("============定位信息查询服务");
 		// TODO Auto-generated method stub
 		
@@ -77,7 +73,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0xB1,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_message_query_queue", "return_message_query msg");
 	}
 
 	/*
@@ -87,7 +83,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte exercise(ByteToJsonBody messageBody) {
+	public void exercise(ByteToJsonBody messageBody) {
 		logger.debug("============运动信息查询服务");
 		// TODO Auto-generated method stub
 		
@@ -101,7 +97,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0xB2,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_message_query_queue", "return_message_query msg");
 	}
 
 	/*
@@ -112,7 +108,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte heartRate(ByteToJsonBody messageBody) {
+	public void heartRate(ByteToJsonBody messageBody) {
 		logger.debug("============心率信息查询服务");
 		// TODO Auto-generated method stub
 		
@@ -126,7 +122,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0xB3,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_message_query_queue", "return_message_query msg");
 	}
 
 	/*
@@ -137,7 +133,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 	 * .ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte bloodOxygen(ByteToJsonBody messageBody) {
+	public void bloodOxygen(ByteToJsonBody messageBody) {
 		logger.debug("============血氧信息查询服务");
 		// TODO Auto-generated method stub
 		
@@ -151,7 +147,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0xB4,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_message_query_queue", "return_message_query msg");
 	}
 
 	/*
@@ -162,7 +158,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 	 * .ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte bloodPressure(ByteToJsonBody messageBody) {
+	public void bloodPressure(ByteToJsonBody messageBody) {
 		logger.debug("============血压信息查询服务");
 		// TODO Auto-generated method stub
 		
@@ -176,7 +172,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0xB5,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_message_query_queue", "return_message_query msg");
 	}
 
 	/*
@@ -186,7 +182,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte sleep(ByteToJsonBody messageBody) {
+	public void sleep(ByteToJsonBody messageBody) {
 		logger.debug("============睡眠信息查询服务");
 		// TODO Auto-generated method stub
 		
@@ -200,7 +196,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0xB6,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_message_query_queue", "return_message_query msg");
 	}
 
 	/*
@@ -210,7 +206,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte lost(ByteToJsonBody messageBody) {
+	public void lost(ByteToJsonBody messageBody) {
 		logger.debug("============丢失报文查询服务");
 		// TODO Auto-generated method stub
 		
@@ -224,7 +220,7 @@ public class MessageQueryServiceImpl extends BaseService implements MessageQuery
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0xB7,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_message_query_queue", "return_message_query msg");
 	}
 
 }

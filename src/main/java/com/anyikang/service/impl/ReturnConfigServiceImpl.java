@@ -5,23 +5,28 @@ package com.anyikang.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.anyikang.base.BaseService;
 import com.anyikang.components.netty.coding.ByteToJsonBody;
 import com.anyikang.components.netty.coding.JsonBodyToByte;
-import com.anyikang.service.ConfigurationService;
+import com.anyikang.service.ReturnConfigService;
 
 /**
- * 配置
+ * 配置响应
  * 
  * @author wangwei
  * @date 2017年3月30日
  */
 @Service
-public class ConfigurationServiceImpl extends BaseService implements ConfigurationService {
+public class ReturnConfigServiceImpl implements ReturnConfigService {
 	
-	private final Logger logger = LoggerFactory.getLogger(ConfigurationServiceImpl.class);
+	private final Logger logger = LoggerFactory.getLogger(ReturnConfigServiceImpl.class);
+	
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
 
 	/*
 	 * (non-Javadoc)
@@ -30,7 +35,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte time(ByteToJsonBody messageBody) {
+	public void time(ByteToJsonBody messageBody) {
 		logger.debug("============时间配置服务");
 		
 		//调用rmi服务
@@ -42,7 +47,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x90,0, 4);
+		rabbitTemplate.convertAndSend("return_config_queue", "return_config msg");
 	}
 
 	/*
@@ -53,7 +58,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 * .ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte positioning(ByteToJsonBody messageBody) {
+	public void positioning(ByteToJsonBody messageBody) {
 		logger.debug("============定位配置服务");
 		// TODO Auto-generated method stub
 		
@@ -67,7 +72,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x91,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_config_queue", "return_config msg");
 	}
 
 	/*
@@ -78,7 +83,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 * .util.ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte electronicFence(ByteToJsonBody messageBody) {
+	public void electronicFence(ByteToJsonBody messageBody) {
 		logger.debug("============电子围栏配置服务");
 		// TODO Auto-generated method stub
 		
@@ -92,7 +97,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x92,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_config_queue", "return_config msg");
 	}
 
 	/*
@@ -102,7 +107,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte family(ByteToJsonBody messageBody) {
+	public void family(ByteToJsonBody messageBody) {
 		logger.debug("============亲情号配置服务");
 		// TODO Auto-generated method stub
 		
@@ -116,7 +121,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x93,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_config_queue", "return_config msg");
 	}
 
 	/*
@@ -127,7 +132,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte exercise(ByteToJsonBody messageBody) {
+	public void exercise(ByteToJsonBody messageBody) {
 		logger.debug("============运动配置服务");
 		// TODO Auto-generated method stub
 		
@@ -141,7 +146,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x94,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_config_queue", "return_config msg");
 	}
 
 	/*
@@ -152,7 +157,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte nameList(ByteToJsonBody messageBody) {
+	public void nameList(ByteToJsonBody messageBody) {
 		logger.debug("============白名单配置服务");
 		// TODO Auto-generated method stub
 		
@@ -166,7 +171,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x95,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_config_queue", "return_config msg");
 	}
 
 	/*
@@ -177,7 +182,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 * .ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte heartRate(ByteToJsonBody messageBody) {
+	public void heartRate(ByteToJsonBody messageBody) {
 		logger.debug("============心率配置服务");
 		// TODO Auto-generated method stub
 		
@@ -191,7 +196,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x96,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_config_queue", "return_config msg");
 	}
 
 	/*
@@ -202,7 +207,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 * )
 	 */
 	@Override
-	public JsonBodyToByte ip(ByteToJsonBody messageBody) {
+	public void ip(ByteToJsonBody messageBody) {
 		logger.debug("============IP配置服务");
 		// TODO Auto-generated method stub
 		
@@ -216,7 +221,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x97,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_config_queue", "return_config msg");
 	}
 
 	/*
@@ -226,7 +231,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte clock(ByteToJsonBody messageBody) {
+	public void clock(ByteToJsonBody messageBody) {
 		logger.debug("============闹钟配置服务");
 		// TODO Auto-generated method stub
 		
@@ -240,7 +245,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x99,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_config_queue", "return_config msg");
 	}
 
 	/*
@@ -250,7 +255,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte wifi(ByteToJsonBody messageBody) {
+	public void wifi(ByteToJsonBody messageBody) {
 		logger.debug("============wifi配置服务");
 		// TODO Auto-generated method stub
 		
@@ -264,7 +269,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x9A,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_config_queue", "return_config msg");
 	}
 
 	/*
@@ -274,7 +279,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte warn(ByteToJsonBody messageBody) {
+	public void warn(ByteToJsonBody messageBody) {
 		logger.debug("============提醒配置服务");
 		// TODO Auto-generated method stub
 		
@@ -288,7 +293,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x9B,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_config_queue", "return_config msg");
 	}
 
 	/*
@@ -299,7 +304,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 * .util.ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte informationPush(ByteToJsonBody messageBody) {
+	public void informationPush(ByteToJsonBody messageBody) {
 		logger.debug("============信息推送配置服务");
 		// TODO Auto-generated method stub
 		
@@ -313,7 +318,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x9C,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_config_queue", "return_config msg");
 	}
 
 	/*
@@ -324,7 +329,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 * .ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte factoryReset(ByteToJsonBody messageBody) {
+	public void factoryReset(ByteToJsonBody messageBody) {
 		logger.debug("============回复出厂配置服务");
 		// TODO Auto-generated method stub
 		
@@ -338,7 +343,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x9D,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_config_queue", "return_config msg");
 	}
 
 	/*
@@ -348,7 +353,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte sos(ByteToJsonBody messageBody) {
+	public void sos(ByteToJsonBody messageBody) {
 		logger.debug("============sos配置服务");
 		// TODO Auto-generated method stub
 		
@@ -362,7 +367,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x9E,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_config_queue", "return_config msg");
 	}
 
 	/*
@@ -372,7 +377,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 	 * ByteToJsonBody)
 	 */
 	@Override
-	public JsonBodyToByte tumble(ByteToJsonBody messageBody) {
+	public void tumble(ByteToJsonBody messageBody) {
 		logger.debug("============跌倒配置服务");
 		// TODO Auto-generated method stub
 		
@@ -386,7 +391,7 @@ public class ConfigurationServiceImpl extends BaseService implements Configurati
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		return super.returnObject(16,0x9F,dataNumberByte, 0, 4);
+		rabbitTemplate.convertAndSend("return_config_queue", "return_config msg");
 	}
 
 }

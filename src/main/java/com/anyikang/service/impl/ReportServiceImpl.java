@@ -45,7 +45,7 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
-		rabbitTemplate.convertAndSend("positioning_queue", "positioning msg");
+		rabbitTemplate.convertAndSend("report_queue", "report msg");
 		
 		return super.returnObject(16,0x81,dataNumberByte, 0, 4);
 	}
@@ -64,6 +64,8 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
+		rabbitTemplate.convertAndSend("report_queue", "report msg");
+		
 		return super.returnObject(16,0x82,dataNumberByte, 0, 4);
 	}
 
@@ -80,6 +82,8 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		rabbitTemplate.convertAndSend("report_queue", "report msg");
 		
 		return super.returnObject(16,0x83,dataNumberByte, 0, 4);
 	}
@@ -104,6 +108,8 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		byte [] timeByte={dataBody[5],dataBody[6],dataBody[7],dataBody[8],dataBody[9],dataBody[10],dataBody[11]};
 		String time=BCDUtils.byteToHexString(timeByte);
 		
+		rabbitTemplate.convertAndSend("report_queue", "report msg");
+		
 		return super.returnObject(16,0x84,dataNumberByte, 0, 4);
 	}
 
@@ -122,6 +128,8 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
 		
+		rabbitTemplate.convertAndSend("report_queue", "report msg");
+		
 		return super.returnObject(16,0x85,dataNumberByte, 0, 4);
 	}
 
@@ -138,6 +146,8 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		byte [] dataNumberByte={dataBody[1],dataBody[2]};
 		String huifukongzhi=Integer.toHexString(dataBody[1] & 0xFF);
 		String xueyang=Integer.toHexString(dataBody[2] & 0xFF);
+		
+		rabbitTemplate.convertAndSend("report_queue", "report msg");
 		
 		return super.returnObject(16,0x86,dataNumberByte, 0, 4);
 	}
